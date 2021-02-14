@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "CreateCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>CreateCategory</h2>
+
+<form class="form-horizontal" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> English Name:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="enName" placeholder="Enter  English Name">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> Arabic Name:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="arName" placeholder="Enter Arabic Name">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> Order By:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="OrderBy" placeholder="Enter Order By">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Is active:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="IsActive" placeholder="Enter Is active">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> Icon Url:</label>
+        <div class="col-sm-6">
+            
+            <input type="file" name="fileToUpload" id="IconUrl">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="IconData"> Icon Data:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="Icon Data" placeholder="Enter Icon Data">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <p id="Save" class="btn btn-success">Save Category</p>
+</form>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $('#Save').click(function () {
+        var cat = new Object();
+        cat.type = $("#type").val();
+        cat.name_en = $("#enName").val();
+        cat.name_ar = $("#arName").val();
+        cat.order_by = $("#OrderBy").val();
+        cat.is_active = $("#IsActive").val();
+        cat.icon_url = $("#IconUrl").val();
+        cat.icon_data = $("#IconData").val();
+
+        //url = 'http://localhost:60624/Category/SaveCatagory';
+        //$.post(url, { type: type, name_en: name_en, name_ar: name_ar, order_by: order_by, is_active: is_active, icon_url: icon_url, icon_data: icon_data }, function (data) {
+        //    $("#msg").html(data);
+        //});
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:60624/Category/SaveCatagory',
+            data: JSON.stringify(cat),
+       
+            processing: true,
+            serverSide: true,
+            success: function (response) {
+                alert("Inserted Successfully");
+            }
+
+        })
+    })
+</script>

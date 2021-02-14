@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "EditCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>EditCategory</h2>
+
+<form class="form-horizontal">
+    <input type="hidden" id="CatId" name="CatId" value="@ViewBag.CatId"/>
+    @*English Name <input type="text" name="enName" id="enName" class="form-control" /><br />
+    Arabic Name <input type="text" name="arName" id="arName" class="form-control" /><br />
+    Order By <input type="text" name="OrderBy" id="OrderBy" class="form-control" /><br />
+    is active<input type="text" name="IsActive" id="IsActive" class="form-control" /><br />
+    icon url <input type="text" name="IconUrl" id="IconUrl" class="form-control" /><br />
+    icon data<input type="text" name="IconData" id="IconData" class="form-control" /><br />*@
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> English Name:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="enName" placeholder="Enter  English Name">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> Arabic Name:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="arName" placeholder="Enter Arabic Name">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> Order By:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="OrderBy" placeholder="Enter Order By">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Is active:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="IsActive" placeholder="Enter Is active">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email"> Icon Url:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="IconUrl" placeholder="Enter Icon Url">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="IconData"> Icon Data:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="Icon Data" placeholder="Enter Icon Data">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+
+    <p class="btn btn-success" id="EditCat">Update Category</p>
+</form>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        GetCategoryById();
+
+    })
+
+    function GetCategoryById() {
+         
+       
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:60624/Category/EditCatagoryById?id=' + $("#CatId").val(),
+         
+
+            processing: true,
+            serverSide: true,
+            success: function (response) {
+                
+                
+                var cat = JSON.parse(response.data);
+                
+                $("#enName").val(cat[0].name_en);
+                $("#arName").val(cat[0].name_ar);
+                $("#OrderBy").val(cat[0].order_by);
+                $("#IsActive").val(cat[0].is_active);
+                $("#IconUrl").val(cat[0].icon_url);
+                $("#IconData").val(cat[0].icon_data);
+            }
+
+        })
+    }
+
+
+    $('#EditCat').click(function () {
+        var cat = new Object();
+        cat.cat_id = $("#CatId").val();
+        cat.name_en = $("#enName").val();
+        cat.name_ar = $("#arName").val();
+        cat.order_by = $("#OrderBy").val();
+        cat.is_active = $("#IsActive").val();
+        cat.icon_url = $("#IconUrl").val();
+        cat.icon_data = $("#IconData").val();
+         
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:60624/Category/UpdateCatagories',
+            data: JSON.stringify(cat),
+
+            processing: true,
+            serverSide: true,
+            success: function (response) {
+                alert("Updated Successfully");
+            }
+
+        })
+    })
+</script>
