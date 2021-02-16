@@ -48,12 +48,32 @@
         </div>
         </div> <!-- row.// -->
     </section> 
+
+    <section class="padding-bottom">
+        <header class="section-heading mb-4">
+            <h3 class="title-section">Gifts</h3>
+        </header>
+        <div class="row">
+            <div id="gifts">
+            </div>
+        </div> <!-- row.// -->
+    </section> 
+
+    <section class="padding-bottom">
+        <header class="section-heading mb-4">
+            <h3 class="title-section">Offers</h3>
+        </header>
+        <div class="row">
+            <div id="Offers" class="col-md-12">
+            </div>
+        </div> <!-- row.// -->
+    </section> 
   
     <!-- =============== SECTION 1 END =============== -->
     <!-- =============== SECTION 1 =============== -->
     <section class="padding-bottom">
         <header class="section-heading mb-4">
-            <h3 class="title-section">Gifts</h3>
+            <h3 class="title-section">Products</h3>
         </header>
 
         <div class="row">
@@ -449,7 +469,9 @@
         //$('#customers2').DataTable();
         getAdds();
         getBrands();
-        getProducts();
+       // getProducts();
+        getGifts();
+        getOffers();
     });
     function getAdds() {
         $.ajax({
@@ -500,29 +522,83 @@
         }
    )
     };
-    function getProducts() {
+    function getGifts() {
         $.ajax({
             async: true,
             type: "Get",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:50235/Home/ShowProducts',
+            url: 'http://localhost:50235/Home/Getgifts',
             data: '{}',
 
             processing: true,
             serverSide: true,
             success: function (data) {
+                debugger;
                 var record = JSON.parse(data.data);
                 $.each(record, function (i, key) {
-                    
-                    $('#Products').after('<div class="col-xl-3 col-lg-3 col-md-4 col-6"><div class="card card-product-grid"> <a href="#" class="img-wrap"> <img src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '"> </a> <figcaption class="info-wrap"><div><a href="#" class="text-muted"></a><a href="#" class="title">' + key.name_en + '</a> </div><div class="price h5 mt-2">' + key.unit_price + '</div></figcaption> </div></div>'
+                    $('#gifts').after(
 
-                     );
+                        '<div class="col-xl-3 col-lg-3 col-md-4 col-6" style="padding-top:10px;"><img height="270" src="http://serv.vrad.in/img/ecom_olaala/' + key.icon_url + '" /></div>'
+
+
+                        );
                 });
-
 
             }
         }
    )
     };
+    function getOffers() {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:50235/Home/GetOffers',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (data) {
+                debugger;
+                var record = JSON.parse(data.data);
+                $.each(record, function (i, key) {
+                    $('#Offers').append(
+
+                        '<div class="col-xl-6 col-lg-6 col-md-12 col-12" style="padding-top:10px;"><img height="270" style="width:200%;" src="http://serv.vrad.in/img/ecom_olaala/' + key.offer_img_url + '" /></div>'
+
+
+                        );
+                });
+
+            }
+        }
+   )
+    };
+   // function getProducts() {
+   //     $.ajax({
+   //         async: true,
+   //         type: "Get",
+   //         dataType: "JSON",
+   //         contentType: 'application/json;',
+   //         url: 'http://localhost:50235/Home/ShowProducts',
+   //         data: '{}',
+
+   //         processing: true,
+   //         serverSide: true,
+   //         success: function (data) {
+   //             var record = JSON.parse(data.data);
+   //             $.each(record, function (i, key) {
+                    
+   //                 $('#Products').after('<div class="col-xl-3 col-lg-3 col-md-4 col-6"><div class="card card-product-grid"> <a href="#" class="img-wrap"> <img src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '"> </a> <figcaption class="info-wrap"><div><a href="#" class="text-muted"></a><a href="#" class="title">' + key.name_en + '</a> </div><div class="price h5 mt-2">' + key.unit_price + '</div></figcaption> </div></div>'
+
+   //                  );
+   //             });
+
+
+   //         }
+   //     }
+   //)
+   // };
 </script>
