@@ -71,17 +71,17 @@
                         <dd class="col-sm-9">
                             <div class="input-group mb-3 input-spinner">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-light" type="button" id="button-plus"> + </button>
+                                    <button class="btn btn-light" type="button" id="button-plus" onclick="OnplusChange()"> + </button>
                                 </div>
-                                <input type="text" class="form-control" value="1">
+                                <input type="text" class="form-control" value="1" id="qty">
                                 <div class="input-group-append">
-                                    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
+                                    <button class="btn btn-light" type="button" id="button-minus" onclick="OnminusChange()"> &minus; </button>
                                 </div>
                             </div>
                         </dd>
                         <dt class="col-sm-3">Select Color</dt>
                         <dd class="col-sm-9">
-                             Red Color
+                            Red Color
                         </dd>
                         <dt class="col-sm-3">Apply Gift Voucher</dt>
                         <dd class="col-sm-9">
@@ -98,10 +98,10 @@
                         </dd>
                     </dl>
                     <div class="form-group col-md">
-                        <a href="#" class="btn  btn-success">
+                        <a href="#" id="AddToCart" class="btn  btn-success">
                             <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span>
                         </a>
-                        <a href="#" class="btn  btn-primary">
+                        <a href="~/Home/checkedOut" class="btn  btn-primary">
                             <i class="fas fa-shopping-cart"></i> <span class="text">CheckOut</span>
                         </a>
                     </div> <!-- col.// -->
@@ -220,11 +220,27 @@
 <script>
     $(document).ready(function () {
         getProductDetails();
+        getCartCount();
+        getCartDetails();
     });
 
     var url_string = window.location.href; //window.location.href
     var url = new URL(url_string);
     var prodid = url.searchParams.get("prodid");
+    var cartqty = parseFloat($('#qty').val());
+    var size = $('#Size').val();
+
+    function OnplusChange() {
+        cartqty = parseFloat($('#qty').val()) + 1;
+        $('#qty').val(cartqty);
+    }
+
+    function OnminusChange() {
+        if ($('#qty').val() > 1) {
+            cartqty = parseFloat($('#qty').val()) - 1;
+            $('#qty').val(cartqty);
+        }
+    }
 
     function getProductDetails() {
         $.ajax({
@@ -251,4 +267,30 @@
         }
    )
     };
-</script>
+
+    $('#AddToCart').click(function () {
+        var cart = new Object();
+        cart.prod_id = prodid;
+        cart.quantity = cartqty;
+        cart.cust_id = 5;
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:50235/Home/AddToCart',
+            data: JSON.stringify(cart),
+
+            processing: true,
+            serverSide: true,
+            success: function (response) {
+                alert("Updated Successfully");
+            }
+
+        })
+    })
+
+   
+
+ </script>

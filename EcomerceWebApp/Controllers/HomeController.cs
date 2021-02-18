@@ -431,5 +431,223 @@ namespace EcomerceWebApp.Controllers
 
             return Json(routes_list, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult AddToCart(EcomCartItem cart)
+        {
+            string url = @"http://localhost:2713/ecompublic.svc/HandleEcom";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            EcomData ecom_data = new EcomData();
+            ecom_data.api_key = "ujujuaaZSW23WDEE2yhyhdujujfftr54";
+
+            ecom_data.dev_id = "4CA70954-3904-48B0-B9FD-32F5458B243F";//any value
+            ecom_data.dev_type = "web";//always pass it as web only.
+            ecom_data.store_id = "1";//always pass 1
+            ecom_data.token = "123456789";//temp token. will implement validation later.
+            ecom_data.app_identity = "app.enbaar.olaala";
+            ecom_data.cust_id = cart.cust_id;
+
+
+            ecom_data.staff_id = "1";
+            ecom_data.role_type = "admin";
+            ecom_data.store_id = "1";
+
+            ecom_data.reg_id = "1";
+
+            ecom_data.lang_code = "en";
+
+            ecom_data.flag = "add_to_cart";
+
+
+            //EcomProductData my_data = new EcomProductData();
+
+            ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(cart);
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                HomeController psnew = new HomeController();
+                string json = JsonConvert.SerializeObject(ecom_data);
+                json = FormatJson(json);
+                streamWriter.Write(json);
+            }
+            var result = "";
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            object routes_list =
+                   (object)json_serializer.DeserializeObject(result);
+
+            return Json(routes_list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult getCartCount(EcomCartItem cart)
+        {
+            string url = @"http://localhost:2713/ecompublic.svc/HandleEcom";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            EcomData ecom_data = new EcomData();
+            ecom_data.api_key = "ujujuaaZSW23WDEE2yhyhdujujfftr54";
+
+            ecom_data.dev_id = "4CA70954-3904-48B0-B9FD-32F5458B243F";//any value
+            ecom_data.dev_type = "web";//always pass it as web only.
+            ecom_data.store_id = "1";//always pass 1
+            ecom_data.token = "123456789";//temp token. will implement validation later.
+            ecom_data.app_identity = "app.enbaar.olaala";
+            ecom_data.cust_id = cart.cust_id;
+
+
+            ecom_data.staff_id = "1";
+            ecom_data.role_type = "admin";
+            ecom_data.store_id = "1";
+
+            ecom_data.reg_id = "1";
+
+            ecom_data.lang_code = "en";
+
+            ecom_data.flag = "get_cart_count";
+
+
+            EcomProductData my_data = new EcomProductData();
+
+            ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(cart);
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                HomeController psnew = new HomeController();
+                string json = JsonConvert.SerializeObject(ecom_data);
+                json = FormatJson(json);
+                streamWriter.Write(json);
+            }
+            var result = "";
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            object routes_list =
+                   (object)json_serializer.DeserializeObject(result);
+
+            return Json(routes_list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult getCartDetails(EcomCartItem cart)
+        {
+            string url = @"http://localhost:2713/ecompublic.svc/HandleEcom";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            EcomData ecom_data = new EcomData();
+            ecom_data.api_key = "ujujuaaZSW23WDEE2yhyhdujujfftr54";
+
+            ecom_data.dev_id = "4CA70954-3904-48B0-B9FD-32F5458B243F";//any value
+            ecom_data.dev_type = "web";//always pass it as web only.
+            ecom_data.store_id = "1";//always pass 1
+            ecom_data.token = "123456789";//temp token. will implement validation later.
+            ecom_data.app_identity = "app.enbaar.olaala";
+            ecom_data.cust_id = cart.cust_id;
+
+
+            ecom_data.staff_id = "1";
+            ecom_data.role_type = "admin";
+            ecom_data.store_id = "1";
+
+            ecom_data.reg_id = "1";
+
+            ecom_data.lang_code = "en";
+
+            ecom_data.flag = "get_cart";
+
+
+            EcomProductData my_data = new EcomProductData();
+
+            ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(cart);
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                HomeController psnew = new HomeController();
+                string json = JsonConvert.SerializeObject(ecom_data);
+                json = FormatJson(json);
+                streamWriter.Write(json);
+            }
+            var result = "";
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            object routes_list =
+                   (object)json_serializer.DeserializeObject(result);
+
+            return Json(routes_list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveCartDetails(EcomCartItem cart)
+        {
+            string url = @"http://localhost:2713/ecompublic.svc/HandleEcom";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            EcomData ecom_data = new EcomData();
+            ecom_data.api_key = "ujujuaaZSW23WDEE2yhyhdujujfftr54";
+
+            ecom_data.dev_id = "4CA70954-3904-48B0-B9FD-32F5458B243F";//any value
+            ecom_data.dev_type = "web";//always pass it as web only.
+            ecom_data.store_id = "1";//always pass 1
+            ecom_data.token = "123456789";//temp token. will implement validation later.
+            ecom_data.app_identity = "app.enbaar.olaala";
+            ecom_data.cust_id = cart.cust_id;
+
+
+            ecom_data.staff_id = "1";
+            ecom_data.role_type = "admin";
+            ecom_data.store_id = "1";
+
+            ecom_data.reg_id = "1";
+
+            ecom_data.lang_code = "en";
+
+            ecom_data.flag = "remove_from_cart";
+
+
+            EcomProductData my_data = new EcomProductData();
+
+            ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(cart);
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                HomeController psnew = new HomeController();
+                string json = JsonConvert.SerializeObject(ecom_data);
+                json = FormatJson(json);
+                streamWriter.Write(json);
+            }
+            var result = "";
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            object routes_list =
+                   (object)json_serializer.DeserializeObject(result);
+
+            return Json(routes_list, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CheckedOut()
+        {
+            return View();
+        }
     }
+
 }

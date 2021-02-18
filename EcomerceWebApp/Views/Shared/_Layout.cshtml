@@ -83,7 +83,7 @@
                             <li><a href="#" class="nav-link"> Help </a></li>*@
                     </ul>
                     <ul class="navbar-nav" style="color:white;">
-                        <li><a href="#" class="nav-link" style="color:white"> <img src="~/images/icons/flags/US.png" height="16"> Ship to </a></li>
+                        @*<li><a href="#" class="nav-link" style="color:white"> <img src="~/images/icons/flags/US.png" height="16"> Ship to </a></li>*@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:white"> Languages </a>
                             <ul class="dropdown-menu small" style="color:white">
@@ -100,11 +100,11 @@
                             <li><a href="#" class="nav-link"> <i class="fa fa-shopping-cart"></i> </a></li>*@
                     </ul> <!-- list-inline //  -->
                     <div class="widget-header">
-                        <a href="#" class="widget-view">
+                        <a href="~/Home/checkedOut" class="widget-view">
                             <div class="icon-area">
                                 <i class="fa fa-shopping-cart"></i>
                             </div>
-                            <small class="text" style="color:white;"> Cart </small>
+                               <small class="text" style="color:white;"> Cart(<span id="CartCount"></span> items)</small>
                         </a>
                     </div>
                 </div> <!-- navbar-collapse .// -->
@@ -296,22 +296,40 @@
         </div><!-- //container -->
     </footer> 
     <!-- ========================= FOOTER END // ========================= -->
-    @*<script>
-            window.onscroll = function () { myFunction() };
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script>
+    $(document).ready(function () {
+      
+        getCartCount();
+    });
+   
+    function getCartCount() {
+        var cart = new Object();
+        cart.cust_id = 5;
 
-            var header = document.getElementById("myHeader");
-            var sticky = header.offsetTop;
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:50235/Home/getCartCount',
+            data: JSON.stringify(cart),
 
-            function myFunction() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("sticky");
-                } else {
-                    header.classList.remove("sticky");
-                }
+            processing: true,
+            serverSide: true,
+            success: function (data) {
+                var record = JSON.parse(data.data);
+                $('#CartCount').text(record);
             }
-        </script>*@
+        }
+   )
+    };
+
+  
+    </script>
 
 </body>
 
 
 </html>
+
