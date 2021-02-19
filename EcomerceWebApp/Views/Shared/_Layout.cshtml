@@ -28,9 +28,18 @@
 
     <!-- custom javascript -->
     <script src="~/js/script3661.js?v=2.0" type="text/javascript"></script>
-     
+
     <style>
         .header {
+            background-color: #1B4869 !important;
+            color: white;
+        }
+         .footer-bottom .section-footer {
+            background-color: #1B4869 !important;
+            color: white;
+        }
+
+          .section-footer {
             background-color: #1B4869 !important;
             color: white;
         }
@@ -67,56 +76,16 @@
 </head>
 <body>
 
-    
+
 
     <header class="header sticky" id="myHeader">
-        <nav class="navbar d-none d-md-flex p-md-0 navbar-expand-sm navbar-light border-bottom">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTop4" style="color:white;">
-                    <ul class="navbar-nav mr-auto">
-                        <li><span class="nav-link" style="color:white">Hi, <a href="#"> Sign in </a> or <a href="#"> Register </a></span></li>
-                        @*<li><a href="#" class="nav-link"> Deals </a></li>
-                            <li><a href="#" class="nav-link"> Sell </a></li>
-                            <li><a href="#" class="nav-link"> Help </a></li>*@
-                    </ul>
-                    <ul class="navbar-nav" style="color:white;">
-                        @*<li><a href="#" class="nav-link" style="color:white"> <img src="~/images/icons/flags/US.png" height="16"> Ship to </a></li>*@
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:white"> Languages </a>
-                            <ul class="dropdown-menu small" style="color:white">
-                                <li><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">Arabic</a></li>
 
-                            </ul>
-                        </li>
-                        <li>
-
-                        </li>
-                        @*<li><a href="#" class="nav-link"> My shop </a></li>
-                            <li><a href="#" class="nav-link"> <i class="fa fa-bell"></i> </a></li>
-                            <li><a href="#" class="nav-link"> <i class="fa fa-shopping-cart"></i> </a></li>*@
-                    </ul> <!-- list-inline //  -->
-                    <div class="widget-header">
-                        <a href="~/Home/checkedOut" class="widget-view">
-                            <div class="icon-area">
-                                <i class="fa fa-shopping-cart"></i>
-                            </div>
-                               <small class="text" style="color:white;"> Cart(<span id="CartCount"></span> items)</small>
-                        </a>
-                    </div>
-                </div> <!-- navbar-collapse .// -->
-            </div> <!-- container //  -->
-        </nav>
-
-        <div class="container" style="z-index:0">
+        <div class="container" style="z-index:0;">
             <section class="header-main border-bottom">
                 <div class="row row-sm">
                     <div class="col-6 col-sm col-md col-lg  flex-grow-0">
-                        <a href="http://bootstrap-ecommerce.com/" class="brand-wrap">
-                            <img class="logo" src="~/images/olala.png?v=2.0" height="200">
+                        <a href="#" class="brand-wrap">
+                            <img  src="~/images/logoolaala.png?v=3.0" style="height:70px">
                         </a> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-6 col-sm col-md col-lg flex-md-grow-0">
@@ -127,40 +96,60 @@
                             <a href="#" class="btn btn-light"> <i class="fa fa-user"></i> </a>
                             <a href="#" class="btn btn-light"> <i class="fa fa-shopping-cart"></i> 2 </a>
                         </div>
-                        <!-- mobile-only //end  -->
-                        @*<div class="category-wrap d-none dropdown d-md-inline-block">
-                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-                                    Shop by
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                                    <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                                    <a class="dropdown-item" href="#">Auto / Transportation</a>
-                                    <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                                    <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                                    <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
-                                </div>
-                            </div>*@  <!-- category-wrap.// -->
+
                     </div> <!-- col.// -->
-                    <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
+                    <div class="col-md-5" style="margin-left:114px;">
                         <form action="#" class="search-header">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search">
-                                @*<select class="custom-select border-left" name="category_name">
-                                        <option value="">All type</option>
-                                        <option value="codex">Special</option>
-                                        <option value="comments">Only best</option>
-                                        <option value="content">Latest</option>
-                                    </select>*@
                             </div>
+                            
                         </form> <!-- search-wrap .end// -->
                     </div> <!-- col.// -->
                     <div class="col col-lg col-md flex-grow-0">
                         <button class="btn btn-block btn-primary" type="submit"> Search </button>
                     </div>
-                    @*<div class="col col-lg col-md flex-grow-0">
-                            <button class="btn btn-block btn-light" type="submit"> Advanced </button>
-                        </div>*@
+                   
+                    <div class="col col-lg col-md flex-grow-0">
+                        <button class="btn btn-block btn-light" type="submit"> Login </button>
+                    </div>
+
+
+                    <div class="col col-lg col-md flex-grow-0" style="padding-left:45px;">
+                        <div class="" id="navbarTop4" style="color:white;">
+                            <ul class="navbar-nav" style="color:white;">
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:white"> Languages </a>
+                                    <ul class="dropdown-menu small" style="color:white">
+                                        <li><a class="dropdown-item" href="#">English</a></li>
+                                        <li><a class="dropdown-item" href="#">Arabic</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg col-md flex-grow-0" style="padding-left:45px;">
+                        <div class="widget-header">
+                            <a href="~/Home/checkedOut" class="widget-view">
+                                <div class="icon-area">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                                <small class="text" style="color:white;"> Cart(<span id="CartCount"></span> items)</small>
+                            </a>
+                        </div>
+                    </div>
+                    <nav class="navbar d-none d-md-flex p-md-0 navbar-expand-sm">
+                        <div class="container" style="height:45px;">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        
+                           
+                        </div> <!-- container //  -->
+                    </nav>
+
                 </div> <!-- row.// -->
             </section> <!-- header-main .// -->
 
@@ -171,22 +160,32 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> Demo pages </a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> Fashion </a>
                         <div class="dropdown-menu dropdown-large">
                             <nav class="row">
                                 <div class="col-6">
-                                    <a href="page-index-1.html">Home page 1</a>
-                                    <a href="page-index-2.html">Home page 2</a>
-                                    <a href="page-category.html">All category</a>
-                                    <a href="page-listing-large.html">Listing list</a>
-                                    <a href="page-listing-grid.html">Listing grid</a>
-                                    <a href="page-shopping-cart.html">Shopping cart</a>
-                                    <a href="page-detail-product.html">Product detail</a>
-                                    <a href="page-content.html">Page content</a>
-                                    <a href="page-user-login.html">Page login</a>
-                                    <a href="page-user-register.html">Page register</a>
+                                    <h5>Mens</h5>
+                                    <a href="page-index-1.html">Men's Top Wear</a>
+                                    <a href="page-index-2.html">Men's Bottom Wear</a>
+                                    <a href="page-category.html">Women Top Wear</a>
+                                    <a href="page-listing-large.html">Women Bottom Wear</a>
+                                    <a href="page-listing-grid.html">Kids</a>
+                                    <a href="page-shopping-cart.html">Watches</a>
+                                    <a href="page-detail-product.html">Essential Winter</a>
+
                                 </div>
                                 <div class="col-6">
+                                    <h5>womens</h5>
+                                    <a href="page-profile-main.html">Profile main</a>
+                                    <a href="page-profile-orders.html">Profile orders</a>
+                                    <a href="page-profile-seller.html">Profile seller</a>
+                                    <a href="page-profile-wishlist.html">Profile wishlist</a>
+                                    <a href="page-profile-setting.html">Profile setting</a>
+                                    <a href="page-profile-address.html">Profile address</a>
+                                    <a href="page-components.html" target="_blank">More components</a>
+                                </div>
+                                <div class="col-6">
+                                    <h5>Kids</h5>
                                     <a href="page-profile-main.html">Profile main</a>
                                     <a href="page-profile-orders.html">Profile orders</a>
                                     <a href="page-profile-seller.html">Profile seller</a>
@@ -198,29 +197,12 @@
                             </nav> <!--  row end .// -->
                         </div> <!--  dropdown-menu dropdown-large end.// -->
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Electronics</a>
+                        <a class="nav-link" href="#">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Fashion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Beauty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Motors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Gardening</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Deals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Under $10</a>
+                        <a class="nav-link" href="#">Contact US</a>
                     </li>
                 </ul>
             </nav> <!-- navbar-main  .// -->
@@ -231,7 +213,7 @@
     @RenderBody()
     <!-- container end.// -->
     <!-- ========================= FOOTER ========================= -->
-     <footer class="section-footer bg-secondary text-white" style="background-color:black;">
+    <footer class="section-footer bg-secondary text-white" style="background-color:black;">
         <div class="container">
             <section class="footer-top  padding-y-lg">
                 <div class="row">
@@ -294,42 +276,41 @@
                 <br>
             </section>
         </div><!-- //container -->
-    </footer> 
+    </footer>
     <!-- ========================= FOOTER END // ========================= -->
     <script src="~/scripts/jquery-1.10.2.min.js"></script>
     <script>
-    $(document).ready(function () {
-      
-        getCartCount();
-    });
-   
-    function getCartCount() {
-        var cart = new Object();
-        cart.cust_id = 5;
+        $(document).ready(function () {
 
-        $.ajax({
-            async: true,
-            type: "POST",
-            dataType: "JSON",
-            contentType: 'application/json;',
-            url: 'http://localhost:50235/Home/getCartCount',
-            data: JSON.stringify(cart),
+            getCartCount();
+        });
 
-            processing: true,
-            serverSide: true,
-            success: function (data) {
-                var record = JSON.parse(data.data);
-                $('#CartCount').text(record);
+        function getCartCount() {
+            var cart = new Object();
+            cart.cust_id = 5;
+
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                contentType: 'application/json;',
+                url: 'http://localhost:50235/Home/getCartCount',
+                data: JSON.stringify(cart),
+
+                processing: true,
+                serverSide: true,
+                success: function (data) {
+                    var record = JSON.parse(data.data);
+                    $('#CartCount').text(record);
+                }
             }
-        }
-   )
-    };
+       )
+        };
 
-  
+
     </script>
 
 </body>
 
 
 </html>
-

@@ -77,7 +77,10 @@
         </header>
 
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-4 col-6">
+            
+            <div id="Products" class="col-md-12">
+            </div>
+            @*<div class="col-xl-3 col-lg-3 col-md-4 col-6">
                 <div class="card card-product-grid">
                     <a href="#" class="img-wrap"> <img src="~/images/items/1.jpg"> </a>
                     <figcaption class="info-wrap">
@@ -317,12 +320,12 @@
                         <div class="price h5 mt-2">$56</div> <!-- price.// -->
                     </figcaption>
                 </div>
-            </div> <!-- col.// -->
+            </div> <!-- col.// -->*@
         </div> <!-- row.// -->
     </section>
     <!-- =============== SECTION 1 END =============== -->
     <!-- =============== SECTION BANNER =============== -->
-    <section class="padding-bottom">
+    @*<section class="padding-bottom">
         <div class="row">
             <aside class="col-md-6">
                 <div class="card card-banner-lg bg-dark">
@@ -446,7 +449,7 @@
                 </div>
             </div> <!-- col.// -->
         </div> <!-- row.// -->
-    </section>
+    </section>*@
     <!-- =============== SECTION 2 END =============== -->
     <!-- =============== SECTION BANNER =============== -->
     <section class="padding-bottom">
@@ -469,7 +472,7 @@
         //$('#customers2').DataTable();
         getAdds();
         getBrands();
-       // getProducts();
+        getProducts();
         getGifts();
         getOffers();
     });
@@ -511,8 +514,9 @@
                 $.each(record, function (i, key) {
                     $('#brands').after(
 
-                        '<div class="col-xl-3 col-lg-3 col-md-4 col-6" style="padding-top:10px;">  <a href="#" class ="img-wrap"> <img height="270" src="http://serv.vrad.in/img/ecom_olaala/' + key.icon_url + '" /></a><div style="color:red;height:10px;text-align:center">' + key.name_brand_en + '</div></div>'
-             
+                        '<div class="col-xl-3 col-lg-3 col-md-4 col-6" style="padding-top:10px;">  <a href="../home/products" class ="img-wrap"> <img height="270" src="http://serv.vrad.in/img/ecom_olaala/' + key.icon_url + '" /></a><div style="color:red;height:10px;text-align:center">' + key.name_brand_en + '</div></div>'
+            
+                    
 
                         );
                 });
@@ -574,29 +578,28 @@
         }
    )
     };
-   // function getProducts() {
-   //     $.ajax({
-   //         async: true,
-   //         type: "Get",
-   //         dataType: "JSON",
-   //         contentType: 'application/json;',
-   //         url: 'http://localhost:50235/Home/ShowProducts',
-   //         data: '{}',
+    function getProducts() {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:50235/Home/ShowProducts',
+            data: '{}',
 
-   //         processing: true,
-   //         serverSide: true,
-   //         success: function (data) {
-   //             var record = JSON.parse(data.data);
-   //             $.each(record, function (i, key) {
-                    
-   //                 $('#Products').after('<div class="col-xl-3 col-lg-3 col-md-4 col-6"><div class="card card-product-grid"> <a href="#" class="img-wrap"> <img src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '"> </a> <figcaption class="info-wrap"><div><a href="#" class="text-muted"></a><a href="#" class="title">' + key.name_en + '</a> </div><div class="price h5 mt-2">' + key.unit_price + '</div></figcaption> </div></div>'
+            processing: true,
+            serverSide: true,
+            success: function (data) {
+                var url = "../" + "/Home/ShowProductDetailById/";
+                var record = JSON.parse(data.data);
+                $.each(record, function (i, key) {
 
-   //                  );
-   //             });
+                    $('#Products').after('<div class="col-xl-3 col-lg-3 col-md-4 col-6"><div class="card card-product-grid"> <a href="' + url + '?prodid=' + key.prod_id + '" class="img-wrap"> <img src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '"> </a> <figcaption class="info-wrap"><div><a href="#" class="text-muted"></a><a href="#" class="title">' + key.name_en + '</a> </div><div class="price h5 mt-2">' + key.unit_price + ' OMR</div></figcaption> </div></div>');
+                });
 
 
-   //         }
-   //     }
-   //)
-   // };
+            }
+        }
+   )
+    };
 </script>

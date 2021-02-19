@@ -214,7 +214,7 @@
                 var record = JSON.parse(data.data);
                 $.each(record, function (i, key) {
                  
-                    $('#Products').after('<div class="col-xl-3 col-lg-3 col-md-4 col-6"><div class="card card-product-grid"> <a href="'+url+'?prodid='+key.prod_id+'" class="img-wrap"> <img src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '"> </a> <figcaption class="info-wrap"><div><a href="#" class="text-muted"></a><a href="#" class="title">' + key.name_en + '</a> </div><div class="price h5 mt-2">' + key.unit_price + '</div></figcaption> </div></div>');
+                    $('#Products').after('<div class="col-xl-3 col-lg-3 col-md-4 col-6"><div class="card card-product-grid"> <a href="'+url+'?prodid='+key.prod_id+'" class="img-wrap"> <img src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '"> </a> <figcaption class="info-wrap"><div><a href="#" class="text-muted"></a><a href="#" class="title">' + key.name_en + '</a> </div><div class="price h5 mt-2">' + key.unit_price + 'OMR</div></figcaption> </div></div>');
                 });
 
 

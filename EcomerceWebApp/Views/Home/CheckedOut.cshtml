@@ -187,10 +187,10 @@
             serverSide: true,
             success: function (data) {
                 var record = JSON.parse(data.data);
-                debugger;
+                 
                 $.each(record, function (i, key) {
-                    $('#CheckOutCart tr:last').after('<tr><td><figure class="itemside"> <div class="aside"><img src="http://serv.vrad.in/img/ecom_olaala/' + key.product.img_url + '" class="img-sm"></div><figcaption class="info">  <a href="#" class="title text-dark">' + key.product.name_en + '</a> </figcaption></figure></td> <td><select class="form-control"> <option>1</option>  <option>2</option><option>3</option><option>4</option></select></td> <td> <var class="price">' + key.product.unit_price + ' </var> <td class="text-right"><a href="#" class="btn btn-light" onclick=RemoveCartDetails(' + key.cart_id + ')/>Remove</a><a data-original-title="Save to Wishlist" title="" href="#" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a></td></tr>');
-                    total = total + parseFloat(key.product.unit_price);
+                    $('#CheckOutCart tr:last').after('<tr><td><figure class="itemside"> <div class="aside"><img src="http://serv.vrad.in/img/ecom_olaala/' + key.product.img_url + '" class="img-sm"></div><figcaption class="info">  <a href="#" class="title text-dark">' + key.product.name_en + '</a> </figcaption></figure></td><td><div class="input-group mb-3 input-spinner"> <div class="input-group-prepend"><button class="btn btn-light" type="button" id="button-plus" onclick="OnplusChange(' + key.prod_id + ',' + key.product.unit_price + ')"> + </button></div><input type="text" class="form-control" value=' + key.quantity + ' id="qty' + key.prod_id + '"><div class="input-group-append"><button class="btn btn-light" type="button" id="button-minus" onclick="OnminusChange(' + key.prod_id + ',' + key.product.unit_price + ')"> &minus; </button> </div></div></td><td> <var class="price" id="price' + key.prod_id + '">' + key.quantity * key.product.unit_price + ' </var> <td class="text-right"><a href="#" class="btn btn-light" onclick=RemoveCartDetails(' + key.cart_id + ')>Remove</a><a data-original-title="Save to Wishlist" title="" href="#" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a></td></tr>');
+                    total = total + parseFloat(key.product.unit_price * key.quantity);
                 })
                 $('#finalTotal').text(total);
                 $('#totalPrice').text(total);
@@ -198,6 +198,32 @@
             }
         })
     }
+    function OnplusChange(prodid, unitprice) {
+        var quantityid = '#qty'   +   prodid;
+        var priceid =    '#price' +   prodid;
+
+        cartqty = parseFloat($(quantityid).val()) + 1;
+        
+
+        $(quantityid).val(cartqty);
+        var price = cartqty * unitprice;
+        $(priceid).text(price)
+    }
+
+    function OnminusChange(prodid,unitprice) {
+        var quantityid = '#qty' + prodid;
+        var priceid = '#price' + prodid;
+
+
+        if ($(quantityid).val() > 1) {
+            cartqty = parseFloat($(quantityid).val()) - 1;
+            $(quantityid).val(cartqty);
+
+            var price = cartqty * unitprice;
+            $(priceid).text(price)
+        }
+    }
+
     function RemoveCartDetails(cartId) {
         var cart = new Object();
         cart.cust_id = 5;
