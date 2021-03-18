@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "ProductDetail";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetProductDetails</title>
+</head>
+<body>
+    <div>
+        <input type="hidden" id="ProductId" name="ProductId" value="@ViewBag.ProductId" />
+        <table id="ProductDetail" class="table table-striped"><tr><td>Product Details</td></tr></table>
+    </div>
+</body>
+</html>
+
+
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        getProductById($('#ProductId').val());
+    });
+    function getProductById(id) {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:60624/Products/GetProductJson',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+
+                $.each(record, function (i, key) {
+                    if (key.prod_id == id) {
+                        $('#ProductDetail tr:last').after
+                            ('<tr><td><b>Product Image:<img src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '">'+'</td><td><b>Active </b>:' + key.is_active == 'Y' ? "Active" : "Inactive" + '</td></tr><tr><td><b>Product Id: <b>' + key.prod_id + '</td><td><b>Name in English </b>:' + key.name_en + '</td></tr><tr><td><b>Name in Arabic </b>' + key.name_ar + '</td><td><b>Brand Name: </b>' + key.brand_name_en + '</td></tr><tr><td><b>Category Name In English: </b>' + key.cat_name_en + '</td><td><b>Category Name in Arabic: </b>' + key.cat_name_ar + '</td></tr><tr><td><b>Category Name In English: </b>' + key.cat_name_en + '</td><td><b>Category Name in Arabic: </b>' + key.cat_name_ar + '</td></tr><tr><td><b>Age from: </b>' + key.age_from + '</td><td><b>Age to: </b>' + key.age_to + '</td></tr><tr><td><b>Admin Approval Status: </b>' + key.admin_approval_status + '</td><td><b>Product Unit Price: </b>' + key.unit_price + '</td></tr><tr><td><b>Product Description In English: </b>' + key.name_desc_en + '</td><td><b>Product Description in Arabic: </b>' + key.name_desc_ar + '</td></tr>');
+
+                    }
+                });
+
+
+            }
+        }
+
+   )
+    };
+
+</script>

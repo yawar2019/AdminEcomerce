@@ -850,6 +850,11 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\CreateCategory.cshtml" />
     <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\Products\GetProduct.cshtml" />
+    <Content Include="Views\Products\GetProductDetails.cshtml" />
+    <Content Include="Views\Products\CreateProduct.cshtml" />
+    <Content Include="Views\Products\EditProduct.cshtml" />
+    <Content Include="Views\Brands\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -866,12 +871,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -885,8 +893,8 @@
     <Folder Include="assets\uploads\Welcome\folder 3\" />
     <Folder Include="assets\uploads\Welcome\folder 4\" />
     <Folder Include="assets\uploads\Welcome\folder 5\" />
+    <Folder Include="Content\Upload\" />
     <Folder Include="js\plugins\fileinput\fileinput\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GetProduct";
 }
 <style>
     #customers2 th {
@@ -14,7 +14,7 @@
         <!-- START DATATABLE EXPORT -->
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color:deepskyblue;color:black">
-                <h3 class="panel-title" style="color:white">Category Details</h3>
+                <h3 class="panel-title" style="color:white">Product Details</h3>
                 <div class="btn-group pull-right">
                     <button class="btn btn-file dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
                     <ul class="dropdown-menu">
@@ -29,10 +29,11 @@
                 <table id="customers2" class="table">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Type</th>
+                            <th>Product Id</th>
                             <th>Name In English</th>
                             <th>Name In Arabic</th>
+                            <th>Brand</th>
+                            <th>Category</th>        
                             <th colspan="2">Action</th>
                         </tr>
                     </thead>
@@ -52,17 +53,17 @@
 
 <script>
     $(document).ready(function () {
-        
-        getCategory();
-       
+
+        getProduct();
+
     });
-     function getCategory() {
+    function getProduct() {
          $.ajax({
             async: true,
             type: "Get",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:60624/Category/GetCategorys',
+            url: 'http://localhost:60624/Products/GetProductJson',
             data: '{}',
 
             processing: true,
@@ -71,7 +72,7 @@
                 var record = JSON.parse(result.data);
                 $.each(record, function (i, key) {
                     $('#customers3 tr:last').after
-                        ('<tr><td>' + key.id + '</td><td>' + key.type + '</td><td>' + key.name_en + '</td></td>' + '</td><td>' + key.name_ar + '</td><td>' + '<a href="EditCategory/?id=' + key.id + '">Edit</a>' + '</td><td>' + '<a href="EditCategory/?id=' + key.id + '">Details</a>' + '</td></tr>');
+                        ('<tr><td>' + key.prod_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td><td>' + key.brand_name_en + '</td><td>' + key.cat_name_en + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '">Detail</a>' + '</td><td>' + '<a href="EditProduct/?id=' + key.prod_id + '">Edit</a>' + '</td></tr>');
                 });
 
 
@@ -80,5 +81,5 @@
 
     )
      };
-     
+
 </script>

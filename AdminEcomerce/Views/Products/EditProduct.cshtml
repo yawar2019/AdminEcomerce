@@ -1,0 +1,478 @@
+﻿
+@{
+    ViewBag.Title = "Create Product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<body>
+    <h1>New Product</h1>
+    <form class="form-horizontal" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email"> English Name:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="enname" placeholder="Enter  English Name">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email"> Arabic Name:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="arName" placeholder="Enter Arabic Name">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email"> Brand:</label>
+            <div class="col-sm-6">
+                <select id="brandDropDownList" class="form-control">
+                    <option value="Select">Select</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email"> Category:</label>
+            <div class="col-sm-6">
+                <select id="categoryDropDownList" class="form-control">
+                    <option value="Select">Select</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Description in English:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="descineng" placeholder="Enter Description in English">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Description in Arabic:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="descinar" placeholder="Enter Description in Arabic">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Quantity:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Quantity">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Unit Price:</label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" id="unitprice" placeholder="Enter Unit Price">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <hr />
+        <h3>Product Asset</h3>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Type:</label>
+            <div class="col-sm-3">
+                <input type="text" name="Type" id="Type">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Upload:</label>
+            <div class="col-sm-3">
+                <input type="file" name="prodImageUrl" id="prodImageUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email"> IsDefault:</label>
+            <div class="col-sm-5">
+                <input type="checkbox" name="IsDefault" id="IsDefault">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email"> Order By:</label>
+            <div class="col-sm-5">
+                <input type="text" name="IsDefault" id="IsDefault">
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="col-sm-5" style="text-align:center;">
+                <input type="submit" class="btn-primary" value="Add Asset">
+            </div>
+        </div>
+        <table class="table table-condensed table-bordered">
+            <tr>
+                <th>Type</th>
+                <th>URl</th>
+                <th>IsDefault</th>
+                <th>Action</th>
+
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td>gift.jpg</td>
+                <td>yes</td>
+                <td><a href="#">Remove</a></td>
+            </tr>
+            <tr>
+                <td>Video</td>
+                <td>offer.mp4</td>
+                <td>No</td>
+                <td><a href="#">Remove</a></td>
+            </tr>
+        </table>
+        @* End Color Group *@<br /><br />
+        <hr />
+        <h3>Custom Size Asset</h3>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Is Custom Size Available:</label>
+            <div class="col-sm-5">
+                <input type="checkbox" id="IsCustomSizeAvailable" checked="checked" />
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="email">Size1:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size1">
+            </div>
+            <label class="control-label col-sm-1" for="email">Size2:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size2">
+            </div>
+            <label class="control-label col-sm-1" for="email">Size3:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size3">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="email">Size4:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size4">
+            </div>
+            <label class="control-label col-sm-1" for="email">Size5:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size5">
+            </div>
+            <label class="control-label col-sm-1" for="email">Size6:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size6">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="email">Size7:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size7">
+            </div>
+            <label class="control-label col-sm-1" for="email">Size8:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size8">
+            </div>
+            <label class="control-label col-sm-1" for="email">Size9:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size9">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="email">Size10:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qnty" placeholder="Enter Size10">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Custom Image Upload:</label>
+            <div class="col-sm-6">
+                <input type="file" id="customImageUpload" multiple>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Custom Image Description:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="agefrom" placeholder="Custom Image Description">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Custom Image Unit Price:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="agefrom" placeholder="Custom Image Unit Price">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Age From:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="agefrom" placeholder="Enter Age To">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Age To:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="ageto" placeholder="Enter Age To">
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Is Gift Available:</label>
+            <div class="col-sm-6">
+                <input type="checkbox" id="IsGiftAvailable" checked="checked" />
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Is Suprise Gift:</label>
+            <div class="col-sm-6">
+                <input type="checkbox" id="IsSupriseGift" checked="checked" />
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Approval Status:</label>
+            <div class="col-sm-2">
+
+                @Html.DropDownList("IsActive", new List<SelectListItem>() {
+            new SelectListItem {Text="Approved",Value="y"},
+            new SelectListItem {Text="Not Approved",Value="n"}
+       }, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Approval Remarks:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="approvalremarks" placeholder="Enter Approval Remarks">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Order By:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="OrderBy" placeholder="Enter Order By">
+            </div>
+        </div>
+        <hr />
+        @* Color Group *@
+        <h3>Gift Card</h3>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Image:</label>
+            <div class="col-sm-2">
+                <input type="file" id="ColorNameEng">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Order By:</label>
+            <div class="col-sm-2">
+                <input type="number" class="form-control" id="GiftOrderBy" placeholder="Order By">
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align:center;">
+            <div class="col-sm-4">
+                <input type="submit" class="btn-primary" value="Add Gift">
+            </div>
+        </div>
+        <table class="table table-condensed table-bordered">
+            <tr>
+                <th>Image Name</th>
+                <th>Order By</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>Gift1</td>
+                <td>1</td>
+                <td><a href="#">Remove</a></td>
+            </tr>
+            <tr>
+                <td>Gift2</td>
+                <td>2</td>
+                <td><a href="#">Remove</a></td>
+            </tr>
+        </table>
+        @* End Gift Card *@
+        <hr />
+        @* Color Group *@
+        <h3>Color Asset</h3>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Color Name in English:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="ColorNameEng" placeholder="Enter Name in English">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Color Name in Arabic:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="ColorNameAr" placeholder="Enter Name in Arabic">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Color Code:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="ColorCode" placeholder="Enter Color Code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Order By:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="ColorOrderBy" placeholder="Enter Color Code">
+            </div>
+        </div>
+        <div class="form-group" style="text-align:center;">
+            <div class="col-sm-4">
+                <input type="submit" class="btn-primary" value="Add Color">
+            </div>
+        </div>
+        <table class="table table-condensed table-bordered">
+            <tr>
+                <th>Name in English</th>
+                <th>Name in Arabic</th>
+                <th>Color Code</th>
+                <th>Action</th>
+
+            </tr>
+            <tr>
+                <td>Green</td>
+                <td>Green</td>
+                <td>#b11234</td>
+                <td><a href="#">Remove</a></td>
+            </tr>
+            <tr>
+                <td>Green</td>
+                <td>Green</td>
+                <td>#b11234</td>
+                <td><a href="#">Remove</a></td>
+            </tr>
+            <tr>
+                <td>Green</td>
+                <td>Green</td>
+                <td>#b11234</td>
+                <td><a href="#">Remove</a></td>
+            </tr>
+        </table>
+        @* End Color Group *@<br /><br />
+        <div style="text-align:center;">
+            <p id="Save" class="btn btn-success">Save Product</p>
+        </div>
+    </form>
+</body>
+</html>
+
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        getBrands();
+        getCategorys()
+    });
+
+    $('#Save').click(function () {
+        var prod = new Object();
+        prod.type = $("#type").val();
+        prod.name_en = $("#enName").val();
+        prod.name_ar = $("#arName").val();
+        prod.order_by = $("#OrderBy").val();
+        prod.is_active = $("#IsActive").val();
+        prod.icon_url = $("#IconUrl").val();
+
+        var formData = new FormData();
+        var files = $("#IconUrl").get(0).files;
+        formData.append("file", files[0]);
+
+        var proddata = JSON.stringify({
+            e: prod,
+            file: formData
+        });
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:60624/Category/AddProductJson',
+            data: proddata,
+
+            processing: true,
+            serverSide: true,
+            success: function (response) {
+                alert("Inserted Successfully");
+            }
+
+        })
+    })
+
+    function getBrands() {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:60624/Products/ShowBrands',
+            data: '{}',
+            processing: true,
+            serverSide: true,
+            success: function (data) {
+                var response = JSON.parse(data.data);
+                $('#brandDropDownList').html('');
+                var options = '';
+                options += '<option value="Select">Select Brand</option>';
+                for (var i = 0; i < response.length; i++) {
+                    options += '<option value="' + response[i].name_brand_en + '">' + response[i].name_brand_en + '</option>';
+                }
+                $('#brandDropDownList').append(options);
+            }
+
+        })
+    };
+    function getCategorys() {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:60624/Products/GetCategorys',
+            data: '{}',
+            processing: true,
+            serverSide: true,
+            success: function (data) {
+                var response = JSON.parse(data.data);
+                $('#categoryDropDownList').html('');
+                var options = '';
+                options += '<option value="Select">Select Category</option>';
+                for (var i = 0; i < response.length; i++) {
+                    options += '<option value="' + response[i].id + '">' + response[i].name_en + '</option>';
+                }
+                $('#categoryDropDownList').append(options);
+            }
+
+        })
+    };
+
+</script>
+
+ 
