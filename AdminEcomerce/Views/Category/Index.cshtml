@@ -71,7 +71,7 @@
                 var record = JSON.parse(result.data);
                 $.each(record, function (i, key) {
                     $('#customers3 tr:last').after
-                        ('<tr><td>' + key.id + '</td><td>' + key.type + '</td><td>' + key.name_en + '</td></td>' + '</td><td>' + key.name_ar + '</td><td>' + '<a href="EditCategory/?id=' + key.id + '">Edit</a>' + '</td><td>' + '<a href="EditCategory/?id=' + key.id + '">Details</a>' + '</td></tr>');
+                        ('<tr><td>' + key.id + '</td><td>' + key.type + '</td><td>' + key.name_en + '</td></td>' + '</td><td>' + key.name_ar + '</td><td>' + '<a href="EditCategory/?id=' + key.id + '">Edit</a>' + '</td><td>' + '<a href="GetCategoryById/?id=' + key.id + '">Details</a>' + '</td></tr>');
                 });
 
 

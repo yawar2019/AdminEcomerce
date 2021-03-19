@@ -91,6 +91,26 @@ namespace AdminEcomerce.Controllers
             ViewBag.CatId = id;
             return View();
         }
+
+        public ActionResult GetCategoryById(int? id)
+        {
+            ViewBag.CatId = id;
+            return View();
+        }
+
+        public JsonResult GetCatagoryById(int? Id)
+        {
+            EcomData ecom_data = config.ConfigureEcomData("get_category");
+            my_data my_data = new my_data();
+
+            EcomcategoryItem ecom_cat = new EcomcategoryItem();
+            ecom_cat.cat_id = Id.ToString();
+            my_data.dev_id = ecom_data.dev_id;
+            ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(ecom_cat);
+            var routes_list = config.CongifuretoJson(ecom_data);
+            return Json(routes_list, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult EditCatagoryById(int? Id)
         {
             EcomData ecom_data = config.ConfigureEcomData("get_category");

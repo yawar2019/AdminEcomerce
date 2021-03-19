@@ -52,6 +52,9 @@ namespace AdminEcomerce.Controllers
         public JsonResult AddProductJson(EcomProductData e)
         {
             EcomData ecom_data = config.ConfigureEcomData("add_product");
+
+            UploadFiles();
+
             my_data my_data = new my_data();
             my_data.dev_id = ecom_data.dev_id;
             ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(e);

@@ -87,14 +87,17 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Type:</label>
             <div class="col-sm-3">
-                <input type="text" name="Type" id="type">
+                @Html.DropDownList("type", new List<SelectListItem>() {
+            new SelectListItem {Text="Image",Value="Image"},
+            new SelectListItem {Text="Video",Value="Video"}
+       }, new { @class = "form-control" })
             </div>
 
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Upload:</label>
             <div class="col-sm-3">
-                <input type="file" name="prodImageUrl" id="prodImageUrl" multiple>
+                <input type="file" name="prodImageUrl" id="size_chart_img_url" multiple>
                 <input type="button" name="" id="fileButton" value="Upload" />
             </div>
         </div>
@@ -107,7 +110,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="email"> Order By:</label>
             <div class="col-sm-5">
-                <input type="text" name="IsDefault" id="IsDefault">
+                <input type="text" name="prodOrderBy" id="prodOrderBy">
             </div>
         </div>
         @*<div class="form-group">
@@ -143,7 +146,7 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="email">Is Custom Size Available:</label>
             <div class="col-sm-5">
-                <input type="checkbox" id="is_custom_size_available" checked="checked" />
+                <input type="checkbox" id="iscustomsizeavailable" checked="checked" />
             </div>
             <div class="col-sm-4">
             </div>
@@ -152,7 +155,7 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="email">Size1:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="prod.custom_size_field1" placeholder="Enter Size1">
+                <input type="text" class="form-control" id="custom_size_field1" placeholder="Enter Size1">
             </div>
             <label class="control-label col-sm-1" for="email">Size2:</label>
             <div class="col-sm-2">
@@ -293,11 +296,11 @@
             </div>
         </div>
 
-        <div class="form-group" style="text-align:center;">
+        @*<div class="form-group" style="text-align:center;">
             <div class="col-sm-4">
                 <input type="submit" class="btn-primary" value="Add Gift">
             </div>
-        </div>
+        </div>*@
         @*<table class="table table-condensed table-bordered">
             <tr>
                 <th>Image Name</th>
@@ -340,7 +343,13 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Order By:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="codeOrderBy" placeholder="Enter Color Code">
+                <input type="text" class="form-control" id="colorOrderBy" placeholder="Enter Color Code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Color ImageUrl:</label>
+            <div class="col-sm-2">
+                <input type="file" class="form-control" id="color_img_url">
             </div>
         </div>
         @*<div class="form-group" style="text-align:center;">
@@ -392,194 +401,247 @@
         getCategorys()
     });
 
-    $('#Save').click(function () {
-        var prod = new Object();
-        prod.type = $("#type").val();
-        prod.name_en = $("#name_en").val();
-        prod.name_ar = $("#name_ar").val();
-        prod.order_by = $("#prodorder_by").val();
-        prod.is_active = $("#is_active").val();
-        prod.icon_url = $("#IconUrl").val();
-        prod.name_desc_en = $("#name_desc_en").val();
-        prod.name_desc_ar = $("#name_desc_ar").val();
-        prod.quantity = $("#quantity").val();
-        prod.unit_price = $("#unit_price").val();
-        prod.is_custom_size_available = $("#is_custom_size_available").val();
-        prod.custom_size_img_url = $("#custom_size_img_url").val();
-        prod.custom_size_description = $("#custom_size_description").val();
-        prod.custom_size_field1 = $("#custom_size_field1").val();
-        prod.custom_size_field2 = $("#custom_size_field2").val();
-        prod.custom_size_field3 = $("#custom_size_field3").val();
-        prod.custom_size_field4 = $("#custom_size_field4").val();
-        prod.custom_size_field5 = $("#custom_size_field5").val();
-        prod.custom_size_field6 = $("#custom_size_field6").val();
-        prod.custom_size_field7 = $("#custom_size_field7").val();
-        prod.custom_size_field8 = $("#custom_size_field8").val();
-        prod.custom_size_field9 = $("#custom_size_field9").val();
-        prod.custom_size_field10 = $("#custom_size_field10").val();
-        prod.custom_size_description = $("#custom_size_description").val();
-        prod.is_gift_available = $("#is_gift_available").val();
-        prod.is_surprise_gift_available = $("#is_surprise_gift_available").val();
-        prod.size_chart_img_url = $("#size_chart_img_url").val();
-        prod.age_from = $("#age_from").val();
-        prod.age_to = $("#age_to").val();
-        prod.img_url = $("#img_url").val();
-        prod.is_default = $("#is_default").val();
-        prod.order_by_asset = $("#order_by_asset").val();
-        prod.color_name_en = $("#color_name_en").val();
-        prod.staff_id = $("#color_name_ar").val();
-        prod.color_code = $("#color_code").val();
-        prod.is_active = $("#is_active").val();
-        prod.size_name_en = $("#size_name_en").val();
-        prod.size_name_ar = $("#size_name_ar").val();
-        prod.product_size_id = $("#product_size_id").val();
-        prod.product_color_id = $("#product_color_id").val();
-        prod.stock_count = $("#stock_count").val();
-        prod.tag_id = $("#tag_id").val();
+    
 
-
-       
-        var proddata = JSON.stringify({
-            e: prod
-        });
-
-        $.ajax({
-            async: true,
-            type: "POST",
-            dataType: "JSON",
-            contentType: 'application/json;',
-            url: 'http://localhost:60624/Products/AddProductJson',
-            data: proddata,
-
-            processing: true,
-            serverSide: true,
-            success: function (response) {
-                alert("Inserted Successfully");
-            }
-
+    //select statement Code for Brand and Category
+    var brandId, categoryId;
+    jQuery(document).ready(function($) {
+        $("#brandDropDownList").on('change', function() {
+            brandId = $('#brandDropDownList').val();
         })
     })
-
-    function getBrands() {
-        $.ajax({
-            async: true,
-            type: "Get",
-            dataType: "JSON",
-            contentType: 'application/json;',
-            url: 'http://localhost:60624/Products/ShowBrands',
-            data: '{}',
-            processing: true,
-            serverSide: true,
-            success: function (data) {
-                var response = JSON.parse(data.data);
-                $('#brandDropDownList').html('');
-                var options = '';
-                options += '<option value="Select">Select Brand</option>';
-                for (var i = 0; i < response.length; i++) {
-                    options += '<option value="' + response[i].name_brand_en + '">' + response[i].name_brand_en + '</option>';
-                }
-                $('#brandDropDownList').append(options);
-            }
-
+ 
+    jQuery(document).ready(function ($) {
+        $("#categoryDropDownList").on('change', function () {
+            categoryId = $('#categoryDropDownList').val();
         })
-    };
-    function getCategorys() {
-        $.ajax({
-            async: true,
-            type: "Get",
-            dataType: "JSON",
-            contentType: 'application/json;',
-            url: 'http://localhost:60624/Products/GetCategorys',
-            data: '{}',
-            processing: true,
-            serverSide: true,
-            success: function (data) {
-                var response = JSON.parse(data.data);
-                $('#categoryDropDownList').html('');
-                var options = '';
-                options += '<option value="Select">Select Category</option>';
-                for (var i = 0; i < response.length; i++) {
-                    options += '<option value="' + response[i].id + '">' + response[i].name_en + '</option>';
-                }
-                $('#categoryDropDownList').append(options);
-            }
+    })
+    //End
 
-        })
-    };
-
-    $(document).ready(function () {
-        $("#fileButton").click(function () {
-            var files = $("#prodImageUrl").get(0).files;
-            var fileData = new FormData();
-
-            for (var i = 0; i < files.length; i++) {
-                fileData.append("prodImageUrl", files[i]);
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/Products/UploadFiles",
-                dataType: "json",
-                contentType: false, // Not to set any content header
-                processData: false, // Not to process data
-                data: fileData,
-                success: function (result, status, xhr) {
-                    alert(result);
-                },
-                error: function (xhr, status, error) {
-                    alert(status);
-                }
-            });
+    //Checked Code for Checkbox
+    var isDefault, iscustomsizeavailable, issurprisegiftavailable, isgiftavailable;
+    jQuery(document).ready(function ($) {
+        $("#IsDefault").click(function () {
+            isDefault = $("#IsDefault").is(':checked');
         });
-
-        $(document).ajaxStart(function () {
-
-            $("#fileButton").prop('disabled', true);
-        });
-
-        $(document).ajaxStop(function () {
-            $("#fileButton").prop('disabled', false);
-
-        });
-
     });
 
+    jQuery(document).ready(function ($) {
+        $("#iscustomsizeavailable").click(function () {
+            iscustomsizeavailable = $("#iscustomsizeavailable").is(':checked');
+        });
+    });
 
-    var arrgiftCard = [];
+    jQuery(document).ready(function ($) {
+        $("#is_surprise_gift_available").click(function () {
+            issurprisegiftavailable = $("#is_surprise_gift_available").is(':checked');
+        });
+    });
 
-    function AddGift() {
-        var res=new object();
+    
+    jQuery(document).ready(function ($) {
+        $("#is_gift_available").click(function () {
+            isgiftavailable = $("#is_gift_available").is(':checked');
+        });
+    });
 
-     
-        var ColorNameEng = document.getElementById('ColorNameEng').value;
-        var ColorNameAr = document.getElementById('ColorNameAr').value;
-        var ColorCode = document.getElementById('ColorCode').value;
-        var ColorOrderBy = document.getElementById('ColorOrderBy').value;
-        
-        res.ColorNameEng = ColorNameEng;
-        res.ColorNameAr = ColorNameAr;
-        res.ColorCode = ColorCode;
-        res.ColorOrderBy = ColorOrderBy;
-        arrgiftCard.push(res);
+        function getBrands() {
+            $.ajax({
+                async: true,
+                type: "Get",
+                dataType: "JSON",
+                contentType: 'application/json;',
+                url: 'http://localhost:60624/Products/ShowBrands',
+                data: '{}',
+                processing: true,
+                serverSide: true,
+                success: function (data) {
+                    var response = JSON.parse(data.data);
+                    $('#brandDropDownList').html('');
+                    var options = '';
+                    options += '<option value="Select">Select Brand</option>';
+                    for (var i = 0; i < response.length; i++) {
+                        options += '<option value="' + response[i].brand_id + '">' + response[i].name_brand_en + '</option>';
+                    }
+                    $('#brandDropDownList').append(options);
+                }
 
-        $.each(arrgiftCard, function (i, key) {
-            $('#Color tr:last').after
-                ('<tr><td>' + key.ColorNameEng + '</td><td>' + key.ColorNameAr + '</td><td>' + key.ColorCode + '</td><td>' + key.ColorOrderBy + '</td><tr>');
+            })
+        };
+        function getCategorys() {
+            $.ajax({
+                async: true,
+                type: "Get",
+                dataType: "JSON",
+                contentType: 'application/json;',
+                url: 'http://localhost:60624/Products/GetCategorys',
+                data: '{}',
+                processing: true,
+                serverSide: true,
+                success: function (data) {
+                    var response = JSON.parse(data.data);
+                    $('#categoryDropDownList').html('');
+                    var options = '';
+                    options += '<option value="Select">Select Category</option>';
+                    for (var i = 0; i < response.length; i++) {
+                        options += '<option value="' + response[i].id + '">' + response[i].name_en + '</option>';
+                    }
+                    $('#categoryDropDownList').append(options);
+                }
+
+            })
+        };
+
+        $(document).ready(function () {
+            $("#fileButton").click(function () {
+                var files = $("#prodImageUrl").get(0).files;
+                var fileData = new FormData();
+
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append("prodImageUrl", files[i]);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Products/UploadFiles",
+                    dataType: "json",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result, status, xhr) {
+                        alert(result);
+                    },
+                    error: function (xhr, status, error) {
+                        alert(status);
+                    }
+                });
+            });
+
+            $(document).ajaxStart(function () {
+
+                $("#fileButton").prop('disabled', true);
+            });
+
+            $(document).ajaxStop(function () {
+                $("#fileButton").prop('disabled', false);
+
+            });
+
         });
 
-   ;
-        alert(arr);
 
-    }
+        var arrgiftCard = [];
 
-    function RemoveGift() {
-        for (var i = 0; i < arr.length; i++) {
+        function AddGift() {
+            var res = new object();
 
-            if (arr[i] === 'james') {
-                arr.splice(i, 1);
-                alert(arr);
-            }
+
+            var ColorNameEng = document.getElementById('ColorNameEng').value;
+            var ColorNameAr = document.getElementById('ColorNameAr').value;
+            var ColorCode = document.getElementById('ColorCode').value;
+            var ColorOrderBy = document.getElementById('ColorOrderBy').value;
+
+            res.ColorNameEng = ColorNameEng;
+            res.ColorNameAr = ColorNameAr;
+            res.ColorCode = ColorCode;
+            res.ColorOrderBy = ColorOrderBy;
+            arrgiftCard.push(res);
+
+            $.each(arrgiftCard, function (i, key) {
+                $('#Color tr:last').after
+                    ('<tr><td>' + key.ColorNameEng + '</td><td>' + key.ColorNameAr + '</td><td>' + key.ColorCode + '</td><td>' + key.ColorOrderBy + '</td><tr>');
+            });
+
+            ;
+            alert(arr);
+
         }
 
-    }
+        function RemoveGift() {
+            for (var i = 0; i < arr.length; i++) {
+
+                if (arr[i] === 'james') {
+                    arr.splice(i, 1);
+                    alert(arr);
+                }
+            }
+
+        }
+
+
+        $('#Save').click(function () {
+            var prod = new Object();
+            prod.type = $("#type").val();
+            prod.name_en = $("#name_en").val();
+            prod.name_ar = $("#name_ar").val();
+
+            prod.brand_id = $("#brandDropDownList").val();
+            prod.cat_id = $("#categoryDropDownList").val();
+
+            prod.order_by = $("#prodorder_by").val();
+            prod.is_active = $("#is_active").val();
+            prod.icon_url = $("#IconUrl").val();
+            prod.name_desc_en = $("#name_desc_en").val();
+            prod.name_desc_ar = $("#name_desc_ar").val();
+            prod.quantity = $("#quantity").val();
+            prod.unit_price = $("#unit_price").val();
+            prod.is_custom_size_available = iscustomsizeavailable==true?'y':'n';
+            prod.custom_size_img_url = $("#custom_size_img_url").val();
+            prod.custom_size_description = $("#custom_size_description").val();
+            prod.custom_size_field1 = $("#custom_size_field1").val();
+            prod.custom_size_field2 = $("#custom_size_field2").val();
+            prod.custom_size_field3 = $("#custom_size_field3").val();
+            prod.custom_size_field4 = $("#custom_size_field4").val();
+            prod.custom_size_field5 = $("#custom_size_field5").val();
+            prod.custom_size_field6 = $("#custom_size_field6").val();
+            prod.custom_size_field7 = $("#custom_size_field7").val();
+            prod.custom_size_field8 = $("#custom_size_field8").val();
+            prod.custom_size_field9 = $("#custom_size_field9").val();
+            prod.custom_size_field10 = $("#custom_size_field10").val();
+            prod.custom_size_description = $("#custom_size_description").val();
+            prod.is_gift_available = isgiftavailable=='true'?'y':'n';
+            prod.is_surprise_gift_available = issurprisegiftavailable == 'true' ? 'y' : 'n';
+            prod.size_chart_img_url = $("#size_chart_img_url").val();
+            prod.age_from = $("#agefrom").val();
+            prod.age_to = $("#ageto").val();
+            prod.img_url = $("#img_url").val();
+            prod.is_default = isDefault == 'true' ? 'y' : 'n';
+            prod.order_by_asset = $("#order_by_asset").val();
+
+            prod.color.color_name_en = $("#color_name_en").val();
+            prod.color.color_name_ar = $("#color_name_ar").val();
+            prod.color.color_code = $("#color_code").val();
+            prod.color.is_active = $("#color_is_active").val();
+            prod.color.color_img_url = $("#color_img_url").val();
+            prod.color.codeOrderBy=
+
+            prod.size_name_en = $("#size_name_en").val();
+            prod.size_name_ar = $("#size_name_ar").val();
+            prod.product_size_id = $("#product_size_id").val();
+            prod.stock_count = $("#stock_count").val();
+            prod.tag_id = $("#tag_id").val();
+
+
+
+            var proddata = JSON.stringify({
+                e: prod
+            });
+
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                contentType: 'application/json;',
+                url: 'http://localhost:60624/Products/AddProductJson',
+                data: proddata,
+
+                processing: true,
+                serverSide: true,
+                success: function (response) {
+                    alert("Inserted Successfully");
+                }
+
+            })
+        });
+  
 </script>

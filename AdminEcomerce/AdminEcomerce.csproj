@@ -855,6 +855,7 @@
     <Content Include="Views\Products\CreateProduct.cshtml" />
     <Content Include="Views\Products\EditProduct.cshtml" />
     <Content Include="Views\Brands\Index.cshtml" />
+    <Content Include="Views\Category\GetCategoryById.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
