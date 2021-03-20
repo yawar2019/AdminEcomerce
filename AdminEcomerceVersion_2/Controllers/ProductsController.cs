@@ -13,7 +13,7 @@ namespace AdminEcomerceVersion_2.Controllers
         // GET: Products
         // GET: Products
         Configuration config = new Configuration();
-        public ActionResult Index()
+        public ActionResult AddProduct()
         {
             return View();
         }

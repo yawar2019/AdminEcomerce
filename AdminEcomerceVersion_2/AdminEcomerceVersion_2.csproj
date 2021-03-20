@@ -193,8 +193,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdvertisementController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\CategorysController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OffersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,7 +257,16 @@
     <Content Include="Views\Categorys\AddCategory.cshtml" />
     <Content Include="Views\Categorys\UpdateCategory.cshtml" />
     <Content Include="Views\Categorys\GetCategory.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\AddProduct.cshtml" />
+    <Content Include="Views\Tags\ShowTag.cshtml" />
+    <Content Include="Views\Tags\AddTag.cshtml" />
+    <Content Include="Views\Tags\UpdateTag.cshtml" />
+    <Content Include="Views\Tags\GetTag.cshtml" />
+    <Content Include="Views\Advertisement\addAdvertisement.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Offers\AddOffer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -264,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Tags\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

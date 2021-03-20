@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "UpdateTag";
+}
+
+<h2>UpdateTag</h2>
+
+<style>
+    .form-material .float-label {
+        top: -12px;
+    }
+</style>
+
+
+<div class="card-block">
+    <form class="form-material">
+        <input type="hidden" id="tagid" value="@ViewBag.Tagid" />
+        <div class="form-group form-default">
+            <input type="text" name="footer-email" class="form-control" id="enName">
+            <span class="form-bar"></span>
+            <label class="float-label">English Name:</label>
+        </div>
+        <div class="form-group form-default">
+            <input type="text" name="footer-email" class="form-control" id="arName">
+            <span class="form-bar"></span>
+            <label class="float-label">Arabic Name:</label>
+        </div>
+        <div class="form-group form-default">
+            @Html.DropDownList("IsActive", new List<SelectListItem>() {
+            new SelectListItem {Text="Active",Value="y"},
+            new SelectListItem {Text="InActive",Value="n"}
+       }, new { @class = "form-control" })
+            <span class="form-bar"></span>
+            <label class="label">Status:</label>
+        </div>
+        <div class="form-group form-default">
+            <input type="button" name="footer-email" value="Update" class="btn btn-primary" id="Save">
+            <span class="form-bar"></span>
+        </div>
+    </form>
+</div>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        getTagById($('#tagid').val());
+    });
+
+    function getTagById(id) {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Tags/GetTags',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+
+                $.each(record, function (i, key) {
+                    if (key.tag_id == id) {
+                        var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+
+                        $("#enName").val(key.tag_name_en);
+                        $("#arName").val(key.tag_name_ar);
+                        $("#IsActive:selected").val(Status);
+
+                    }
+                });
+
+
+            }
+        }
+
+   )
+    };
+
+
+
+    $('#Save').click(function () {
+        var tag = new Object();
+        tag.tag_id = $("#tagid").val();
+        tag.tag_name_en = $("#enName").val();
+        tag.tag_name_ar = $("#arName").val();
+        tag.is_active = $("#IsActive").val();
+
+
+        var catdata = JSON.stringify({
+            e: tag
+        });
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Tags/UpdateTagInfo',
+            data: catdata,
+
+            processing: true,
+            serverSide: true,
+            success: function (response) {
+                alert("Inserted Successfully");
+            }
+
+        })
+    })
+</script>
