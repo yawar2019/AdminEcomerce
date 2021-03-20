@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "BusinessProfile";
+}
+<link href="~/css/UserCustom.css" rel="stylesheet" />
+<div class="container">
+
+
+
+    <form>
+        <div class="group">
+
+            <div class="select">
+                <select class="select-text" required>
+                    <option value="" disabled selected></option>
+                    <option value="1">Approve</option>
+                    <option value="2">Reject</option>
+                </select>
+                <span class="select-highlight"></span>
+                <span class="select-bar"></span>
+                <label class="select-label">Current Profile Status</label>
+            </div>
+        </div>
+        
+
+        <div class="group">
+            <input type="file">
+        </div>
+
+        <div class="group">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Email</label>
+        </div>
+
+    </form>
+
+    <p class="footer">
+        a <a href="https://scotch.io/tutorials/css/google-material-design-input-boxes-in-css3" target="_blank">tutorial</a> by <a href="https://scotch.io" target="_blank">scotch.io</a>
+    </p>
+
+</div>
+

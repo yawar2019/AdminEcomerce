@@ -51,14 +51,14 @@ namespace AdminEcomerce.Controllers
 
         public JsonResult AddProductJson(EcomProductData e)
         {
-            EcomData ecom_data = config.ConfigureEcomData("add_product");
+                    EcomData ecom_data = config.ConfigureEcomData("add_product");
 
-            UploadFiles();
+            //UploadFiles();
 
             my_data my_data = new my_data();
             my_data.dev_id = ecom_data.dev_id;
             ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(e);
-            var routes_list = config.CongifuretoJson(ecom_data);
+         var routes_list = config.CongifuretoJson(ecom_data);
             return Json(routes_list, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ShowBrands()

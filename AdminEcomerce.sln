@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminEcomerce", "AdminEcome
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomerceWebApp", "EcomerceWebApp\EcomerceWebApp.csproj", "{74213559-37B0-4444-A16E-81A6CCFBCA28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminEcomerceVersion_2", "AdminEcomerceVersion_2\AdminEcomerceVersion_2.csproj", "{B4A812AC-0020-4A20-B241-1598A5A3591D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{74213559-37B0-4444-A16E-81A6CCFBCA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74213559-37B0-4444-A16E-81A6CCFBCA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74213559-37B0-4444-A16E-81A6CCFBCA28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4A812AC-0020-4A20-B241-1598A5A3591D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A812AC-0020-4A20-B241-1598A5A3591D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A812AC-0020-4A20-B241-1598A5A3591D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A812AC-0020-4A20-B241-1598A5A3591D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,9 +30,10 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Type</th>
                             <th>Name In English</th>
                             <th>Name In Arabic</th>
+                            <th>Order By</th>
+                            <th>Status</th>
                             <th colspan="2">Action</th>
                         </tr>
                     </thead>
@@ -71,7 +72,7 @@
                 var record = JSON.parse(result.data);
                 $.each(record, function (i, key) {
                     $('#customers3 tr:last').after
-                        ('<tr><td>' + key.id + '</td><td>' + key.type + '</td><td>' + key.name_en + '</td></td>' + '</td><td>' + key.name_ar + '</td><td>' + '<a href="EditCategory/?id=' + key.id + '">Edit</a>' + '</td><td>' + '<a href="GetCategoryById/?id=' + key.id + '">Details</a>' + '</td></tr>');
+                        ('<tr><td>' + key.cat_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td></td>' + '</td><td>' + key.order_by + '</td><td>' + key.is_active + '</td><td>' + '<a href="EditCategory/?id=' + key.cat_id + '">Edit</a>' + '</td><td>' + '<a href="GetCategoryById/?id=' + key.cat_id + '">Details</a>' + '</td></tr>');
                 });
 
 

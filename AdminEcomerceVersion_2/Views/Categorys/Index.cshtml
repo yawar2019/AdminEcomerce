@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+
+<h4>Show Categorys</h4>
+
+<div class="card">
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead style="background-color:black;color:white;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name In English</th>
+                        <th>Name In Arabic</th>
+                        <th>Order By</th>
+                        <th>Status</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="customers3">
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        getCategory();
+
+    });
+     function getCategory() {
+         $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Categorys/GetCategorys',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+                $.each(record, function (i, key) {
+                    var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+                    $('#customers3 tr:last').after
+                        ('<tr><td>' + key.cat_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td></td>' + '</td><td>' + key.order_by + '</td><td>' + Status + '</td><td>' + '<a href="UpdateCategory/?id=' + key.cat_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="GetCategory/?id=' + key.cat_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
+                });
+
+
+            }
+        }
+
+    )
+     };
+
+</script>

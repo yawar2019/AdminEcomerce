@@ -97,7 +97,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Upload:</label>
             <div class="col-sm-3">
-                <input type="file" name="prodImageUrl" id="size_chart_img_url" multiple>
+                <input type="file" name="prodImageUrl" id="AssertImageUrl" multiple>
                 <input type="button" name="" id="fileButton" value="Upload" />
             </div>
         </div>
@@ -570,51 +570,65 @@
 
 
         $('#Save').click(function () {
-            var prod = new Object();
-            prod.type = $("#type").val();
-            prod.name_en = $("#name_en").val();
-            prod.name_ar = $("#name_ar").val();
+            var prodlist = [];
+            prod = {};
+          
+            prod['name_en'] = $("#name_en").val();
+            prod['name_ar'] = $("#name_ar").val();
+                
+            prod['brand_id'] = $("#brandDropDownList").val();
+            prod['cat_id'] = $("#categoryDropDownList").val();
+                
+            prod['order_by'] = $("#prodorder_by").val();
+            prod['is_active'] = $("#is_active").val();
+            prod['icon_url'] = $("#IconUrl").val();
+            prod['name_desc_en'] = $("#name_desc_en").val();
+            prod['name_desc_ar'] = $("#name_desc_ar").val();
+            prod['quantity'] = $("#quantity").val();
+            prod['unit_price'] = $("#unit_price").val();
+            prod['is_custom_size_available'] = iscustomsizeavailable==true?'y':'n';
+            prod['custom_size_img_url'] = $("#custom_size_img_url").val();
+            prod['custom_size_description'] = $("#custom_size_description").val();
+            prod['custom_size_field1'] = $("#custom_size_field1").val();
+            prod['custom_size_field2'] = $("#custom_size_field2").val();
+            prod['custom_size_field3'] = $("#custom_size_field3").val();
+            prod['custom_size_field4'] = $("#custom_size_field4").val();
+            prod['custom_size_field5'] = $("#custom_size_field5").val();
+            prod['custom_size_field6'] = $("#custom_size_field6").val();
+            prod['custom_size_field7 ']= $("#custom_size_field7").val();
+            prod['custom_size_field8 ']= $("#custom_size_field8").val();
+            prod['custom_size_field9 ']= $("#custom_size_field9").val();
+            prod['custom_size_field10'] = $("#custom_size_field10").val();
+            prod['custom_size_description'] = $("#custom_size_description").val();
+            prod['is_gift_available'] = isgiftavailable==true?'y':'n';
+            prod['is_surprise_gift_available'] = issurprisegiftavailable == 'true' ? 'y' : 'n';
+            prod['size_chart_img_url'] = $("#size_chart_img_url").val();
+            prod['age_from'] = $("#agefrom").val();
+            prod['age_to'] = $("#ageto").val();
 
-            prod.brand_id = $("#brandDropDownList").val();
-            prod.cat_id = $("#categoryDropDownList").val();
 
-            prod.order_by = $("#prodorder_by").val();
-            prod.is_active = $("#is_active").val();
-            prod.icon_url = $("#IconUrl").val();
-            prod.name_desc_en = $("#name_desc_en").val();
-            prod.name_desc_ar = $("#name_desc_ar").val();
-            prod.quantity = $("#quantity").val();
-            prod.unit_price = $("#unit_price").val();
-            prod.is_custom_size_available = iscustomsizeavailable==true?'y':'n';
-            prod.custom_size_img_url = $("#custom_size_img_url").val();
-            prod.custom_size_description = $("#custom_size_description").val();
-            prod.custom_size_field1 = $("#custom_size_field1").val();
-            prod.custom_size_field2 = $("#custom_size_field2").val();
-            prod.custom_size_field3 = $("#custom_size_field3").val();
-            prod.custom_size_field4 = $("#custom_size_field4").val();
-            prod.custom_size_field5 = $("#custom_size_field5").val();
-            prod.custom_size_field6 = $("#custom_size_field6").val();
-            prod.custom_size_field7 = $("#custom_size_field7").val();
-            prod.custom_size_field8 = $("#custom_size_field8").val();
-            prod.custom_size_field9 = $("#custom_size_field9").val();
-            prod.custom_size_field10 = $("#custom_size_field10").val();
-            prod.custom_size_description = $("#custom_size_description").val();
-            prod.is_gift_available = isgiftavailable=='true'?'y':'n';
-            prod.is_surprise_gift_available = issurprisegiftavailable == 'true' ? 'y' : 'n';
-            prod.size_chart_img_url = $("#size_chart_img_url").val();
-            prod.age_from = $("#agefrom").val();
-            prod.age_to = $("#ageto").val();
-            prod.img_url = $("#img_url").val();
-            prod.is_default = isDefault == 'true' ? 'y' : 'n';
-            prod.order_by_asset = $("#order_by_asset").val();
+           
+             
+            var asset = {};
+            asset['type'] = $("#type").val();
+            asset['img_url'] = $("#AssertImageUrl").val();
+            asset['is_default'] = isDefault == true ? 'y' : 'n';
+            asset['order_by_asset'] = $("#order_by_asset").val();
+            var NewAssert = [];
+            NewAssert.push(asset);
+            prod['asset'] = NewAssert;
 
-            prod.color.color_name_en = $("#color_name_en").val();
-            prod.color.color_name_ar = $("#color_name_ar").val();
-            prod.color.color_code = $("#color_code").val();
-            prod.color.is_active = $("#color_is_active").val();
-            prod.color.color_img_url = $("#color_img_url").val();
-            prod.color.codeOrderBy=
+            var color = {};
+            color['color_name_en'] = $("#color_name_en").val();
+            color['color_name_ar'] = $("#color_name_ar").val();
+            color['color_code'] = $("#color_code").val();
+            color['is_active'] = $("#color_is_active").val();
+            color['color_img_url'] = $("#color_img_url").val();
+            var NewColor = [];
+            NewColor.push(color);
+            prod['color'] = NewColor;
 
+            
             prod.size_name_en = $("#size_name_en").val();
             prod.size_name_ar = $("#size_name_ar").val();
             prod.product_size_id = $("#product_size_id").val();
@@ -633,7 +647,7 @@
                 dataType: "JSON",
                 contentType: 'application/json;',
                 url: 'http://localhost:60624/Products/AddProductJson',
-                data: proddata,
+                data:  proddata ,
 
                 processing: true,
                 serverSide: true,

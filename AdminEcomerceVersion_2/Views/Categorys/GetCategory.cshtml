@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "GetCategory";
+}
+ 
+
+<div>
+    <input type="hidden" id="catId" name="CatId" value="@ViewBag.CatId" />
+    <table id="CatDetail" class="table table-hover"><tr><td>Category Details</td></tr></table>
+</div>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        geCategoryById($('#catId').val());
+    });
+
+    function geCategoryById(id) {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Categorys/GetCategorys',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+
+                $.each(record, function (i, key) {
+                    if (key.cat_id == id) {
+                        var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+                        $('#CatDetail tr:last').after
+                            ('<tr><td>Category Id :' + key.cat_id + '</td><td>Name in English: ' + key.name_en + '</td></tr><tr><td>Name in Arabic: ' + key.name_ar + '</td><td>Status: ' + Status + '</td></tr>');
+                    }
+                });
+
+
+            }
+        }
+
+   )
+    };
+
+</script>

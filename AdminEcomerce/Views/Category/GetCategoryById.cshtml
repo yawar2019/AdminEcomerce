@@ -32,9 +32,9 @@
                 var record = JSON.parse(result.data);
 
                 $.each(record, function (i, key) {
-                    if (key.id == id) {
+                    if (key.cat_id == id) {
                         $('#CatDetail tr:last').after
-                            ('<tr><td>Category Id :' + key.id + '</td><td>Name in English: ' + key.name_en + '</td></tr><tr><td>Name in Arabic: ' + key.name_ar + '</td></tr>');
+                            ('<tr><td>Category Id :' + key.cat_id + '</td><td>Name in English: ' + key.name_en + '</td></tr><tr><td>Name in Arabic: ' + key.name_ar + '</td><td>Status: ' + key.is_active + '</td></tr>');
                     }
                 });
 

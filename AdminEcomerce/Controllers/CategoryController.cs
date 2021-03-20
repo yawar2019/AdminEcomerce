@@ -33,7 +33,7 @@ namespace AdminEcomerce.Controllers
         }
         public JsonResult GetCategorys()
         {
-            EcomData ecom_data = config.ConfigureEcomData("get_search_cats");
+            EcomData ecom_data = config.ConfigureEcomData("get_category");
             my_data my_data = new my_data();
             my_data.dev_id = ecom_data.dev_id;
             ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(my_data);

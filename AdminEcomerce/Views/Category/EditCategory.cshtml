@@ -46,22 +46,22 @@
         <label class="control-label col-sm-2" for="email">Is active:</label>
         <div class="col-sm-6">
             @Html.DropDownList("IsActive", new List<SelectListItem>() {
-            new SelectListItem {Text="True",Value="y"},
-            new SelectListItem {Text="False",Value="n"}
+            new SelectListItem {Text="Active",Value="y"},
+            new SelectListItem {Text="InActive",Value="n"}
        }, new { @class = "form-control" })
         </div>
         <div class="col-sm-4">
         </div>
     </div>
 
-    <div class="form-group">
+    @*<div class="form-group">
         <label class="control-label col-sm-2" for="email"> Icon Url:</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" id="IconUrl" placeholder="Enter Icon Url">
         </div>
         <div class="col-sm-4">
         </div>
-    </div>
+    </div>*@
 
     <p class="btn btn-success" id="EditCat">Update Category</p>
 </form>
