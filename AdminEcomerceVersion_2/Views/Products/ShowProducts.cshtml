@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ShowProducts";
 }
-
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
 <h2>ShowProducts</h2>
 
 <div class="card">
@@ -49,7 +49,7 @@
                 var record = JSON.parse(result.data);
                 $.each(record, function (i, key) {
                     $('#customers3 tr:last').after
-                        ('<tr><td>' + key.prod_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td><td>' + key.brand_name_en + '</td><td>' + key.cat_name_en + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '">Detail</a>' + '</td><td>' + '<a href="EditProduct/?id=' + key.prod_id + '">Edit</a>' + '</td></tr>');
+                        ('<tr><td>' + key.prod_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td><td>' + key.brand_name_en + '</td><td>' + key.cat_name_en + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
                 });
 
 
