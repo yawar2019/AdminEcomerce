@@ -17,6 +17,11 @@ namespace AdminEcomerceVersion_2.Controllers
         {
             return View();
         }
+        public ActionResult ShowProducts()
+        {
+            return View();
+        }
+
         public ActionResult GetProductDetails(int? id)
         {
             ViewBag.ProductId = id;

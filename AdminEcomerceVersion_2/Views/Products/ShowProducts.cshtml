@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "ShowProducts";
+}
+
+<h2>ShowProducts</h2>
+
+<div class="card">
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead style="background-color:black;color:white;">
+                    <tr>
+                        <th>Product Id</th>
+                        <th>Name In English</th>
+                        <th>Name In Arabic</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="customers3">
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        getProduct();
+
+    });
+    function getProduct() {
+         $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Products/GetProductJson',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+                $.each(record, function (i, key) {
+                    $('#customers3 tr:last').after
+                        ('<tr><td>' + key.prod_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td><td>' + key.brand_name_en + '</td><td>' + key.cat_name_en + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '">Detail</a>' + '</td><td>' + '<a href="EditProduct/?id=' + key.prod_id + '">Edit</a>' + '</td></tr>');
+                });
+
+
+            }
+        }
+
+    )
+     };
+
+</script>

@@ -3,12 +3,27 @@
     ViewBag.Title = "CreteProduct";
 }
 
-<h2>CreteProduct</h2>
+    <!-- themify-icons line icon -->
+<link rel="stylesheet" type="text/css" href="~/~/assets/icon/themify-icons/themify-icons.css">
+<!-- ico font -->
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<style>
+    .form-material .float-label {
+        top: -12px;
+    }
+</style>
+
+
+
+<h2>Add Product</h2>
+
 
 
 <div class="card-block">
 
     <form class="form-material" enctype="multipart/form-data">
+
+      
 
         <div class="form-group form-default">
             <input type="text" name="name_en" class="form-control" id="name_en">
@@ -71,11 +86,7 @@
             <label class="float-label">Unit Price:</label>
         </div>
 
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="unit_price">
-            <span class="form-bar"></span>
-            <label class="float-label">Unit Price:</label>
-        </div>
+         
 
 
         <div class="form-group form-default">
@@ -84,76 +95,82 @@
             <label class="float-label">Order By:</label>
         </div>
 
-        <hr />
-        <h3>Custom Size Asset</h3>
+        <div style="padding-bottom:15px;"><h4>Custom Size Asset</h4></div>
+       
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field1">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size1:</label>
+                </div>
 
 
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field2">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size2:</label>
+                </div>
 
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field1">
-            <span class="form-bar"></span>
-            <label class="float-label">Size1:</label>
+
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field3">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size3:</label>
+                </div>
+
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field4">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size4:</label>
+                </div>
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field5">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size5:</label>
+                </div>
+                
+            </div>
+            <div class="col-sm-6 mobile-inputs">
+                
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field6">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size6:</label>
+                </div>
+
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field7">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size7:</label>
+                </div>
+
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field8">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size8:</label>
+                </div>
+
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field9">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size9:</label>
+                </div>
+
+                <div class="form-group form-default">
+                    <input type="text" name="unit_price" class="form-control" id="custom_size_field10">
+                    <span class="form-bar"></span>
+                    <label class="float-label">Size10:</label>
+                </div>   
+                
+            </div>
         </div>
 
-
         <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field2">
+            <label class="floatimage">Image</label>
+            <input type="file" name="footer-email" class="form-control" id="AddsUpload">
             <span class="form-bar"></span>
-            <label class="float-label">Size2:</label>
-        </div>
-
-
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field3">
-            <span class="form-bar"></span>
-            <label class="float-label">Size3:</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field4">
-            <span class="form-bar"></span>
-            <label class="float-label">Size4:</label>
-        </div>
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field5">
-            <span class="form-bar"></span>
-            <label class="float-label">Size5:</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field6">
-            <span class="form-bar"></span>
-            <label class="float-label">Size6:</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field7">
-            <span class="form-bar"></span>
-            <label class="float-label">Size7:</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field8">
-            <span class="form-bar"></span>
-            <label class="float-label">Size8:</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field9">
-            <span class="form-bar"></span>
-            <label class="float-label">Size9:</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="custom_size_field10">
-            <span class="form-bar"></span>
-            <label class="float-label">Size10:</label>
-        </div>
-
-        <div class="form-group form-default">
-
-            <span class="form-bar"></span>
-            <label class="float-label">Custom Image Upload:</label>
         </div>
 
 
@@ -185,30 +202,38 @@
         </div>
 
 
-        <div class="form-group form-default">
-            <input type="text" name="is_gift_available" class="form-control" id="is_gift_available">
-            <span class="form-bar"></span>
-            <label class="float-label"> Is Gift Available:</label>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Gift Available:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                <input type="checkbox" value="">
+            </div>
         </div>
 
 
 
-        <div class="form-group form-default">
+        @*<div class="form-group form-default">
             <input type="text" name="is_surprise_gift_available" class="form-control" id="is_surprise_gift_available">
             <span class="form-bar"></span>
             <label class="float-label"> Is Gift Available:</label>
+        </div>*@
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Suprise Gift Available:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+               
+                <input type="checkbox" value="">
+            </div>
         </div>
-
-
-
+        
 
         <div class="form-group form-default">
-            drop
+            @Html.DropDownList("IsActive", new List<SelectListItem>() {
+            new SelectListItem {Text="Approve",Value="y"},
+            new SelectListItem {Text="Reject",Value="n"}
+       }, new { @class = "form-control" })
             <span class="form-bar"></span>
-            <label class="float-label"> Approval Status:</label>
+            <label class="float-label">Status</label>
         </div>
-
-
 
 
         <div class="form-group form-default">
@@ -224,15 +249,16 @@
             <span class="form-bar"></span>
             <label class="float-label"> Order By:</label>
         </div>
-        <h3>Gift Card</h3>
+
+        <div style="padding-bottom:15px;"><h4>Gift Card</h4></div>
 
 
+        
         <div class="form-group form-default">
-            <input type="file" id="ColorNameEng">
+            <label class="floatimage">Image</label>
+            <input type="file" name="footer-email" class="form-control" id="ColorNameEng">
             <span class="form-bar"></span>
-            <label class="float-label"> Image:</label>
         </div>
-
 
 
         <div class="form-group form-default">
@@ -241,18 +267,18 @@
             <label class="float-label"> Order By:</label>
         </div>
 
-
-        <h3>Color Asset</h3>
+        <div style="padding-bottom:15px;"><h4>Color Asset</h4></div>
+     
         <div class="form-group form-default">
             <input type="text" name="color_name_en" class="form-control" id="color_name_en">
             <span class="form-bar"></span>
-            <label class="float-label"> Color Name in English:</label>
+            <label class="float-label">Name in English:</label>
         </div>
 
         <div class="form-group form-default">
             <input type="text" name="color_name_ar" class="form-control" id="color_name_ar">
             <span class="form-bar"></span>
-            <label class="float-label"> Color Name in Arabic:</label>
+            <label class="float-label">Name in Arabic:</label>
         </div>
 
 
@@ -262,7 +288,7 @@
         <div class="form-group form-default">
             <input type="text" name="color_code" class="form-control" id="color_code">
             <span class="form-bar"></span>
-            <label class="float-label">  Color Code:</label>
+            <label class="float-label">Color Code:</label>
         </div>
 
 
@@ -271,7 +297,7 @@
         <div class="form-group form-default">
             <input type="text" name="colorOrderBy" class="form-control" id="colorOrderBy">
             <span class="form-bar"></span>
-            <label class="float-label">   Order By:</label>
+            <label class="float-label"> Order By:</label>
         </div>
 
 
@@ -279,9 +305,14 @@
         <div class="form-group form-default">
             <input type="text" name="color_img_url" class="form-control" id="color_img_url">
             <span class="form-bar"></span>
-            <label class="float-label">   Color ImageUrl:</label>
+            <label class="float-label">ImageUrl:</label>
         </div>
 
+        <div class="row m-t-30">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Save Product</button>
+            </div>
+        </div>
 
     </form>
 </div>

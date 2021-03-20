@@ -267,6 +267,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Offers\AddOffer.cshtml" />
+    <Content Include="Views\Products\ShowProducts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
