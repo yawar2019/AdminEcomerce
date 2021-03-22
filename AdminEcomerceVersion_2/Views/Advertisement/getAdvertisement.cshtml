@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "getAdvertisement";
+}
+
+<h2>getAdvertisement</h2>
+
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+
+<div class="card">
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead style="background-color:black;color:white;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Brand Name</th>
+                        <th>Image</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="customers3">
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        getAdvertisement();
+
+    });
+     function getAdvertisement() {
+         $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Advertisement/getAdvertisementJson',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                debugger;
+                var record = JSON.parse(result.data);
+                var result = getBrands();
+                $.each(record, function (i, key) {
+                   
+                    var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+                    $('#customers3 tr:last').after
+                        ('<tr><td>' + key.ad_id + '</td><td>' + key.brand_id + '</td><td><img height="50px" src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '">' + '</td><td>' + new Date(key.date_from).toLocaleDateString() + '</td><td>' + new Date(key.date_to).toLocaleDateString() + '</td><td>' + Status + '</td><td>' + '<a href="UpdateAdvertisement/?id=' + key.ad_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="getAdvertisementDetail/?id=' + key.ad_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
+                });
+
+
+            }
+        }
+
+    )
+     };
+     function getBrands() {
+         var result;
+         $.ajax({
+             async: true,
+             type: "Get",
+             dataType: "JSON",
+             contentType: 'application/json;',
+             url: 'http://localhost:51412/Products/ShowBrands',
+             data: '{}',
+             processing: true,
+             serverSide: true,
+             success: function (data) {
+                 var response = JSON.parse(data.data);
+                 result= response;
+             }
+
+         })
+         return result;
+     };
+
+</script>

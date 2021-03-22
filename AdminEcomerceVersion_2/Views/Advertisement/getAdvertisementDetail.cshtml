@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "getAdvertisementDetail";
+}
+
+<h2>getAdvertisementDetail</h2>
+
+
+<h2>GetTag</h2>
+
+<div>
+    <input type="hidden" id="aadsid" name="aadsid" value="@ViewBag.addsDetails" />
+    <table id="aadsDetail" class="table table-hover"><tr><td>Tag Details</td></tr></table>
+</div>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        geAadsId($('#aadsid').val());
+    });
+
+    function geAadsId(id) {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Advertisement/getAdvertisementJson',
+            data: '{}',
+
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+
+                $.each(record, function (i, key) {
+                    if (key.ad_id == id) {
+                        var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+                        $('#aadsDetail tr:last').after
+                            ('<tr><td> Id :' + key.ad_id + '</td><td>Brand Name: ' + key.brand_id + '</td></tr><tr><td>taxation: ' + key.txn_id + '</td><td>Animation: ' + key.is_animation + '</td></tr><tr><td>Start Date: ' + key.date_from + '</td><td>End Date: ' + key.date_to + '</td></tr><tr><td>Image: <img height="50px" src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '">' + '</td><td>Status: ' + key.is_paid + '</td></tr><tr><td>Approval Status: ' + key.admin_approval_status + '</td><td>Approval Remarks: ' + key.admin_approval_remarks + '</td></tr>');
+                    }
+                });
+
+
+            }
+        }
+
+   )
+    };
+
+</script>
