@@ -3,10 +3,13 @@
     ViewBag.Title = "CreteProduct";
 }
 
-    <!-- themify-icons line icon -->
-<link rel="stylesheet" type="text/css" href="~/~/assets/icon/themify-icons/themify-icons.css">
+<!-- themify-icons line icon -->
+<link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
 <!-- ico font -->
 <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+
+<link href="~/Content/FileUpload.css" rel="stylesheet" />
+
 <style>
     .form-material .float-label {
         top: -12px;
@@ -22,8 +25,6 @@
 <div class="card-block">
 
     <form class="form-material" enctype="multipart/form-data">
-
-      
 
         <div class="form-group form-default">
             <input type="text" name="name_en" class="form-control" id="name_en">
@@ -44,8 +45,6 @@
             <label class="float-label"> Brand:</label>
         </div>
 
-
-
         <div class="form-group form-default">
             <select id="categoryDropDownList" class="form-control">
                 <option value="Select">Select</option>
@@ -53,9 +52,6 @@
             <span class="form-bar"></span>
             <label class="float-label"> Category:</label>
         </div>
-
-
-
 
         <div class="form-group form-default">
             <input type="text" name="name_desc_en" class="form-control" id="name_desc_en">
@@ -67,11 +63,6 @@
             <span class="form-bar"></span>
             <label class="float-label">Description in Arabic:</label>
         </div>
-
-
-
-
-
 
         <div class="form-group form-default">
             <input type="text" name="quantity" class="form-control" id="quantity">
@@ -86,9 +77,6 @@
             <label class="float-label">Unit Price:</label>
         </div>
 
-         
-
-
         <div class="form-group form-default">
             <input type="text" name="unit_price" class="form-control" id="prodOrderBy">
             <span class="form-bar"></span>
@@ -96,7 +84,6 @@
         </div>
 
         <div style="padding-bottom:15px;"><h4>Custom Size Asset</h4></div>
-       
 
         <div class="row">
             <div class="col-sm-6">
@@ -106,13 +93,11 @@
                     <label class="float-label">Size1:</label>
                 </div>
 
-
                 <div class="form-group form-default">
                     <input type="text" name="unit_price" class="form-control" id="custom_size_field2">
                     <span class="form-bar"></span>
                     <label class="float-label">Size2:</label>
                 </div>
-
 
                 <div class="form-group form-default">
                     <input type="text" name="unit_price" class="form-control" id="custom_size_field3">
@@ -130,16 +115,14 @@
                     <span class="form-bar"></span>
                     <label class="float-label">Size5:</label>
                 </div>
-                
+
             </div>
             <div class="col-sm-6 mobile-inputs">
-                
                 <div class="form-group form-default">
                     <input type="text" name="unit_price" class="form-control" id="custom_size_field6">
                     <span class="form-bar"></span>
                     <label class="float-label">Size6:</label>
                 </div>
-
                 <div class="form-group form-default">
                     <input type="text" name="unit_price" class="form-control" id="custom_size_field7">
                     <span class="form-bar"></span>
@@ -162,17 +145,22 @@
                     <input type="text" name="unit_price" class="form-control" id="custom_size_field10">
                     <span class="form-bar"></span>
                     <label class="float-label">Size10:</label>
-                </div>   
-                
+                </div>
             </div>
         </div>
 
         <div class="form-group form-default">
             <label class="floatimage">Image</label>
-            <input type="file" name="footer-email" class="form-control" id="AddsUpload">
+            <input type="file" name="footer-email" class="form-control" id="ProdUpload">
             <span class="form-bar"></span>
         </div>
 
+        <table id="ProdTable" class="table table-bordered ">
+            <tr>
+                <th>Image</th>
+                <th>Remove</th>
+            </tr>
+        </table>
 
         <div class="form-group form-default">
             <input type="text" name="custom_size_description" class="form-control" id="custom_size_description">
@@ -180,15 +168,11 @@
             <label class="float-label">Custom Image Description:</label>
         </div>
 
-
-
         <div class="form-group form-default">
             <input type="text" name="custom_size_description" class="form-control" id="unit_price">
             <span class="form-bar"></span>
             <label class="float-label">Custom Image Unit Price:</label>
         </div>
-
-
 
         <div class="form-group form-default">
             <input type="text" name="agefrom" class="form-control" id="agefrom">
@@ -201,7 +185,6 @@
             <label class="float-label"> Age To:</label>
         </div>
 
-
         <div class="form-group row">
             <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Gift Available:</span></label>
             <div class="col-sm-8" style="padding-top:8px;">
@@ -209,22 +192,19 @@
             </div>
         </div>
 
-
-
         @*<div class="form-group form-default">
-            <input type="text" name="is_surprise_gift_available" class="form-control" id="is_surprise_gift_available">
-            <span class="form-bar"></span>
-            <label class="float-label"> Is Gift Available:</label>
-        </div>*@
+                <input type="text" name="is_surprise_gift_available" class="form-control" id="is_surprise_gift_available">
+                <span class="form-bar"></span>
+                <label class="float-label"> Is Gift Available:</label>
+            </div>*@
 
         <div class="form-group row">
             <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Suprise Gift Available:</span></label>
             <div class="col-sm-8" style="padding-top:8px;">
-               
                 <input type="checkbox" value="">
             </div>
         </div>
-        
+
 
         <div class="form-group form-default">
             @Html.DropDownList("IsActive", new List<SelectListItem>() {
@@ -235,14 +215,11 @@
             <label class="float-label">Status</label>
         </div>
 
-
         <div class="form-group form-default">
             <input type="text" name="approvalremarks" class="form-control" id="approvalremarks">
             <span class="form-bar"></span>
             <label class="float-label"> Approval Remarks:</label>
         </div>
-
-
 
         <div class="form-group form-default">
             <input type="text" name="OrderBy" class="form-control" id="OrderBy">
@@ -252,14 +229,11 @@
 
         <div style="padding-bottom:15px;"><h4>Gift Card</h4></div>
 
-
-        
         <div class="form-group form-default">
             <label class="floatimage">Image</label>
-            <input type="file" name="footer-email" class="form-control" id="ColorNameEng">
+            <input type="file" name="GiftCardImage[]" class="form-control" id="GiftCardImage">
             <span class="form-bar"></span>
         </div>
-
 
         <div class="form-group form-default">
             <input type="text" name="GiftOrderBy" class="form-control" id="GiftOrderBy">
@@ -267,8 +241,16 @@
             <label class="float-label"> Order By:</label>
         </div>
 
+        <table id="GiftTable" class="table table-bordered ">
+            <tr>
+                <th>Image</th>
+                <th>Order By</th>
+                <th>Remove</th>
+            </tr>
+        </table>
+
         <div style="padding-bottom:15px;"><h4>Color Asset</h4></div>
-     
+
         <div class="form-group form-default">
             <input type="text" name="color_name_en" class="form-control" id="color_name_en">
             <span class="form-bar"></span>
@@ -281,18 +263,11 @@
             <label class="float-label">Name in Arabic:</label>
         </div>
 
-
-
-
-
         <div class="form-group form-default">
             <input type="text" name="color_code" class="form-control" id="color_code">
             <span class="form-bar"></span>
             <label class="float-label">Color Code:</label>
         </div>
-
-
-
 
         <div class="form-group form-default">
             <input type="text" name="colorOrderBy" class="form-control" id="colorOrderBy">
@@ -300,13 +275,27 @@
             <label class="float-label"> Order By:</label>
         </div>
 
-
-
         <div class="form-group form-default">
-            <input type="text" name="color_img_url" class="form-control" id="color_img_url">
+            @*<input type="text" name="color_img_url" class="form-control" id="color_img_url">*@
+            <input type="file" id="files" name="files[]" />
+            <table id="colortable" class="table table-bordered ">
+                <tr>
+                    <th>Image</th>
+                    <th>Name in English</th>
+                    <th>Name in Arabic</th>
+                    <th>Color Code</th>
+                    <th>Remove</th>
+                </tr>
+            </table>
+            @*<input type="file" id="colorimgfile" name="colorimgfile" />*@
             <span class="form-bar"></span>
             <label class="float-label">ImageUrl:</label>
         </div>
+        @*<div class="form-group" style="text-align:center;">
+                <div class="col-sm-4">
+                    <input type="button" class="btn-primary" value="Add Color" id="addcolorimg" />
+                </div>
+            </div>*@
 
         <div class="row m-t-30">
             <div class="col-md-12">
@@ -319,7 +308,7 @@
 
 
 <script src="~/scripts/jquery-1.10.2.min.js"></script>
-
+@*<script src="~/scripts/FileUpload.js"></script>*@
 <script>
     $(document).ready(function () {
         getBrands();
@@ -376,7 +365,7 @@
             type: "Get",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:60624/Products/ShowBrands',
+            url: 'http://localhost:51412/Products/ShowBrands',
             data: '{}',
             processing: true,
             serverSide: true,
@@ -399,7 +388,7 @@
             type: "Get",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:60624/Products/GetCategorys',
+            url: 'http://localhost:51412/Products/GetCategorys',
             data: '{}',
             processing: true,
             serverSide: true,
@@ -573,7 +562,7 @@
             type: "POST",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:60624/Products/AddProductJson',
+            url: 'http://localhost:51412/Products/AddProductJson',
             data: proddata,
 
             processing: true,
@@ -584,5 +573,135 @@
 
         })
     });
+
+
+    //start Color
+
+    var colorArray = [];
+    var colorArray1 = [];
+    var obj = {};
+
+    $(document).ready(function () {
+        $("#colortable").hide();
+        if (window.File && window.FileList && window.FileReader) {
+            $("#files").on("change", function (e) {
+                $("#colortable").show();
+                var files = e.target.files,
+                  filesLength = files.length;
+                for (var i = 0; i < filesLength; i++) {
+                    var f = files[i]
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function (e) {
+                        var file = e.target;
+                        //$("<span class=\"pip\">" +
+                        //  "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                        //  "<br/><span class=\"remove\">Remove image</span>" +
+                        //  "</span>").insertAfter("#files");
+
+                        var newrow = $("<tr class=\"pip1\">" +
+                           "<td><img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></td>"
+                            + "<td>'" + $('#color_name_en').val() + "'</td><td>'" + $('#color_name_ar').val() + "'</td><td>'" + $('#color_code').val() + "'</td><td><span class=\"remove\">Remove image</span></td></tr>");
+
+                        $("#colortable").append(newrow);
+
+                        $(".remove").click(function () {
+                            //$(this).parent(".pip1").remove();
+                            $(this).closest('tr').remove();
+                        });
+
+                       
+
+                        obj["img"] = e.target.result;
+                        obj["color_name_en"] = $('#color_name_en').val();
+                        obj["color_name_ar"] = $('#color_name_ar').val();
+                        obj["color_code"] = $('#color_code').val();
+
+                        
+                        
+
+                    });
+                    colorArray.push(obj);
+                    fileReader.readAsDataURL(f);
+                }
+                 
+                console.log(colorArray);
+                console.log(files);
+                console.log($('#color_name_en').val());
+            });
+        } else {
+            alert("Your browser doesn't support to File API")
+        }
+    });
+    //End Color
+
+    //start Gift
+    $(document).ready(function () {
+        $("#GiftTable").hide();
+        if (window.File && window.FileList && window.FileReader) {
+            $("#GiftCardImage").on("change", function (e) {
+                $("#GiftTable").show();
+                var GiftCardImage = e.target.files,
+                  filesLength = GiftCardImage.length;
+                for (var i = 0; i < filesLength; i++) {
+                    var f = GiftCardImage[i]
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function (e) {
+                        var file = e.target;
+
+                        var newrow = $("<tr class=\"pip2\">" +
+                           "<td><img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></td>"
+                            + "<td>'" + $('#GiftOrderBy').val() + "'</td><td><span class=\"remove\">Remove image</span></td></tr>");
+
+                        $("#GiftTable").append(newrow);
+
+                        $(".remove").click(function () {
+                            $(this).closest('tr').remove();
+                        });
+                    });
+                    fileReader.readAsDataURL(f);
+                }
+                console.log(files);
+
+            });
+        } else {
+            alert("Your browser doesn't support to File API")
+        }
+    });
+    //End Gift
+    
+    //start Prod table
+
+    $(document).ready(function () {
+        $("#ProdTable").hide();
+        if (window.File && window.FileList && window.FileReader) {
+            $("#ProdUpload").on("change", function (e) {
+                $("#ProdTable").show();
+                var ProdTable = e.target.files,
+                  filesLength = ProdTable.length;
+                for (var i = 0; i < filesLength; i++) {
+                    var f = ProdTable[i]
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function (e) {
+                        var file = e.target;
+
+                        var newrow = $("<tr class=\"pip3\">" +
+               "<td><img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></td><td><span class=\"remove\">Remove image</span></td></tr>");
+
+                        $("#ProdTable").append(newrow);
+
+                        $(".remove").click(function () {
+                            $(this).closest('tr').remove();
+                        });
+                    });
+                    fileReader.readAsDataURL(f);
+                }
+                console.log(files);
+
+            });
+        } else {
+            alert("Your browser doesn't support to File API")
+        }
+    });
+    //End Gift
 
 </script>

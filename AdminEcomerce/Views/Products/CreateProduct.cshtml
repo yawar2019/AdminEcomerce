@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
+ 
+<script src="~/scripts/FileUpload.js"></script>
+<link href="~/Content/FileUpload.css" rel="stylesheet" />
 <body>
     <h1>New Product</h1>
     <form class="form-horizontal" enctype="multipart/form-data">
@@ -349,14 +349,15 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Color ImageUrl:</label>
             <div class="col-sm-2">
-                <input type="file" class="form-control" id="color_img_url">
+                @*<input type="file" class="form-control" id="color_img_url">*@
+                <input type="file" id="files" name="files[]" multiple />
             </div>
         </div>
-        @*<div class="form-group" style="text-align:center;">
+        <div class="form-group" style="text-align:center;">
             <div class="col-sm-4">
-                <input type="button" class="btn-primary" value="Add Color" onclick="AddGift()" >
+                <input type="button" class="btn-primary" value="Add Color" id="addcolorimg" />
             </div>
-        </div>*@
+        </div>
         @*<table id="Color" class="table table-condensed table-bordered">
             <tr>
                 <th>Name in English</th>

@@ -217,6 +217,7 @@
     <Content Include="blank.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FileUpload.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\animate\animate.css" />
     <Content Include="css\animate\animate.min.css" />
@@ -829,6 +830,7 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\FileUpload.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <None Include="scripts\jquery.validate-vsdoc.js" />

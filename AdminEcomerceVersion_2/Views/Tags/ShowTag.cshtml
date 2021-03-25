@@ -1,15 +1,20 @@
 ﻿
 @{
     ViewBag.Title = "ShowTag";
+    Layout = null;
 }
 
 <h4>Show Tags</h4>
-<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
 
-<div class="card">
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+
+
+@*<div class="card">
     <div class="card-block table-border-style">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="example">
                 <thead style="background-color:black;color:white;">
                     <tr>
                         <th>Id</th>
@@ -25,42 +30,60 @@
             </table>
         </div>
     </div>
-</div>
-<script src="~/scripts/jquery-1.10.2.min.js"></script>
+</div>*@
+ @*<script src="~/scripts/jquery-1.10.2.min.js"></script>*@ 
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
+
 
 <script>
+    //$(document).ready(function () {
+    //    getTag();
+    //});
+
     $(document).ready(function () {
-        getTag();
+        $('#example').DataTable({
+            "ajax": "http://localhost:51412/Tags/GetTags",
+            "columns": [ // Defines column for the output table
+                    { "data": "tag_id" }, // Attribute of item in collection
+                    { "data": "tag_name_en" },
+                    { "data": "tag_name_ar" } 
+            ]
+        });
     });
 
-    function getTag() {
-        $.ajax({
-            async: true,
-            type: "Get",
-            dataType: "JSON",
-            contentType: 'application/json;',
-            url: 'http://localhost:51412/Tags/GetTags',
-            data: '{}',
+   
+   
+ 
+   // function getTag() {
+   //     $.ajax({
+   //         async: true,
+   //         type: "Get",
+   //         dataType: "JSON",
+   //         contentType: 'application/json;',
+   //         url: 'http://localhost:51412/Tags/GetTags',
+   //         data: '{}',
+   //         dataSrc: "",
+   //         processing: true,
+   //         serverSide: true,
+   //         success: function (result) {
+   //             var record = JSON.parse(result.data);
 
-            processing: true,
-            serverSide: true,
-            success: function (result) {
-                var record = JSON.parse(result.data);
-
-                $.each(record, function (i, key) {
+   //             $.each(record, function (i, key) {
                  
-                        var Status = key.is_active == 'y' ? 'Active' : 'InActive';
-                    $('#TagTable tr:last').after
-                          ('<tr><td>' + key.tag_id + '</td><td>' + key.tag_name_en + '</td><td>' + key.tag_name_ar + '</td></td>' + '</td><td>' + Status + '</td><td>' + '<a href="UpdateTag/?id=' + key.tag_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="GetTag/?id=' + key.tag_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
+   //                     var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+   //                 $('#TagTable tr:last').after
+   //                       ('<tr><td>' + key.tag_id + '</td><td>' + key.tag_name_en + '</td><td>' + key.tag_name_ar + '</td></td>' + '</td><td>' + Status + '</td><td>' + '<a href="UpdateTag/?id=' + key.tag_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="GetTag/?id=' + key.tag_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
  
                     
-                });
+   //             });
 
 
-            }
-        }
+   //         }
+   //     }
 
-   )
-    };
+   //)
+   // };
 
 </script>
