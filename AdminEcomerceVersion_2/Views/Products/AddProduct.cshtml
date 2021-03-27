@@ -82,6 +82,29 @@
             <span class="form-bar"></span>
             <label class="float-label">Order By:</label>
         </div>
+        <div class="form-group form-default">
+            @Html.DropDownList("IsActive", new List<SelectListItem>() {
+            new SelectListItem {Text="Image",Value="Image"},
+            new SelectListItem {Text="Video",Value="Video"}
+       }, new { @class = "form-control" })
+            <span class="form-bar"></span>
+            <label class="float-label">Type</label>
+        </div>
+
+        <div class="form-group form-default">
+            <label class="floatimage">Upload</label>
+            <input type="file" name="footer-email" class="form-control" id="ProdUpload">
+            <span class="form-bar"></span>
+        </div>
+
+        <div class="form-group form-default">
+            @Html.DropDownList("IsActive", new List<SelectListItem>() {
+            new SelectListItem {Text="Active",Value="y"},
+            new SelectListItem {Text="InActive",Value="n"}
+       }, new { @class = "form-control" })
+            <span class="form-bar"></span>
+            <label class="float-label">Status</label>
+        </div>
 
         <div style="padding-bottom:15px;"><h4>Custom Size Asset</h4></div>
 
@@ -149,9 +172,11 @@
             </div>
         </div>
 
+       
+
         <div class="form-group form-default">
-            <label class="floatimage">Image</label>
-            <input type="file" name="footer-email" class="form-control" id="ProdUpload">
+            <label class="floatimage">Upload</label>
+            <input type="file" name="footer-email" class="form-control" id="CustomImageUpload">
             <span class="form-bar"></span>
         </div>
 
@@ -299,7 +324,7 @@
 
         <div class="row m-t-30">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Save Product</button>
+                <button type="button" id="Save" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Save Product</button>
             </div>
         </div>
 
@@ -542,7 +567,7 @@
         color['color_img_url'] = $("#color_img_url").val();
         var NewColor = [];
         NewColor.push(color);
-        prod['color'] = NewColor;
+        prod['color'] = colorArray;
 
 
         prod.size_name_en = $("#size_name_en").val();
@@ -579,7 +604,7 @@
 
     var colorArray = [];
     var colorArray1 = [];
-    var obj = {};
+  
 
     $(document).ready(function () {
         $("#colortable").hide();
@@ -591,6 +616,7 @@
                 for (var i = 0; i < filesLength; i++) {
                     var f = files[i]
                     var fileReader = new FileReader();
+                    var obj = new Object();
                     fileReader.onload = (function (e) {
                         var file = e.target;
                         //$("<span class=\"pip\">" +
@@ -609,22 +635,24 @@
                             $(this).closest('tr').remove();
                         });
 
-                       
-
-                        obj["img"] = e.target.result;
-                        obj["color_name_en"] = $('#color_name_en').val();
-                        obj["color_name_ar"] = $('#color_name_ar').val();
-                        obj["color_code"] = $('#color_code').val();
-
-                        
-                        
-
                     });
-                    colorArray.push(obj);
+                  
+                    obj["color_name_en"] = $('#color_name_en').val();
+                    obj["color_name_ar"] = $('#color_name_ar').val();
+                    obj["color_code"] = $('#color_code').val();
+                    obj["color_image_url"] =f.name;
+                    obj["is_active"] = $('#is_active').val();
+                    obj["order_by"] = $('#order_by').val();
+
+
+
                     fileReader.readAsDataURL(f);
+                  
+                    colorArray.push(obj);
                 }
-                 
+               
                 console.log(colorArray);
+                console.log(colorArray1);
                 console.log(files);
                 console.log($('#color_name_en').val());
             });
@@ -632,7 +660,31 @@
             alert("Your browser doesn't support to File API")
         }
     });
+
+    $("#colortable").on('click', function () {
+        var arrData = [];
+        // loop over each table row (tr)
+        $("#colortable tr").each(function () {
+            var currentRow = $(this);
+
+            var col1_value = currentRow.find("td:eq(0)").html();
+            var col2_value = currentRow.find("td:eq(1)").text();
+            var col3_value = currentRow.find("td:eq(2)").text();
+
+            var obj = {};
+            obj.col1 = col1_value;
+            obj.col2 = col2_value;
+            obj.col3 = col3_value;
+
+            arrData.push(obj);
+        });
+        alert(arrData);
+        console.log(arrData);
+    });
+
     //End Color
+
+
 
     //start Gift
     $(document).ready(function () {

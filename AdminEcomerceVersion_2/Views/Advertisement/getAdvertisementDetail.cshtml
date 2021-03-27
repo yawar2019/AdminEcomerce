@@ -3,10 +3,10 @@
     ViewBag.Title = "getAdvertisementDetail";
 }
 
-<h2>getAdvertisementDetail</h2>
+<h2> Advertisement Detail</h2>
 
 
-<h2>GetTag</h2>
+
 
 <div>
     <input type="hidden" id="aadsid" name="aadsid" value="@ViewBag.addsDetails" />
@@ -38,7 +38,7 @@
                     if (key.ad_id == id) {
                         var Status = key.is_active == 'y' ? 'Active' : 'InActive';
                         $('#aadsDetail tr:last').after
-                            ('<tr><td> Id :' + key.ad_id + '</td><td>Brand Name: ' + key.brand_id + '</td></tr><tr><td>taxation: ' + key.txn_id + '</td><td>Animation: ' + key.is_animation + '</td></tr><tr><td>Start Date: ' + key.date_from + '</td><td>End Date: ' + key.date_to + '</td></tr><tr><td>Image: <img height="50px" src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '">' + '</td><td>Status: ' + key.is_paid + '</td></tr><tr><td>Approval Status: ' + key.admin_approval_status + '</td><td>Approval Remarks: ' + key.admin_approval_remarks + '</td></tr>');
+                            ('<tr><td> Id :' + key.ad_id + '</td><td>Brand Name: ' + key.brand_id + '</td></tr><tr><td>taxation: ' + key.txn_id + '</td><td>Animation: ' + key.is_animation + '</td></tr><tr><td>Start Date: ' + key.date_from + '</td><td>End Date: ' + new Date(key.date_to) + '</td></tr><tr><td>Image: <img height="50px" src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '">' + '</td><td>Status: ' + key.is_paid + '</td></tr><tr><td>Approval Status: ' + key.admin_approval_status + '</td><td>Approval Remarks: ' + key.admin_approval_remarks + '</td></tr>');
                     }
                 });
 
