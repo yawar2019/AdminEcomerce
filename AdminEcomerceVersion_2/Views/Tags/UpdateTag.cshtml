@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "UpdateTag";
 }
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <h2>UpdateTag</h2>
 
@@ -25,13 +28,12 @@
             <span class="form-bar"></span>
             <label class="float-label">Arabic Name:</label>
         </div>
-        <div class="form-group form-default">
-            @Html.DropDownList("IsActive", new List<SelectListItem>() {
-            new SelectListItem {Text="Active",Value="y"},
-            new SelectListItem {Text="InActive",Value="n"}
-       }, new { @class = "form-control" })
-            <span class="form-bar"></span>
-            <label class="label">Status:</label>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Active?:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @*<input type="checkbox" value="" id="isdefault">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="IsActive" data-on="Yes" data-off="No">
+            </div>
         </div>
         <div class="form-group form-default">
             <input type="button" name="footer-email" value="Update" class="btn btn-primary" id="Save">
@@ -40,14 +42,15 @@
     </form>
 </div>
 
-<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+
 
 <script>
 
     $(document).ready(function () {
         getTagById($('#tagid').val());
     });
-
+   
     function getTagById(id) {
         $.ajax({
             async: true,
@@ -64,11 +67,14 @@
 
                 $.each(record, function (i, key) {
                     if (key.tag_id == id) {
-                        var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+                       
 
                         $("#enName").val(key.tag_name_en);
                         $("#arName").val(key.tag_name_ar);
-                        $("#IsActive:selected").val(Status);
+                        if (key.is_active == 'Y') {
+                            $("#IsActive").prop('checked', false);
+                        }
+                        else { $("#IsActive").prop('checked', true); }
 
                     }
                 });
@@ -80,14 +86,18 @@
    )
     };
 
-
+    
+        $("#IsActive").change(function () {
+            isActive = $("#IsActive").is(':checked') == true ? 'Y' : 'N';
+        });
+     
 
     $('#Save').click(function () {
         var tag = new Object();
         tag.tag_id = $("#tagid").val();
         tag.tag_name_en = $("#enName").val();
         tag.tag_name_ar = $("#arName").val();
-        tag.is_active = $("#IsActive").val();
+        tag.is_active = isActive;
 
 
         var catdata = JSON.stringify({
@@ -105,7 +115,7 @@
             processing: true,
             serverSide: true,
             success: function (response) {
-                alert("Inserted Successfully");
+                location.href = '../ShowTag';
             }
 
         })

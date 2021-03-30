@@ -3,11 +3,11 @@
     ViewBag.Title = "GetTag";
 }
 
-<h2>GetTag</h2>
+<h2> Tag Details </h2>
 
 <div>
     <input type="hidden" id="tagid" name="tagid" value="@ViewBag.Tagid" />
-    <table id="TagDetail" class="table table-hover"><tr><td>Tag Details</td></tr></table>
+    <table id="TagDetail" class="table table-hover"><tr></tr></table>
 </div>
 
 <script src="~/scripts/jquery-1.10.2.min.js"></script>
@@ -33,7 +33,7 @@
 
                 $.each(record, function (i, key) {
                     if (key.tag_id == id) {
-                        var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+                        var Status = key.is_active == 'Y' ? 'Active' : 'InActive';
                         $('#TagDetail tr:last').after
                             ('<tr><td>Tag Id :' + key.tag_id + '</td><td>Name in English: ' + key.tag_name_en + '</td></tr><tr><td>Name in Arabic: ' + key.tag_name_ar + '</td><td>Status: ' + Status + '</td></tr>');
                     }

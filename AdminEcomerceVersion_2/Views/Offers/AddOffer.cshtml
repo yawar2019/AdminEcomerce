@@ -1,98 +1,195 @@
 ﻿
 @{
     ViewBag.Title = "AddOffer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
+<!-- themify-icons line icon -->
+<link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
+<!-- ico font -->
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
  
-
-
-<h2>Create Offers</h2>
+<link href="~/Content/FileUpload.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 
 <style>
     .form-material .float-label {
         top: -12px;
     }
+
+    .toggle.ios, .toggle-on.ios, .toggle-off.ios {
+        border-radius: 20px;
+    }
+
+        .toggle.ios .toggle-handle {
+            border-radius: 20px;
+        }
 </style>
 
 
-
-
+<h2>Add Offer</h2>
 
 <div class="card-block">
 
     <form class="form-material" enctype="multipart/form-data">
 
-        <div class="form-group form-default">
-            <input type="text" name="footer-email" class="form-control" id="brName">
-            <span class="form-bar"></span>
-            <label class="float-label">Brand Name</label>
-        </div>
-
+         
 
         <div class="form-group form-default">
-            <label class="floatimage">Image</label>
-            <input type="file" name="footer-email" class="form-control" id="AddsUpload">
-            <span class="form-bar"></span>
-
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="offdesceng" class="form-control" id="offdesceng">
-            <span class="form-bar"></span>
-            <label class="float-label">Description English:</label>
-        </div>
-        <div class="form-group form-default">
-            <input type="text" name="offdescarb" class="form-control" id="offdescarb">
-            <span class="form-bar"></span>
-            <label class="float-label">Description Arabic :</label>
-        </div>
- 
-
-        <div class="form-group form-default">
-            <input type="text" name="offdis" class="form-control" id="offdis">
-            <span class="form-bar"></span>
-            <label class="float-label">Percentage (Discount on unit Price) :</label>
-        </div>
-
-
-        <div class="form-group form-default">
-            <input type="date" name="off_startdate" class="form-control" id="off_startdate">
-            <span class="form-bar"></span>
-            <label class="float-label">Start Date</label>
-        </div>
-
-
-        <div class="form-group form-default">
-            <input type="date" name="off_edddate" class="form-control" id="off_edddate">
-            <span class="form-bar"></span>
-            <label class="float-label">End Date</label>
-        </div>
-
-
-        <div class="form-group form-default">
-            <input type="date" name="vouchercode" class="form-control" id="vouchercode">
-            <span class="form-bar"></span>
-            <label class="float-label"> Coupon Code(voucher code)</label>
-        </div>
-
-
-
-
-        <div class="form-group form-default">
-            <select name="select" class="form-control" id="offstatus">
-                <option value="opt1"></option>
-                <option value="opt1">Approve</option>
-                <option value="opt2">Reject</option>
+            <select id="brandDropDownList" class="form-control">
+                <option value="Select">Select</option>
             </select>
             <span class="form-bar"></span>
-            <label class="float-label">Status</label>
+            <label class="float-label"> Brand:</label>
         </div>
 
 
+        <div class="form-group form-default">
+            <label class="floatimage">Image<br />Format:JPEG(For Static Ad)<br />GIF(For Animated Ad)<br />Size:Width=1024px,Height:512px</label>
+            <input type="file" name="footer-email" class="form-control" id="offer_img_url">
+            <span class="form-bar"></span>
 
+        </div>
+        <div class="form-group form-primary">
+            <input type="text" name="email" id="offer_dec_en" class="form-control" required>
+            <span class="form-bar"></span>
+            <label class="float-label">Offer Description in English</label>
+        </div>
+
+        <div class="form-group form-primary">
+            <input type="text" name="email" id="offer_dec_ar" class="form-control" required>
+            <span class="form-bar"></span>
+            <label class="float-label">Offer Description in Arabic</label>
+        </div>
+
+        <div class="form-group form-primary">
+            <input type="text" name="email" id="offer_perc" class="form-control" required>
+            <span class="form-bar"></span>
+            <label class="float-label">Offer Percentage (Discount Or Unit Price )</label>
+        </div>
+
+        <div class="form-group form-default">
+            <input type="date" name="ad_startdate" class="form-control" id="valid_from">
+            <span class="form-bar"></span>
+            <label class="float-label">Offer Valid From</label>
+        </div>
+
+
+        <div class="form-group form-default">
+            <input type="date" name="ad_enddate" class="form-control" id="valid_to">
+            <span class="form-bar"></span>
+            <label class="float-label">Offer Valid To</label>
+        </div>
+
+
+        <div class="form-group form-primary">
+            <input type="text" name="email" id="coupon_code" class="form-control" required>
+            <span class="form-bar"></span>
+            <label class="float-label">Coupen Code(Voucher Code)</label>
+        </div>
+
+       
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Active?:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @*<input type="checkbox" value="" id="isdefault">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isActive" data-on="Yes" data-off="No">
+            </div>
+        </div>
+
+        <div class="row m-t-30">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="Save" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Save</button>
+            </div>
+        </div>
     </form>
 </div>
 
+<script>
+    $(document).ready(function () {
+        getBrands();
+    });
+    function getBrands() {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Products/ShowBrands',
+            data: '{}',
+            processing: true,
+            serverSide: true,
+            success: function (data) {
+                var response = JSON.parse(data.data);
+                $('#brandDropDownList').html('');
+                var options = '';
+                options += '<option value="Select">Select Brand</option>';
+                for (var i = 0; i < response.length; i++) {
+                    options += '<option value="' + response[i].brand_id + '">' + response[i].name_brand_en + '</option>';
+                }
+                $('#brandDropDownList').append(options);
+            }
 
+        })
+    };
+
+   
+    jQuery(document).ready(function ($) {
+        $("#isActive").change(function () {
+            isActive = $("#isActive").is(':checked') == true ? 'Y' : 'N';
+        });
+    });
+
+
+    jQuery(document).ready(function () {
+
+        $('#Save').click(function () {
+
+            var formData = new FormData();
+            var files = $("#offer_img_url").get(0).files;
+
+
+            formData.append("file", files[0]);
+            formData.append("brand_id", $("#brandDropDownList").val());
+            formData.append("offer_by_brand_id", $("#brandDropDownList").val());
+            formData.append("valid_from", $("#valid_from").val());
+            formData.append("valid_to", $("#valid_to").val());
+            formData.append("offer_dec_en", $("#offer_dec_en").val());
+            formData.append("offer_dec_ar", $("#offer_dec_ar").val());
+            formData.append("is_active", isActive);
+            formData.append("coupon_code", $("#coupon_code").val());
+            formData.append("offer_perc", $("#offer_perc").val());
+            formData.append("offer_img_url", files[0].name);
+
+
+            $.ajax({
+                url: "@Url.Action("CreateOfferJson", "Offers")",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var str = "";
+                    location.href = '../Offer/GetOffer';
+                },
+                error: function (data) {
+                    alert("Failed to Add!");
+                }
+            })
+
+
+            
+        })
+
+
+    })
+
+    
+
+</script>

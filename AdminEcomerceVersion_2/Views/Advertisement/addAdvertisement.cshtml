@@ -1,8 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "addAdvertisement";
+    
 }
- 
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
  <style>
     .form-material .float-label {
@@ -19,15 +22,24 @@
 
     <form class="form-material" enctype="multipart/form-data">
 
-   <div class="form-group form-default">
-            <input type="text" name="footer-email" class="form-control" id="brName">
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Ad Image is Animated(GIF File)?:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isAnimated" data-on="Yes" data-off="No">
+            </div>
+        </div>
+
+        <div class="form-group form-default">
+            <select id="brandDropDownList" class="form-control">
+                <option value="Select">Select</option>
+            </select>
             <span class="form-bar"></span>
-            <label class="float-label">Brand Name</label>
-  </div>
+            <label class="float-label"> Brand:</label>
+        </div>
 
 
         <div class="form-group form-default">
-            <label class="floatimage">Image</label>
+            <label class="floatimage">Image<br />Format:JPEG(For Static Ad)<br />GIF(For Animated Ad)<br />Size:Width=1024px,Height:512px</label>
             <input type="file" name="footer-email" class="form-control" id="AddsUpload">
             <span class="form-bar"></span>
            
@@ -36,90 +48,189 @@
         <div class="form-group form-default">
             <input type="date" name="ad_startdate" class="form-control" id="ad_startdate">
             <span class="form-bar"></span>
-            <label class="float-label">Start Date</label>
+            <label class="float-label">Ad Start Date</label>
         </div>
 
 
         <div class="form-group form-default">
             <input type="date" name="ad_enddate" class="form-control" id="ad_enddate">
             <span class="form-bar"></span>
-            <label class="float-label">End Date</label>
+            <label class="float-label">Ad End Date</label>
         </div>
 
 
-        <div class="form-group form-default">
-            @Html.DropDownList("ad_ispaid", new List<SelectListItem>() {
-            new SelectListItem {Text="Paid",Value="y"},
-            new SelectListItem {Text="UnPaid",Value="n"}
-       }, new { @class = "form-control" })
-            
-            <span class="form-bar"></span>
-            <label class="float-label">Is Paid</label>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Paid?:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @*<input type="checkbox" value="" id="isdefault">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isPaid" data-on="Yes" data-off="No">
+            </div>
         </div>
 
-
-
-        <div class="form-group form-default">
-            <input type="text" name="ad_Orderby" class="form-control" id="ad_Orderby">
-            <span class="form-bar"></span>
-            <label class="float-label">Order BY</label>
-        </div>
-
-
-        <div class="form-group form-default">
+        @*<div class="form-group form-default">
             @Html.DropDownList("IsActive", new List<SelectListItem>() {
             new SelectListItem {Text="Approve",Value="y"},
             new SelectListItem {Text="Reject",Value="n"}
        }, new { @class = "form-control" })
             <span class="form-bar"></span>
             <label class="float-label">Is Active?</label>
+        </div>*@
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Active?:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @*<input type="checkbox" value="" id="isdefault">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isActive" data-on="Yes" data-off="No">
+            </div>
         </div>
+
         <div class="row m-t-30">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Submit</button>
+            <div class="col-md-6">
+                <button type="button" id="Save" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Submit</button>
             </div>
         </div>
         </form>
 </div>
 
-
-<script src="~/scripts/jquery-1.10.2.min.js"></script>
+ 
 
 <script>
-    $('#Save').click(function () {
-        var ads = new Object();
-        ads.type = $("#brName").val();
-        ads.name_en = $("#AddsUpload").val();
-        ads.name_ar = $("#ad_startdate").val();
-        ads.order_by = $("#ad_enddate").val();
-        ads.order_by = $("#ad_ispaid").val();
-        ads.is_active = $("#ad_Orderby").val();
-
-
-
-        //var formData = new FormData();
-        //var files = $("#IconUrl").get(0).files;
-        //formData.append("file", files[0]);
-
-        var catdata = JSON.stringify({
-            e: cat
-            //file: formData
-        });
-
+    $(document).ready(function () {
+        getBrands();
+    });
+    function getBrands() {
         $.ajax({
             async: true,
-            type: "POST",
+            type: "Get",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:51412/Categorys/SaveCatagory',
-            data: catdata,
-
+            url: 'http://localhost:51412/Products/ShowBrands',
+            data: '{}',
             processing: true,
             serverSide: true,
-            success: function (response) {
-                alert("Inserted Successfully");
+            success: function (data) {
+                var response = JSON.parse(data.data);
+                $('#brandDropDownList').html('');
+                var options = '';
+                options += '<option value="Select">Select Brand</option>';
+                for (var i = 0; i < response.length; i++) {
+                    options += '<option value="' + response[i].brand_id + '">' + response[i].name_brand_en + '</option>';
+                }
+                $('#brandDropDownList').append(options);
             }
 
         })
+    };
+
+    //Checked Code for Checkbox
+  
+    var isAnimated = 'Y', isPaid = 'Y', isActive = 'Y';
+    $("#isAnimated").change(function () {
+        isAnimated = $("#isAnimated").is(':checked') == true ? 'Y' : 'N';
+    });
+
+    jQuery(document).ready(function ($) {
+        $("#isPaid").change(function () {
+            isPaid = $("#isPaid").is(':checked') == true ? 'Y' : 'N';
+        });
+    });
+
+    jQuery(document).ready(function ($) {
+        $("#isActive").change(function () {
+            isActive = $("#isActive").is(':checked') == true ? 'Y' : 'N';
+        });
+    });
+
+
+    jQuery(document).ready(function () {
+
+        $('#Save').click(function () {
+ 
+            var formData = new FormData();
+            var files = $("#AddsUpload").get(0).files;
+
+
+            formData.append("file", files[0]);
+            formData.append("is_animation", isAnimated);
+            formData.append("brand_id", $("#brandDropDownList").val());
+            formData.append("date_from", $("#ad_startdate").val());
+            formData.append("date_to", $("#ad_enddate").val());
+            formData.append("is_paid", isPaid);
+            formData.append("ad_Orderby", $("#ad_Orderby").val());
+            formData.append("is_active", isActive);
+            formData.append("img_url", files[0].name);
+       
+
+            $.ajax({
+                url: "@Url.Action("CreateAdsJson", "Advertisement")",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var str = "";
+                    location.href = '../Advertisement/getAdvertisement';
+                },
+                error: function (data) {
+                    alert("Failed to Add!");
+                }
+            })
+
+
+            //$.ajax({
+            //    type: "POST",
+            //    dataType: "JSON",
+            //    contentType:'application/json;',
+            //    url: 'http://localhost:51412/Advertisement/CreateAdsJson',
+            //    data: JSON.stringify({ads: formData }),
+            //    processing: false,
+            //    cache: false,
+            //    success: function (response) {
+            //        alert("Inserted Successfully");
+            //    }
+            //})
+        })
+
+
     })
+   
+    //$('#Save').click(function () {
+    //    var ads = new Object();
+    //    ads.is_animation = isAnimated;
+    //    ads.brand_id = $("#brandDropDownList").val();
+    //    ads.img_url = $("#AddsUpload").val();
+    //    ads.date_from = $("#ad_startdate").val();
+    //    ads.date_to = $("#ad_enddate").val();
+    //    ads.is_paid = isPaid;
+    //    ads.ad_Orderby = $("#ad_Orderby").val();
+    //    ads.is_active = isActive;
+
+
+    //    //var formData = new FormData();
+    //    //var files = $("#IconUrl").get(0).files;
+    //    //formData.append("file", files[0]);
+
+    //    var Adsdata = JSON.stringify({
+    //        ads: ads
+    //    });
+
+    //    $.ajax({
+    //        async: true,
+    //        type: "POST",
+    //        dataType: "JSON",
+    //        contentType: 'application/json;',
+    //        url: 'http://localhost:51412/Advertisement/CreateAdsJson',
+    //        data: Adsdata,
+
+    //        processing: true,
+    //        serverSide: true,
+    //        success: function (response) {
+    //            alert("Inserted Successfully");
+    //        }
+
+    //    })
+    //    })
+   
 </script>
+
+

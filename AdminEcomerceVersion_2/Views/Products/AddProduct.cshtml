@@ -1,41 +1,43 @@
 ﻿
 @{
     ViewBag.Title = "CreteProduct";
+    
 }
 
 <!-- themify-icons line icon -->
 <link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
 <!-- ico font -->
 <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
-
+@*<link href="~/Content/CustomCorp.css" rel="stylesheet" />*@
 <link href="~/Content/FileUpload.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 
 <style>
     .form-material .float-label {
         top: -12px;
     }
+
+    .toggle.ios, .toggle-on.ios, .toggle-off.ios {
+        border-radius: 20px;
+    }
+
+        .toggle.ios .toggle-handle {
+            border-radius: 20px;
+        }
 </style>
 
 
 
-<h2>Add Product</h2>
+<h2>Create Product</h2>
 
 
 
 <div class="card-block">
 
     <form class="form-material" enctype="multipart/form-data">
-
-        <div class="form-group form-default">
-            <input type="text" name="name_en" class="form-control" id="name_en">
-            <span class="form-bar"></span>
-            <label class="float-label">English Name:</label>
-        </div>
-        <div class="form-group form-default">
-            <input type="text" name="name_ar" class="form-control" id="name_ar">
-            <span class="form-bar"></span>
-            <label class="float-label">Arabic Name:</label>
-        </div>
 
         <div class="form-group form-default">
             <select id="brandDropDownList" class="form-control">
@@ -51,6 +53,46 @@
             </select>
             <span class="form-bar"></span>
             <label class="float-label"> Category:</label>
+        </div>
+
+        <div class="form-group form-default">
+            <select id="tagDropDownList" class="form-control">
+                <option value="Select">Select</option>
+            </select>
+            <span class="form-bar"></span>
+            <label class="float-label"> Tag:</label>
+        </div>
+
+        <div class="form-group form-default">
+            <label class="floatimage">Upload Image or Video(10 sec)</label>
+            <input type="file" name="footer-email" class="form-control" id="assertImageUrl">
+            <span class="form-bar"></span>
+        </div>
+        <div class="box-2">
+            <div class="result"></div>
+        </div>
+        <!--rightbox-->
+        <div class="box-2 img-result hide">
+            <!-- result of crop -->
+            <img class="cropped" src="" alt="">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Default:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @*<input type="checkbox" value="" id="isdefault">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isdefault" data-on="Available" data-off="Not Available">
+            </div>
+        </div>
+
+        <div class="form-group form-default">
+            <input type="text" name="name_en" class="form-control" id="name_en">
+            <span class="form-bar"></span>
+            <label class="float-label">Name in English:</label>
+        </div>
+        <div class="form-group form-default">
+            <input type="text" name="name_ar" class="form-control" id="name_ar">
+            <span class="form-bar"></span>
+            <label class="float-label">Name in Arabic:</label>
         </div>
 
         <div class="form-group form-default">
@@ -82,121 +124,119 @@
             <span class="form-bar"></span>
             <label class="float-label">Order By:</label>
         </div>
-        <div class="form-group form-default">
-            @Html.DropDownList("IsActive", new List<SelectListItem>() {
-            new SelectListItem {Text="Image",Value="Image"},
-            new SelectListItem {Text="Video",Value="Video"}
-       }, new { @class = "form-control" })
-            <span class="form-bar"></span>
-            <label class="float-label">Type</label>
-        </div>
+        @*<div class="form-group form-default">
+                 @Html.DropDownList("typeImage", new List<SelectListItem>() {
+                 new SelectListItem {Text="Image",Value="Image"},
+                 new SelectListItem {Text="Video",Value="Video"}
+            }, new { @class = "form-control" })
+                 <span class="form-bar"></span>
+                 <label class="float-label">Type</label>
+             </div>*@
 
-        <div class="form-group form-default">
-            <label class="floatimage">Upload</label>
-            <input type="file" name="footer-email" class="form-control" id="ProdUpload">
-            <span class="form-bar"></span>
-        </div>
 
-        <div class="form-group form-default">
-            @Html.DropDownList("IsActive", new List<SelectListItem>() {
-            new SelectListItem {Text="Active",Value="y"},
-            new SelectListItem {Text="InActive",Value="n"}
-       }, new { @class = "form-control" })
-            <span class="form-bar"></span>
-            <label class="float-label">Status</label>
-        </div>
 
         <div style="padding-bottom:15px;"><h4>Custom Size Asset</h4></div>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field1">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size1:</label>
-                </div>
-
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field2">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size2:</label>
-                </div>
-
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field3">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size3:</label>
-                </div>
-
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field4">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size4:</label>
-                </div>
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field5">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size5:</label>
-                </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Custom Size Available:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @* <input type="checkbox" value="" id="iscustomsizeavailable">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="iscustomsizeavailable" data-on="Available" data-off="Not Available">
 
             </div>
-            <div class="col-sm-6 mobile-inputs">
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field6">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size6:</label>
-                </div>
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field7">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size7:</label>
-                </div>
+        </div>
 
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field8">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size8:</label>
-                </div>
+        <div id="sizeBlock">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field1">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size1:</label>
+                    </div>
 
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field9">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size9:</label>
-                </div>
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field2">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size2:</label>
+                    </div>
 
-                <div class="form-group form-default">
-                    <input type="text" name="unit_price" class="form-control" id="custom_size_field10">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Size10:</label>
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field3">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size3:</label>
+                    </div>
+
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field4">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size4:</label>
+                    </div>
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field5">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size5:</label>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 mobile-inputs">
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field6">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size6:</label>
+                    </div>
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field7">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size7:</label>
+                    </div>
+
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field8">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size8:</label>
+                    </div>
+
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field9">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size9:</label>
+                    </div>
+
+                    <div class="form-group form-default">
+                        <input type="text" name="unit_price" class="form-control" id="custom_size_field10">
+                        <span class="form-bar"></span>
+                        <label class="float-label">Size10:</label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-       
 
-        <div class="form-group form-default">
-            <label class="floatimage">Upload</label>
-            <input type="file" name="footer-email" class="form-control" id="CustomImageUpload">
-            <span class="form-bar"></span>
-        </div>
 
-        <table id="ProdTable" class="table table-bordered ">
-            <tr>
-                <th>Image</th>
-                <th>Remove</th>
-            </tr>
-        </table>
+            <div class="form-group form-default">
+                <label class="floatimage">Upload Custom Size Images</label>
+                <input type="file" name="footer-email" class="form-control" id="CustomImageUpload">
+                <span class="form-bar"></span>
+            </div>
 
-        <div class="form-group form-default">
-            <input type="text" name="custom_size_description" class="form-control" id="custom_size_description">
-            <span class="form-bar"></span>
-            <label class="float-label">Custom Image Description:</label>
-        </div>
+            <table id="ProdTable" class="table table-bordered ">
+                <tr>
+                    <th>Image</th>
+                    <th>Remove</th>
+                </tr>
+            </table>
 
-        <div class="form-group form-default">
-            <input type="text" name="custom_size_description" class="form-control" id="unit_price">
-            <span class="form-bar"></span>
-            <label class="float-label">Custom Image Unit Price:</label>
+            <div class="form-group form-default">
+                <input type="text" name="custom_size_description" class="form-control" id="custom_size_description">
+                <span class="form-bar"></span>
+                <label class="float-label">Custom Image Description:</label>
+            </div>
+
+            <div class="form-group form-default">
+                <input type="text" name="custom_size_description" class="form-control" id="unit_price">
+                <span class="form-bar"></span>
+                <label class="float-label">Custom Image Unit Price:</label>
+            </div>
         </div>
 
         <div class="form-group form-default">
@@ -210,12 +250,7 @@
             <label class="float-label"> Age To:</label>
         </div>
 
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Gift Available:</span></label>
-            <div class="col-sm-8" style="padding-top:8px;">
-                <input type="checkbox" value="">
-            </div>
-        </div>
+
 
         @*<div class="form-group form-default">
                 <input type="text" name="is_surprise_gift_available" class="form-control" id="is_surprise_gift_available">
@@ -223,12 +258,7 @@
                 <label class="float-label"> Is Gift Available:</label>
             </div>*@
 
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Suprise Gift Available:</span></label>
-            <div class="col-sm-8" style="padding-top:8px;">
-                <input type="checkbox" value="">
-            </div>
-        </div>
+
 
 
         <div class="form-group form-default">
@@ -252,28 +282,52 @@
             <label class="float-label"> Order By:</label>
         </div>
 
-        <div style="padding-bottom:15px;"><h4>Gift Card</h4></div>
+        <div style="padding-bottom:15px;"><h4>Gift</h4></div>
 
-        <div class="form-group form-default">
-            <label class="floatimage">Image</label>
-            <input type="file" name="GiftCardImage[]" class="form-control" id="GiftCardImage">
-            <span class="form-bar"></span>
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Gift Available:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @*<input type="checkbox" value="" id="isgiftavailable">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isgiftavailable" data-on="Available" data-off="Not Available">
+
+            </div>
         </div>
+        <div id="GiftBlock">
+            <div class="form-group form-default">
+                <label class="floatimage">Upload Gift Card Images</label>
+                <input type="file" name="GiftCardImage[]" class="form-control" id="GiftCardImage">
+                <span class="form-bar"></span>
+            </div>
 
-        <div class="form-group form-default">
-            <input type="text" name="GiftOrderBy" class="form-control" id="GiftOrderBy">
-            <span class="form-bar"></span>
-            <label class="float-label"> Order By:</label>
+            <div class="form-group form-default">
+                <input type="text" name="GiftOrderBy" class="form-control" id="GiftOrderBy">
+                <span class="form-bar"></span>
+                <label class="float-label"> Order By:</label>
+            </div>
+
+            <table id="GiftTable" class="table table-bordered ">
+                <tr>
+                    <th>Image</th>
+                    <th>Order By</th>
+                    <th>Remove</th>
+                </tr>
+            </table>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Suprise Gift Available:</span></label>
+                <div class="col-sm-8" style="padding-top:8px;">
+                    @*<input type="checkbox" value="" id="is_surprise_gift_available">*@
+                    <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="is_surprise_gift_available" data-on="Available" data-off="Not Available">
+
+                </div>
+            </div>
+
+            <div class="form-group form-default" id="SurpiseUnitPriceBlock">
+                <input type="text" name="surprise_unit_price" class="form-control" id="surprise_unit_price">
+                <span class="form-bar"></span>
+                <label class="float-label">Unit Price:</label>
+            </div>
         </div>
-
-        <table id="GiftTable" class="table table-bordered ">
-            <tr>
-                <th>Image</th>
-                <th>Order By</th>
-                <th>Remove</th>
-            </tr>
-        </table>
-
         <div style="padding-bottom:15px;"><h4>Color Asset</h4></div>
 
         <div class="form-group form-default">
@@ -287,7 +341,7 @@
             <span class="form-bar"></span>
             <label class="float-label">Name in Arabic:</label>
         </div>
-
+         
         <div class="form-group form-default">
             <input type="text" name="color_code" class="form-control" id="color_code">
             <span class="form-bar"></span>
@@ -314,7 +368,7 @@
             </table>
             @*<input type="file" id="colorimgfile" name="colorimgfile" />*@
             <span class="form-bar"></span>
-            <label class="float-label">ImageUrl:</label>
+            <label class="float-label">Upload Color Images:</label>
         </div>
         @*<div class="form-group" style="text-align:center;">
                 <div class="col-sm-4">
@@ -323,8 +377,12 @@
             </div>*@
 
         <div class="row m-t-30">
-            <div class="col-md-12">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-5">
                 <button type="button" id="Save" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Save Product</button>
+            </div>
+            <div class="col-md-5">
             </div>
         </div>
 
@@ -332,8 +390,6 @@
 </div>
 
 
-<script src="~/scripts/jquery-1.10.2.min.js"></script>
-@*<script src="~/scripts/FileUpload.js"></script>*@
 <script>
     $(document).ready(function () {
         getBrands();
@@ -357,32 +413,57 @@
     })
     //End
 
+    jQuery(document).ready(function ($) {
+        $("#tagDropDownList").on('change', function () {
+            tagId = $('#tagDropDownList').val();
+        })
+    })
+    
     //Checked Code for Checkbox
     var isDefault, iscustomsizeavailable, issurprisegiftavailable, isgiftavailable;
     jQuery(document).ready(function ($) {
-        $("#IsDefault").click(function () {
-            isDefault = $("#IsDefault").is(':checked');
+        $("#isdefault").change(function () {
+            isDefault = $("#isdefault").is(':checked');
         });
     });
 
     jQuery(document).ready(function ($) {
-        $("#iscustomsizeavailable").click(function () {
+        $("#iscustomsizeavailable").change(function () {
             iscustomsizeavailable = $("#iscustomsizeavailable").is(':checked');
+            if (iscustomsizeavailable == true) {
+                $("#sizeBlock").show();
+            }
+            else {
+                $("#sizeBlock").hide();
+            }
         });
     });
 
-    jQuery(document).ready(function ($) {
-        $("#is_surprise_gift_available").click(function () {
-            issurprisegiftavailable = $("#is_surprise_gift_available").is(':checked');
-        });
+
+
+
+    $("#isgiftavailable").change(function () {
+        isgiftavailable = $("#isgiftavailable").is(':checked');
+        if (isgiftavailable == true) {
+            $("#GiftBlock").show();
+        }
+        else {
+            $("#GiftBlock").hide();
+        }
+
+    });
+    $("#is_surprise_gift_available").change(function () {
+        issurprisegiftavailable = $("#is_surprise_gift_available").is(':checked');
+        if (issurprisegiftavailable == true) {
+            $("#SurpiseUnitPriceBlock").show();
+        }
+        else {
+            $("#SurpiseUnitPriceBlock").hide();
+        }
+
     });
 
 
-    jQuery(document).ready(function ($) {
-        $("#is_gift_available").click(function () {
-            isgiftavailable = $("#is_gift_available").is(':checked');
-        });
-    });
 
     function getBrands() {
         $.ajax({
@@ -408,6 +489,9 @@
         })
     };
     function getCategorys() {
+        $("#sizeBlock").hide();
+        $("#GiftBlock").hide();
+        $("#SurpiseUnitPriceBlock").hide();
         $.ajax({
             async: true,
             type: "Get",
@@ -431,6 +515,35 @@
         })
     };
 
+    function getTag() {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Tags/GetTags',
+            data: '{}',
+            dataSrc: "",
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+
+                $.each(record, function (i, key) {
+
+                    var options = '';
+                    options += '<option value="Select">Select Tag</option>';
+                    for (var i = 0; i < response.length; i++) {
+                        options += '<option value="' + response[i].tag_id + '">' + response[i].tag_name_en + '</option>';
+                    }
+                    $('#tagDropDownList').append(options);
+
+
+                })
+            }
+        });
+    }
+     
     $(document).ready(function () {
         $("#fileButton").click(function () {
             var files = $("#prodImageUrl").get(0).files;
@@ -507,9 +620,6 @@
 
     }
 
-
-
-
     $('#Save').click(function () {
         var prodlist = [];
         prod = {};
@@ -519,7 +629,7 @@
 
         prod['brand_id'] = $("#brandDropDownList").val();
         prod['cat_id'] = $("#categoryDropDownList").val();
-
+        prod['tag_id'] = $("#tagDropDownList").val();
         prod['order_by'] = $("#prodorder_by").val();
         prod['is_active'] = $("#is_active").val();
         prod['icon_url'] = $("#IconUrl").val();
@@ -528,7 +638,7 @@
         prod['quantity'] = $("#quantity").val();
         prod['unit_price'] = $("#unit_price").val();
         prod['is_custom_size_available'] = iscustomsizeavailable == true ? 'y' : 'n';
-        prod['custom_size_img_url'] = $("#custom_size_img_url").val();
+        prod['custom_size_img_url'] = $("#CustomImageUpload").val();
         prod['custom_size_description'] = $("#custom_size_description").val();
         prod['custom_size_field1'] = $("#custom_size_field1").val();
         prod['custom_size_field2'] = $("#custom_size_field2").val();
@@ -542,17 +652,18 @@
         prod['custom_size_field10'] = $("#custom_size_field10").val();
         prod['custom_size_description'] = $("#custom_size_description").val();
         prod['is_gift_available'] = isgiftavailable == true ? 'y' : 'n';
-        prod['is_surprise_gift_available'] = issurprisegiftavailable == 'true' ? 'y' : 'n';
+        prod['is_surprise_gift_available'] = is_surprise_gift_available == true ? 'y' : 'n';
+        prod['is_surprise_gift_available'] = $("#surprise_unit_price").val();
+
+
         prod['size_chart_img_url'] = $("#size_chart_img_url").val();
         prod['age_from'] = $("#agefrom").val();
         prod['age_to'] = $("#ageto").val();
 
-
-
-
         var asset = {};
-        asset['type'] = $("#type").val();
-        asset['img_url'] = $("#AssertImageUrl").val();
+        asset['type'] = $("#typeImage").val();
+        var asserimg = /[^\\]*$/.exec($("#assertImageUrl").val())[0];
+        asset['img_url'] = asserimg;
         asset['is_default'] = isDefault == true ? 'y' : 'n';
         asset['order_by_asset'] = $("#order_by_asset").val();
         var NewAssert = [];
@@ -560,15 +671,15 @@
         prod['asset'] = NewAssert;
 
         var color = {};
-        color['color_name_en'] = $("#color_name_en").val();
-        color['color_name_ar'] = $("#color_name_ar").val();
-        color['color_code'] = $("#color_code").val();
-        color['is_active'] = $("#color_is_active").val();
-        color['color_img_url'] = $("#color_img_url").val();
-        var NewColor = [];
-        NewColor.push(color);
+        //color['color_name_en'] = $("#color_name_en").val();
+        //color['color_name_ar'] = $("#color_name_ar").val();
+        //color['color_code'] = $("#color_code").val();
+        //color['is_active'] = $("#color_is_active").val();
+        //color['color_img_url'] = $("#color_img_url").val();
+        //var NewColor = [];
+        //NewColor.push(color);
         prod['color'] = colorArray;
-
+        prod['wishcard'] = giftArray;
 
         prod.size_name_en = $("#size_name_en").val();
         prod.size_name_ar = $("#size_name_ar").val();
@@ -603,8 +714,9 @@
     //start Color
 
     var colorArray = [];
-    var colorArray1 = [];
-  
+    var giftArray = [];
+
+
 
     $(document).ready(function () {
         $("#colortable").hide();
@@ -619,6 +731,7 @@
                     var obj = new Object();
                     fileReader.onload = (function (e) {
                         var file = e.target;
+
                         //$("<span class=\"pip\">" +
                         //  "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
                         //  "<br/><span class=\"remove\">Remove image</span>" +
@@ -636,23 +749,22 @@
                         });
 
                     });
-                  
+
                     obj["color_name_en"] = $('#color_name_en').val();
                     obj["color_name_ar"] = $('#color_name_ar').val();
                     obj["color_code"] = $('#color_code').val();
-                    obj["color_image_url"] =f.name;
+                    obj["color_image_url"] = f.name;
                     obj["is_active"] = $('#is_active').val();
                     obj["order_by"] = $('#order_by').val();
 
 
 
                     fileReader.readAsDataURL(f);
-                  
+
                     colorArray.push(obj);
                 }
-               
+
                 console.log(colorArray);
-                console.log(colorArray1);
                 console.log(files);
                 console.log($('#color_name_en').val());
             });
@@ -661,32 +773,14 @@
         }
     });
 
-    $("#colortable").on('click', function () {
-        var arrData = [];
-        // loop over each table row (tr)
-        $("#colortable tr").each(function () {
-            var currentRow = $(this);
-
-            var col1_value = currentRow.find("td:eq(0)").html();
-            var col2_value = currentRow.find("td:eq(1)").text();
-            var col3_value = currentRow.find("td:eq(2)").text();
-
-            var obj = {};
-            obj.col1 = col1_value;
-            obj.col2 = col2_value;
-            obj.col3 = col3_value;
-
-            arrData.push(obj);
-        });
-        alert(arrData);
-        console.log(arrData);
-    });
 
     //End Color
 
 
 
     //start Gift
+
+
     $(document).ready(function () {
         $("#GiftTable").hide();
         if (window.File && window.FileList && window.FileReader) {
@@ -695,7 +789,8 @@
                 var GiftCardImage = e.target.files,
                   filesLength = GiftCardImage.length;
                 for (var i = 0; i < filesLength; i++) {
-                    var f = GiftCardImage[i]
+                    var f = GiftCardImage[i];
+                    var obj = new Object();
                     var fileReader = new FileReader();
                     fileReader.onload = (function (e) {
                         var file = e.target;
@@ -710,8 +805,14 @@
                             $(this).closest('tr').remove();
                         });
                     });
+
+                    obj["img_url"] = f.name;
+                    obj["order_by_gift_items"] = $('#GiftOrderBy').val()
+
+                    giftArray.push(obj);
                     fileReader.readAsDataURL(f);
                 }
+                console.log(giftArray);
                 console.log(files);
 
             });
@@ -720,13 +821,13 @@
         }
     });
     //End Gift
-    
+
     //start Prod table
 
     $(document).ready(function () {
         $("#ProdTable").hide();
         if (window.File && window.FileList && window.FileReader) {
-            $("#ProdUpload").on("change", function (e) {
+            $("#CustomImageUpload").on("change", function (e) {
                 $("#ProdTable").show();
                 var ProdTable = e.target.files,
                   filesLength = ProdTable.length;

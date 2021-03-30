@@ -50,7 +50,7 @@
             success: function (result) {
                 var record = JSON.parse(result.data);
                 $.each(record, function (i, key) {
-                    var Status = key.is_active == 'y' ? 'Active' : 'InActive';
+                    var Status = key.is_active == 'Y' ? 'Active' : 'InActive';
                     $('#customers3 tr:last').after
                         ('<tr><td>' + key.cat_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td></td>' + '</td><td>' + key.order_by + '</td><td>' + Status + '</td><td>' + '<a href="UpdateCategory/?id=' + key.cat_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="GetCategory/?id=' + key.cat_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
                 });

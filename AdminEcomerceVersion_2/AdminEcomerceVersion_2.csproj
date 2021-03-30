@@ -44,7 +44,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ecomserv">
+    <Reference Include="ecomserv, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\Azam\Downloads\src\src\ecomserv\ecomserv\bin\ecomserv.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -176,8 +177,10 @@
     <Content Include="assets\pages\waves\js\waves.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CustomCorp.css" />
     <Content Include="Content\FileUpload.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="dist\broiler.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -185,9 +188,11 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\CustomCorp.js" />
     <Content Include="scripts\FileUpload.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery.Jcrop.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
@@ -272,6 +277,11 @@
     <Content Include="Views\Products\ShowProducts.cshtml" />
     <Content Include="Views\Advertisement\getAdvertisement.cshtml" />
     <Content Include="Views\Advertisement\getAdvertisementDetail.cshtml" />
+    <Content Include="Views\Products\TEST.cshtml" />
+    <Content Include="Views\Shared\_BusinessOwnerLayout .cshtml" />
+    <Content Include="Views\Login\AdminPanel.cshtml" />
+    <Content Include="Views\Login\BusinessOwnerPanel.cshtml" />
+    <Content Include="Views\Offers\GetOffer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -281,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Offer\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

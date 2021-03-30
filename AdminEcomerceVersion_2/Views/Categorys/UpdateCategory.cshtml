@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "UpdateCategory";
 }
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <style>
     .form-material .float-label  {
@@ -29,14 +32,14 @@
             <span class="form-bar"></span>
             <label class="float-label">Order By:</label>
         </div>
-        <div class="form-group form-default">
-            @Html.DropDownList("IsActive", new List<SelectListItem>() {
-            new SelectListItem {Text="Active",Value="y"},
-            new SelectListItem {Text="InActive",Value="n"}
-       }, new { @class = "form-control" })
-            <span class="form-bar"></span>
-            <label class="label">Status:</label>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Active?:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                @*<input type="checkbox" value="" id="isdefault">*@
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="IsActive" data-on="Yes" data-off="No">
+            </div>
         </div>
+            
         <div class="form-group form-default">
             <input type="button"  id="EditCat" name="footer-email" value="Update" class="btn btn-primary">
             <span class="form-bar"></span>
@@ -44,13 +47,15 @@
     </form>
 </div>
 
-<script src="~/scripts/jquery-1.10.2.min.js"></script>
+ 
 
 <script>
     $(document).ready(function () {
         GetCategoryById();
     })
-
+    $("#IsActive").change(function () {
+        isActive = $("#IsActive").is(':checked') == true ? 'Y' : 'N';
+    });
     function GetCategoryById() {
         $.ajax({
             async: true,
@@ -68,7 +73,11 @@
                 $("#enName").val(cat[0].name_en);
                 $("#arName").val(cat[0].name_ar);
                 $("#OrderBy").val(cat[0].order_by);
-                $("#IsActive:selected").val(cat[0].is_active);
+                if (cat[0].is_active == 'Y') {
+                    $("#IsActive").prop('checked', false);
+                }
+                else { $("#IsActive").prop('checked', true); }
+                 
                 $("#IconUrl").val(cat[0].icon_url);
                 $("#IconData").val(cat[0].icon_data);
             }
@@ -83,7 +92,7 @@
         cat.name_en = $("#enName").val();
         cat.name_ar = $("#arName").val();
         cat.order_by = $("#OrderBy").val();
-        cat.is_active = $("#IsActive").val();
+        cat.is_active = $("#IsActive:selected").is(':checked')==true?'Y':'N';
         
 
         $.ajax({
@@ -97,7 +106,7 @@
             processing: true,
             serverSide: true,
             success: function (response) {
-                alert("Updated Successfully");
+            location.href = '../Index';
             }
 
         })

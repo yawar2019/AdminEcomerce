@@ -1,9 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "getAdvertisement";
+    ViewBag.Title = "GetOffer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Advertisement</h2>
+<h2>GetOffer</h2>
+
 
 <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
 
@@ -13,11 +15,13 @@
             <table class="table table-hover">
                 <thead style="background-color:black;color:white;">
                     <tr>
-                        <th>Brand Name</th>
                         <th>Image</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th colspan="4">Action</th>
+                        <th>Name In English</th>
+                        <th>Name in Arabic</th>
+                        <th>Status</th>
+                        <th colspan="6">Action</th>
                     </tr>
                 </thead>
                 <tbody id="customers3">
@@ -32,7 +36,7 @@
 <script>
     $(document).ready(function () {
         getBrands();
-        getAdvertisement();
+        getOffers();
 
     });
     var resultBrand = {};
@@ -57,13 +61,13 @@
         return resultBrand;
     };
 
-    function getAdvertisement() {
+    function getOffers() {
         $.ajax({
             async: true,
             type: "Get",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:51412/Advertisement/getAdvertisementJson',
+            url: 'http://localhost:51412/Offers/getOffersJson',
             data: '{}',
 
             processing: true,
@@ -73,17 +77,10 @@
                 var record = JSON.parse(result.data);
 
                 $.each(record, function (i, key) {
-                    var brandName = "";
-                    var brand = resultBrand.filter(x => x.brand_id == key.brand_id);
-                    if (brand.length>0) {
-                        brandName = brand[0].name_brand_en;
-                    }
-                    else {
-                        brandName = "Zimal";
-                    }
+                    
                     var Status = key.is_active == 'Y' ? 'Active' : 'InActive';
                     $('#customers3 tr:last').after
-                        ('<tr><td>' + brandName+ '</td><td><img height="50px" src="http://serv.vrad.in/img/ecom_olaala/' + key.img_url + '">' + '</td><td>' + new Date(key.date_from).toLocaleDateString() + '</td><td>' + new Date(key.date_to).toLocaleDateString() + '</td><td>' + Status + '</td><td>' + '<a href="UpdateAdvertisement/?id=' + key.ad_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="getAdvertisementDetail/?id=' + key.ad_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
+                        ('<tr><td><img height="50px" src="http://serv.vrad.in/img/ecom_olaala/' + key.offer_img_url + '">' + '</td><td>' + new Date(key.valid_from).toLocaleDateString() + '</td><td>' + new Date(key.valid_to).toLocaleDateString() + '</td><td>' + key.offer_dec_en + '</td><td>' + key.offer_dec_ar + '</td><td>' + Status + '</td><td>' + '<a href="UpdateOffer/?id=' + key.ad_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="getOfferDetail/?id=' + key.ad_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
                 });
 
 
@@ -95,3 +92,5 @@
 
 
 </script>
+
+

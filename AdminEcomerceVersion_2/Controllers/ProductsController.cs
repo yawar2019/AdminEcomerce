@@ -48,7 +48,7 @@ namespace AdminEcomerceVersion_2.Controllers
         }
         public ActionResult CreateProduct()
         {
-            return View();
+            return View("TEST");
         }
         public ActionResult EditProduct(int? id)
         {
@@ -77,6 +77,16 @@ namespace AdminEcomerceVersion_2.Controllers
             return Json(routes_list, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetCategorys()
+        {
+            EcomData ecom_data = config.ConfigureEcomData("get_search_cats");
+            my_data my_data = new my_data();
+            my_data.dev_id = ecom_data.dev_id;
+            ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(my_data);
+            var routes_list = config.CongifuretoJson(ecom_data);
+            return Json(routes_list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTags()
         {
             EcomData ecom_data = config.ConfigureEcomData("get_search_cats");
             my_data my_data = new my_data();
