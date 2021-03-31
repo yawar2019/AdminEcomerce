@@ -3,15 +3,17 @@
     ViewBag.Title = "ShowProducts";
 }
 <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
-<h2>ShowProducts</h2>
-
+<h2>Products</h2>
+<div style="text-align:right;padding-right: 42px;">
+    <a href="~/Products/AddProduct" class="btn btn-primary">Create Product</a>
+</div>
 <div class="card">
     <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead style="background-color:black;color:white;">
                     <tr>
-                        <th>Product Id</th>
+                        <th>Images</th>
                         <th>Name In English</th>
                         <th>Name In Arabic</th>
                         <th>Brand</th>
@@ -49,7 +51,7 @@
                 var record = JSON.parse(result.data);
                 $.each(record, function (i, key) {
                     $('#customers3 tr:last').after
-                        ('<tr><td>' + key.prod_id + '</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td><td>' + key.brand_name_en + '</td><td>' + key.cat_name_en + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
+                        ('<tr><td><img height="50px" src="http://localhost:51412/images/' + key.img_url + '">' +'</td><td>' + key.name_en + '</td><td>' + key.name_ar + '</td><td>' + key.brand_name_en + '</td><td>' + key.cat_name_en + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a href="GetProductDetails/?id=' + key.prod_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
                 });
 
 

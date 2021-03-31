@@ -264,7 +264,6 @@
     <Content Include="Views\Categorys\AddCategory.cshtml" />
     <Content Include="Views\Categorys\UpdateCategory.cshtml" />
     <Content Include="Views\Categorys\GetCategory.cshtml" />
-    <Content Include="Views\Products\AddProduct.cshtml" />
     <Content Include="Views\Tags\ShowTag.cshtml" />
     <Content Include="Views\Tags\AddTag.cshtml" />
     <Content Include="Views\Tags\UpdateTag.cshtml" />
@@ -282,6 +281,7 @@
     <Content Include="Views\Login\AdminPanel.cshtml" />
     <Content Include="Views\Login\BusinessOwnerPanel.cshtml" />
     <Content Include="Views\Offers\GetOffer.cshtml" />
+    <Content Include="Views\Products\AddProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -291,7 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Offer\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -36,7 +36,7 @@ namespace AdminEcomerceVersion_2.Controllers
                     var ext = Path.GetExtension(logo.FileName);
 
                     ImageName = profileName;
-                    var comPath = Server.MapPath("/dist/") + ImageName;
+                    var comPath = Server.MapPath("/Images/") + ImageName;
 
                     logo.SaveAs(comPath);
 
@@ -59,7 +59,7 @@ namespace AdminEcomerceVersion_2.Controllers
 
         public JsonResult getOffersJson()
         {
-            EcomData ecom_data = config.ConfigureEcomData("get_offer_home");
+            EcomData ecom_data = config.ConfigureEcomData("get_offer");
             my_data my_data = new my_data();
             my_data.dev_id = ecom_data.dev_id;
             ecom_data.data = Newtonsoft.Json.JsonConvert.SerializeObject(my_data);

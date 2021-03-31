@@ -4,11 +4,13 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>GetOffer</h2>
-
-
 <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
 
+<h2>Offers</h2>
+
+<div style="text-align:right;padding-right: 42px;">
+    <a href="~/offers/AddOffer" class="btn btn-primary">Create Offer</a>
+</div>
 <div class="card">
     <div class="card-block table-border-style">
         <div class="table-responsive">
@@ -80,7 +82,7 @@
                     
                     var Status = key.is_active == 'Y' ? 'Active' : 'InActive';
                     $('#customers3 tr:last').after
-                        ('<tr><td><img height="50px" src="http://serv.vrad.in/img/ecom_olaala/' + key.offer_img_url + '">' + '</td><td>' + new Date(key.valid_from).toLocaleDateString() + '</td><td>' + new Date(key.valid_to).toLocaleDateString() + '</td><td>' + key.offer_dec_en + '</td><td>' + key.offer_dec_ar + '</td><td>' + Status + '</td><td>' + '<a href="UpdateOffer/?id=' + key.ad_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="getOfferDetail/?id=' + key.ad_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
+                        ('<tr><td><img height="50px" src="http://localhost:51412/images/' + key.offer_img_url + '">' + '</td><td>' + new Date(key.valid_from).toLocaleDateString() + '</td><td>' + new Date(key.valid_to).toLocaleDateString() + '</td><td>' + key.offer_dec_en + '</td><td>' + key.offer_dec_ar + '</td><td>' + Status + '</td><td>' + '<a href="UpdateOffer/?id=' + key.ad_id + '"><i class="icofont icofont-eye-alt"></i></a>' + '</td><td>' + '<a  href="getOfferDetail/?id=' + key.ad_id + '"><i class="icofont icofont-info-square"></i></a>' + '</td></tr>');
                 });
 
 
