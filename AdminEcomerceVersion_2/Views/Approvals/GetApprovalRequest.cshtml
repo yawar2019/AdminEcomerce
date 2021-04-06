@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "GetApprovalRequest";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<h2> Approval Request</h2>
+
+<div class="card">
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table table-hover" id="ApprovalTable">
+                <thead style="background-color:black;color:white;">
+                    <tr>
+                        <th>Type</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th colspan="4">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="TagTable">
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        getApprovals();
+    });
+
+  function getApprovals() {
+        $.ajax({
+            async: true,
+            type: "Get",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Approvals/GetApprovalRequestJson',
+            data: '{}',
+            dataSrc: "",
+            processing: true,
+            serverSide: true,
+            success: function (result) {
+                var record = JSON.parse(result.data);
+
+                $.each(record, function (i, key) {
+
+                    debugger;
+                 
+                    $('#ApprovalTable tr:last').after
+                          ('<tr><td>' + key.type + '</td><td>' + key.msg + '</td><td>' + key.admin_approval_status + '</td><td>' + '<a href="UpdateApprovalRequest/?id=' + key.id + '&type=' + key.type + '">Approved/Reject</a>' + '</td></td></tr>');
+
+                });
+
+
+            }
+        }
+
+   )
+    };
+
+</script>

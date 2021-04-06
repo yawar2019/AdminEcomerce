@@ -55,8 +55,8 @@ namespace AdminEcomerceVersion_2.Controllers
         {
             return View();
         }
-
-        public JsonResult AddProductJson(EcomProductData e)
+        [HttpPost]
+        public JsonResult AddProductJson(EcomProductData e, HttpPostedFileBase file)
         {
             HttpFileCollection files = System.Web.HttpContext.Current.Request.Files;
 

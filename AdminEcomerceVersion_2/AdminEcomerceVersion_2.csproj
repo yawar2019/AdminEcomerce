@@ -201,6 +201,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdvertisementController.cs" />
+    <Compile Include="Controllers\ApprovalsController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\CategorysController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -282,6 +283,8 @@
     <Content Include="Views\Login\BusinessOwnerPanel.cshtml" />
     <Content Include="Views\Offers\GetOffer.cshtml" />
     <Content Include="Views\Products\AddProduct.cshtml" />
+    <Content Include="Views\Approvals\GetApprovalRequest.cshtml" />
+    <Content Include="Views\Approvals\UpdateApprovalRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

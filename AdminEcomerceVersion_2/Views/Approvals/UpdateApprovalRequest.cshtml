@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "UpdateApprovalRequest";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>UpdateApprovalRequest</h2>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+
+<div class="card-block">
+    <form class="form-material">
+        <input type="hidden" id="type" value="@ViewBag.type"/>
+        <input type="hidden" id="ReqId" value="@ViewBag.id" />
+        <div class="form-group form-default">
+            @Html.DropDownList("admin_approval_status", new List<SelectListItem>() {
+            new SelectListItem {Text="Approved",Value="Approved"},
+            new SelectListItem {Text="Rejected",Value="Rejected"},
+            new SelectListItem {Text="OnHold",Value="OnHold"}
+       }, new { @class = "form-control" })
+            <span class="form-bar"></span>
+            <label class="label">Status:</label>
+        </div>
+
+        <div class="form-group form-default">
+            <input type="text" name="footer-email" class="form-control" id="admin_approval_remarks">
+            <span class="form-bar"></span>
+            <label class="float-label">Approval Remarks:</label>
+        </div>
+
+        <div class="form-group form-default">
+            <input type="button" name="footer-email" value="Save" class="btn btn-primary" id="Save">
+            <span class="form-bar"></span>
+        </div>
+    </form>
+</div>
+
+
+
+<script>
+    $('#Save').click(function () {
+        var ReqData = new Object();
+        ReqData.type = $("#type").val();
+        ReqData.id = $("#ReqId").val();
+        ReqData.admin_approval_remarks = $("#admin_approval_remarks").val();
+        ReqData.admin_approval_status = $("#admin_approval_status").val();
+
+        var reqdata = JSON.stringify({
+            Req: ReqData
+        });
+        debugger;
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: 'application/json;',
+            url: 'http://localhost:51412/Approvals/UpdateApprovalRequestJson',
+            data: reqdata,
+
+            processing: true,
+            serverSide: true,
+            success: function (response) {
+                alert("Updated Successfully");
+            }
+
+        })
+    })
+</script>

@@ -65,25 +65,23 @@
 
         <div class="form-group form-default">
             <label class="floatimage">Upload Image or Video(10 sec)</label>
-            <input type="file" name="footer-email" class="form-control" id="assertImageUrl">
+            <input type="file" name="assertImageUrl[]" class="form-control" id="assertImageUrl" multiple>
             <span class="form-bar"></span>
         </div>
+        <table id="productImgtable" class="table table-bordered ">
+            <tr>
+                <th>Image</th>
+                <th>IsDefault</th>
+                <th>IsActive</th>
+                <th>Remove</th>
+            </tr>
+        </table>
         <div class="box-2">
             <div class="result"></div>
         </div>
         <!--rightbox-->
-        <div class="box-2 img-result hide">
-            <!-- result of crop -->
-            <img class="cropped" src="" alt="">
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Default:</span></label>
-            <div class="col-sm-8" style="padding-top:8px;">
-                @*<input type="checkbox" value="" id="isdefault">*@
-                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isdefault" data-on="Available" data-off="Not Available">
-            </div>
-        </div>
-
+      
+        <h2>Details</h2>
         <div class="form-group form-default">
             <input type="text" name="name_en" class="form-control" id="name_en">
             <span class="form-bar"></span>
@@ -98,13 +96,25 @@
         <div class="form-group form-default">
             <input type="text" name="name_desc_en" class="form-control" id="name_desc_en">
             <span class="form-bar"></span>
-            <label class="float-label">Description in English:</label>
+            <label class="float-label">Name Description in English:</label>
         </div>
         <div class="form-group form-default">
             <input type="text" name="footer-email" class="form-control" id="name_desc_ar">
             <span class="form-bar"></span>
-            <label class="float-label">Description in Arabic:</label>
+            <label class="float-label">Name Description in Arabic:</label>
         </div>
+
+        <div class="form-group form-default">
+            <input type="text" name="agefrom" class="form-control" id="agefrom">
+            <span class="form-bar"></span>
+            <label class="float-label"> Age From:</label>
+        </div>
+        <div class="form-group form-default">
+            <input type="text" name="agefrom" class="form-control" id="ageto">
+            <span class="form-bar"></span>
+            <label class="float-label"> Age To:</label>
+        </div>
+
 
         <div class="form-group form-default">
             <input type="text" name="quantity" class="form-control" id="quantity">
@@ -119,29 +129,22 @@
             <label class="float-label">Unit Price:</label>
         </div>
 
-        <div class="form-group form-default">
-            <input type="text" name="unit_price" class="form-control" id="prodOrderBy">
-            <span class="form-bar"></span>
-            <label class="float-label">Order By:</label>
-        </div>
-        @*<div class="form-group form-default">
-                 @Html.DropDownList("typeImage", new List<SelectListItem>() {
-                 new SelectListItem {Text="Image",Value="Image"},
-                 new SelectListItem {Text="Video",Value="Video"}
-            }, new { @class = "form-control" })
-                 <span class="form-bar"></span>
-                 <label class="float-label">Type</label>
-             </div>*@
-
-
-
-        <div style="padding-bottom:15px;"><h4>Custom Size Asset</h4></div>
 
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Custom Size Available:</span></label>
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Active?:</span></label>
             <div class="col-sm-8" style="padding-top:8px;">
                 @* <input type="checkbox" value="" id="iscustomsizeavailable">*@
-                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="iscustomsizeavailable" data-on="Available" data-off="Not Available">
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isactive" data-on="Yes" data-off="No">
+
+            </div>
+        </div>
+
+        <div style="padding-bottom:15px;"><h4>Custom Size</h4></div>
+
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label"><span class="text-inverse"> Is Custom Size Available?:</span></label>
+            <div class="col-sm-8" style="padding-top:8px;">
+                <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="iscustomsizeavailable" data-on="Yes" data-off="No">
 
             </div>
         </div>
@@ -236,59 +239,25 @@
                 <input type="text" name="custom_size_description" class="form-control" id="unit_price">
                 <span class="form-bar"></span>
                 <label class="float-label">Custom Image Unit Price:</label>
-            </div>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="agefrom" class="form-control" id="agefrom">
-            <span class="form-bar"></span>
-            <label class="float-label"> Age From:</label>
-        </div>
-        <div class="form-group form-default">
-            <input type="text" name="agefrom" class="form-control" id="ageto">
-            <span class="form-bar"></span>
-            <label class="float-label"> Age To:</label>
-        </div>
-
-
-
-        @*<div class="form-group form-default">
-                <input type="text" name="is_surprise_gift_available" class="form-control" id="is_surprise_gift_available">
+            </div>  
+            
+            <div class="form-group form-default">
+                @Html.DropDownList("typeImage", new List<SelectListItem>() {
+                 new SelectListItem {Text="Fixed",Value="Fixed"},
+                 new SelectListItem {Text="% Unit Price",Value="%Unit Price"}
+            }, new { @class = "form-control" })
                 <span class="form-bar"></span>
-                <label class="float-label"> Is Gift Available:</label>
-            </div>*@
+                <label class="float-label">Extra Price Type</label>
+            </div>    
+        </div> 
 
-
-
-
-        <div class="form-group form-default">
-            @Html.DropDownList("IsActive", new List<SelectListItem>() {
-            new SelectListItem {Text="Approve",Value="y"},
-            new SelectListItem {Text="Reject",Value="n"}
-       }, new { @class = "form-control" })
-            <span class="form-bar"></span>
-            <label class="float-label">Status</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="approvalremarks" class="form-control" id="approvalremarks">
-            <span class="form-bar"></span>
-            <label class="float-label"> Approval Remarks:</label>
-        </div>
-
-        <div class="form-group form-default">
-            <input type="text" name="OrderBy" class="form-control" id="OrderBy">
-            <span class="form-bar"></span>
-            <label class="float-label"> Order By:</label>
-        </div>
 
         <div style="padding-bottom:15px;"><h4>Gift</h4></div>
 
 
         <div class="form-group row">
             <label class="col-sm-4 col-form-label"><span class="text-inverse">Is Gift Available:</span></label>
-            <div class="col-sm-8" style="padding-top:8px;">
-                @*<input type="checkbox" value="" id="isgiftavailable">*@
+            <div class="col-sm-8" style="padding-top:8px;"> 
                 <input type="checkbox" checked data-toggle="toggle" data-size="normal" data-style="ios" id="isgiftavailable" data-on="Available" data-off="Not Available">
 
             </div>
@@ -393,7 +362,8 @@
 <script>
     $(document).ready(function () {
         getBrands();
-        getCategorys()
+        getCategorys();
+        getTag();
     });
 
 
@@ -418,14 +388,15 @@
             tagId = $('#tagDropDownList').val();
         })
     })
-    
+
     //Checked Code for Checkbox
     var isDefault, iscustomsizeavailable, issurprisegiftavailable, isgiftavailable;
-    jQuery(document).ready(function ($) {
+
         $("#isdefault").change(function () {
             isDefault = $("#isdefault").is(':checked');
+            alert(isDefault);
         });
-    });
+
 
     jQuery(document).ready(function ($) {
         $("#iscustomsizeavailable").change(function () {
@@ -503,7 +474,7 @@
             serverSide: true,
             success: function (data) {
                 var response = JSON.parse(data.data);
-                $('#c ').html('');
+                $('#categoryDropDownList').html('');
                 var options = '';
                 options += '<option value="Select">Select Category</option>';
                 for (var i = 0; i < response.length; i++) {
@@ -527,23 +498,18 @@
             processing: true,
             serverSide: true,
             success: function (result) {
-                var record = JSON.parse(result.data);
-
-                $.each(record, function (i, key) {
-
+                var response = JSON.parse(result.data);
+                $.each(response, function (i, key) {
                     var options = '';
-                    options += '<option value="Select">Select Tag</option>';
-                    for (var i = 0; i < response.length; i++) {
-                        options += '<option value="' + response[i].tag_id + '">' + response[i].tag_name_en + '</option>';
-                    }
+                    //options += '<option value="Select">Select Tag</option>';
+                    options += '<option value="' + key.tag_id + '">' + key.tag_name_en + '</option>';
                     $('#tagDropDownList').append(options);
-
 
                 })
             }
         });
     }
-     
+
     $(document).ready(function () {
         $("#fileButton").click(function () {
             var files = $("#prodImageUrl").get(0).files;
@@ -620,6 +586,79 @@
 
     }
 
+    //start Color
+
+    var AssetArray = [];
+ 
+
+    function fun() {
+        var t = $("#isdefault").is(':checked');
+        alert(t);
+    }
+
+    $(document).ready(function () {
+        var type = "";
+        if (window.File && window.FileList && window.FileReader) {
+            $("#assertImageUrl").on("change", function (e) {
+               
+                var files = e.target.files,
+                  filesLength = files.length;
+                for (var i = 0; i < filesLength; i++) {
+                    var f = files[i]
+                    var fileReader = new FileReader();
+                    var obj = new Object();
+                    fileReader.onload = (function (e) {
+                        var file = e.target;
+                          type = e.target.result.substr(5, 5);
+                        if (type == 'image') {
+
+                            var newrow = $("<tr class=\"pip1\">" +
+                               "<td><img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></td>"
+                                + "<td><input type='checkbox' id='isdefault' checked  onchange='fun()'/></td><td><input type='checkbox' id='isactive' checked data-toggle='toggle' data-size='normal' data-style='ios' data-on='Yes' data-off='No'/></td><td><span class=\"remove\">Remove</span></td></tr>");
+                            $("#productImgtable").append(newrow);
+
+                        }
+                        else {
+                             
+                            var newrow = $("<tr class=\"pip1\">" +
+                                 "<td><video width='160' height='100' controls><source src=\"" + e.target.result +"\" type='video/mp4'> </video></td>"
+                                  + "<td><input type='checkbox' id='isdefault' checked  onchange='fun()'/></td><td><input type='checkbox' id='isactive' checked data-toggle='toggle' data-size='normal' data-style='ios' data-on='Yes' data-off='No'/></td><td><span class=\"remove\">Remove</span></td></tr>");
+                            $("#productImgtable").append(newrow);
+                        }
+                            
+
+                        $(".remove").click(function () {
+                            //$(this).parent(".pip1").remove();
+                            $(this).closest('tr').remove();
+                        });
+
+                    });
+
+                    obj["is_default"] = $('#isdefault').val();
+                    obj["is_active"] = $('#isactive').val();
+                    obj["type"] = type;
+                    obj["img_url"] = f.name;
+                
+
+
+
+                    fileReader.readAsDataURL(f);
+
+                    AssetArray.push(obj);
+                }
+
+                console.log(AssetArray);
+                console.log(files);
+                
+            });
+        } else {
+            alert("Your browser doesn't support to File API")
+        }
+    });
+
+
+    //End Color
+
     $('#Save').click(function () {
         var prodlist = [];
         prod = {};
@@ -637,224 +676,56 @@
         prod['name_desc_ar'] = $("#name_desc_ar").val();
         prod['quantity'] = $("#quantity").val();
         prod['unit_price'] = $("#unit_price").val();
-        prod['is_custom_size_available'] = iscustomsizeavailable == true ? 'y' : 'n';
-        prod['custom_size_img_url'] = $("#CustomImageUpload").val();
-        prod['custom_size_description'] = $("#custom_size_description").val();
-        prod['custom_size_field1'] = $("#custom_size_field1").val();
-        prod['custom_size_field2'] = $("#custom_size_field2").val();
-        prod['custom_size_field3'] = $("#custom_size_field3").val();
-        prod['custom_size_field4'] = $("#custom_size_field4").val();
-        prod['custom_size_field5'] = $("#custom_size_field5").val();
-        prod['custom_size_field6'] = $("#custom_size_field6").val();
-        prod['custom_size_field7 '] = $("#custom_size_field7").val();
-        prod['custom_size_field8 '] = $("#custom_size_field8").val();
-        prod['custom_size_field9 '] = $("#custom_size_field9").val();
-        prod['custom_size_field10'] = $("#custom_size_field10").val();
-        prod['custom_size_description'] = $("#custom_size_description").val();
-        prod['is_gift_available'] = isgiftavailable == true ? 'y' : 'n';
-        prod['is_surprise_gift_available'] = is_surprise_gift_available == true ? 'y' : 'n';
-        prod['is_surprise_gift_available'] = $("#surprise_unit_price").val();
-
 
         prod['size_chart_img_url'] = $("#size_chart_img_url").val();
         prod['age_from'] = $("#agefrom").val();
         prod['age_to'] = $("#ageto").val();
 
         var asset = {};
-        asset['type'] = $("#typeImage").val();
-        var asserimg = /[^\\]*$/.exec($("#assertImageUrl").val())[0];
-        asset['img_url'] = asserimg;
-        asset['is_default'] = isDefault == true ? 'y' : 'n';
-        asset['order_by_asset'] = $("#order_by_asset").val();
+         
+       
         var NewAssert = [];
-        NewAssert.push(asset);
+        NewAssert.push(AssetArray);
         prod['asset'] = NewAssert;
 
-        var color = {};
-        //color['color_name_en'] = $("#color_name_en").val();
-        //color['color_name_ar'] = $("#color_name_ar").val();
-        //color['color_code'] = $("#color_code").val();
-        //color['is_active'] = $("#color_is_active").val();
-        //color['color_img_url'] = $("#color_img_url").val();
-        //var NewColor = [];
-        //NewColor.push(color);
-        prod['color'] = colorArray;
-        prod['wishcard'] = giftArray;
+      
+   
 
-        prod.size_name_en = $("#size_name_en").val();
-        prod.size_name_ar = $("#size_name_ar").val();
-        prod.product_size_id = $("#product_size_id").val();
-        prod.stock_count = $("#stock_count").val();
-        prod.tag_id = $("#tag_id").val();
-
+ 
 
 
         var proddata = JSON.stringify({
             e: prod
         });
 
+        var formData = new FormData();
+        var files = $("#assertImageUrl").get(0).files;
+        for(var i=0;i<files.length;i++){
+            formData.append(files[i].name, files[i]);
+        }
+        //formData.append("asset", AssetArray);
+
+        //var proddata = JSON.stringify({
+        //    e: prod, file: formData
+        //});
+
+       
+        
         $.ajax({
             async: true,
             type: "POST",
             dataType: "JSON",
             contentType: 'application/json;',
-            url: 'http://localhost:51412/Products/AddProductJson',
-            data: proddata,
+            url:'@Url.Action("AddProductJson", "Products")',
+            data: formData,
 
-            processing: true,
-            serverSide: true,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 alert("Inserted Successfully");
             }
 
         })
     });
-
-
-    //start Color
-
-    var colorArray = [];
-    var giftArray = [];
-
-
-
-    $(document).ready(function () {
-        $("#colortable").hide();
-        if (window.File && window.FileList && window.FileReader) {
-            $("#files").on("change", function (e) {
-                $("#colortable").show();
-                var files = e.target.files,
-                  filesLength = files.length;
-                for (var i = 0; i < filesLength; i++) {
-                    var f = files[i]
-                    var fileReader = new FileReader();
-                    var obj = new Object();
-                    fileReader.onload = (function (e) {
-                        var file = e.target;
-
-                        //$("<span class=\"pip\">" +
-                        //  "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-                        //  "<br/><span class=\"remove\">Remove image</span>" +
-                        //  "</span>").insertAfter("#files");
-
-                        var newrow = $("<tr class=\"pip1\">" +
-                           "<td><img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></td>"
-                            + "<td>'" + $('#color_name_en').val() + "'</td><td>'" + $('#color_name_ar').val() + "'</td><td>'" + $('#color_code').val() + "'</td><td><span class=\"remove\">Remove image</span></td></tr>");
-
-                        $("#colortable").append(newrow);
-
-                        $(".remove").click(function () {
-                            //$(this).parent(".pip1").remove();
-                            $(this).closest('tr').remove();
-                        });
-
-                    });
-
-                    obj["color_name_en"] = $('#color_name_en').val();
-                    obj["color_name_ar"] = $('#color_name_ar').val();
-                    obj["color_code"] = $('#color_code').val();
-                    obj["color_image_url"] = f.name;
-                    obj["is_active"] = $('#is_active').val();
-                    obj["order_by"] = $('#order_by').val();
-
-
-
-                    fileReader.readAsDataURL(f);
-
-                    colorArray.push(obj);
-                }
-
-                console.log(colorArray);
-                console.log(files);
-                console.log($('#color_name_en').val());
-            });
-        } else {
-            alert("Your browser doesn't support to File API")
-        }
-    });
-
-
-    //End Color
-
-
-
-    //start Gift
-
-
-    $(document).ready(function () {
-        $("#GiftTable").hide();
-        if (window.File && window.FileList && window.FileReader) {
-            $("#GiftCardImage").on("change", function (e) {
-                $("#GiftTable").show();
-                var GiftCardImage = e.target.files,
-                  filesLength = GiftCardImage.length;
-                for (var i = 0; i < filesLength; i++) {
-                    var f = GiftCardImage[i];
-                    var obj = new Object();
-                    var fileReader = new FileReader();
-                    fileReader.onload = (function (e) {
-                        var file = e.target;
-
-                        var newrow = $("<tr class=\"pip2\">" +
-                           "<td><img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></td>"
-                            + "<td>'" + $('#GiftOrderBy').val() + "'</td><td><span class=\"remove\">Remove image</span></td></tr>");
-
-                        $("#GiftTable").append(newrow);
-
-                        $(".remove").click(function () {
-                            $(this).closest('tr').remove();
-                        });
-                    });
-
-                    obj["img_url"] = f.name;
-                    obj["order_by_gift_items"] = $('#GiftOrderBy').val()
-
-                    giftArray.push(obj);
-                    fileReader.readAsDataURL(f);
-                }
-                console.log(giftArray);
-                console.log(files);
-
-            });
-        } else {
-            alert("Your browser doesn't support to File API")
-        }
-    });
-    //End Gift
-
-    //start Prod table
-
-    $(document).ready(function () {
-        $("#ProdTable").hide();
-        if (window.File && window.FileList && window.FileReader) {
-            $("#CustomImageUpload").on("change", function (e) {
-                $("#ProdTable").show();
-                var ProdTable = e.target.files,
-                  filesLength = ProdTable.length;
-                for (var i = 0; i < filesLength; i++) {
-                    var f = ProdTable[i]
-                    var fileReader = new FileReader();
-                    fileReader.onload = (function (e) {
-                        var file = e.target;
-
-                        var newrow = $("<tr class=\"pip3\">" +
-               "<td><img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></td><td><span class=\"remove\">Remove image</span></td></tr>");
-
-                        $("#ProdTable").append(newrow);
-
-                        $(".remove").click(function () {
-                            $(this).closest('tr').remove();
-                        });
-                    });
-                    fileReader.readAsDataURL(f);
-                }
-                console.log(files);
-
-            });
-        } else {
-            alert("Your browser doesn't support to File API")
-        }
-    });
-    //End Gift
 
 </script>

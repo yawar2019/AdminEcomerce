@@ -14,10 +14,10 @@
 
 <script>
     $(document).ready(function () {
-        geCategoryById($('#tagid').val());
+        geTagById($('#tagid').val());
     });
 
-    function geCategoryById(id) {
+    function geTagById(id) {
         $.ajax({
             async: true,
             type: "Get",
