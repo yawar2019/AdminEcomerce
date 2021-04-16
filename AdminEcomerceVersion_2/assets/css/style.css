@@ -236,7 +236,7 @@ code {
 
 .card .card-header h5:after {
 	content: "";
-	background-color: #448aff;
+	background-color:black;
 	position: absolute;
 	left: -20px;
 	top: 0;
@@ -281,7 +281,7 @@ code {
 
 .card .card-block a.dropdown-item:active,
 .card .card-block a.dropdown-item .active {
-	background-color: #448aff;
+	background-color: black;
 }
 
 .card .card-block.remove-label i {
@@ -294,12 +294,12 @@ code {
 }
 
 .card .card-block .dropdown-menu {
-	background-color: #fff;
+	background-color: black;
 	padding: 0;
 }
 
 .card .card-block .dropdown-menu .dropdown-divider {
-	background-color: #ddd;
+	background-color: black;
 	margin: 3px 0;
 }
 
@@ -370,7 +370,7 @@ code {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: black;
 	z-index: 999;
 }
 
@@ -429,7 +429,7 @@ code {
 }
 
 .page-header {
-	background-image: url("../images/breadcrumb-bg.jpg");
+	background-color: black;
 	background-size: cover;
 	background-position: bottom left;
 	position: relative;
@@ -439,7 +439,7 @@ code {
 
 .page-header:before {
 	content: "";
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: black;
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -563,7 +563,7 @@ code {
 .bd-example .modal {
 	display: block;
 	position: inherit;
-	background-color: #2C3E50;
+	background-color:black;
 	margin-bottom: 20px;
 }
 
@@ -576,7 +576,7 @@ code {
 }
 
 .sweet-alert button.confirm {
-	background-color: #448aff !important;
+	background-color: black !important;
 }
 
 .sweet-alert .sa-input-error {
@@ -708,13 +708,13 @@ button.close {
 
 a.bg-default:focus,
 a.bg-default:hover {
-	background-color: #f0f0f0 !important;
+	background-color: black !important;
 	color: #fff;
 }
 
 a.bg-primary:focus,
 a.bg-primary:hover {
-	background-color: #77aaff !important;
+	background-color: black!important;
 	color: #fff;
 }
 
@@ -896,7 +896,7 @@ a.bg-danger:hover {
 }
 
 .nav-tabs .slide {
-	background: #448aff;
+	background: black;
 	width: 100%;
 	height: 4px;
 	position: absolute;
@@ -971,7 +971,7 @@ a.bg-danger:hover {
 .table-primary,
 .table-primary>td,
 .table-primary>th {
-	background-color: #4680FE;
+	background-color:black;
 }
 
 .table-responsive {
@@ -1225,7 +1225,7 @@ a.bg-danger:hover {
 }
 
 .btn-outline-primary:hover {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 }
 
@@ -1286,7 +1286,7 @@ img.comment-img {
 }
 
 .page-item.active .page-link {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 }
 
@@ -2664,6 +2664,7 @@ img.comment-img {
 @-webkit-keyframes fill-unfill-rotate {
 	12.5% {
 		-webkit-transform: rotate(135deg);
+
 		transform: rotate(135deg);
 	}
 	25% {
@@ -4153,7 +4154,7 @@ select.form-control:not([size]):not([multiple]) {
 /*======= Button-color css starts  ======= */
 
 .color-primary {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .color-warning {
@@ -4284,7 +4285,7 @@ table tbody .border-bottom-info td {
 
 .table-styling .table-primary,
 .table-styling.table-primary {
-	background-color: #448aff;
+	background-color:black;
 	color: #fff;
 	border: 3px solid #448aff;
 }
@@ -5439,6 +5440,7 @@ table tbody .border-bottom-info td {
 	font-weight: 600;
 }
 
+
 .pcoded-inner-navbar {
 	height: 100%;
 }
@@ -6175,7 +6177,7 @@ table tbody .border-bottom-info td {
 }
 
 body[themebg-pattern="theme1"] {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .pcoded .pcoded-navbar .pcoded-header[header-theme="theme1"] {
@@ -6202,7 +6204,7 @@ body[themebg-pattern="theme1"] {
 }
 
 .pcoded .pcoded-navbar[navbar-theme="theme1"] .main-menu {
-	background-color: #37474f;
+	background-color: black;
 }
 
 .pcoded .pcoded-navbar[navbar-theme="theme1"] .main-menu .main-menu-header {
@@ -6516,7 +6518,7 @@ body[themebg-pattern="theme1"] {
 }
 
 .pcoded .pcoded-header[header-theme="theme1"] {
-	background: #448aff;
+	background: black;
 }
 
 .pcoded .pcoded-header[header-theme="theme1"] .input-group-addon,
@@ -6856,7 +6858,7 @@ body.menu-bottom #collapse-menu {
 }
 
 .list-group-item.active {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 }
 
@@ -6942,7 +6944,7 @@ body.menu-bottom #collapse-menu {
 .btn-primary,
 .sweet-alert button.confirm,
 .wizard>.actions a {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 	color: #fff;
 	cursor: pointer;
@@ -7255,7 +7257,7 @@ body.menu-bottom #collapse-menu {
 .btn-primary.btn-mat,
 .sweet-alert button.btn-mat.confirm,
 .wizard>.actions a.btn-mat {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .btn-primary.btn-mat:before,
@@ -7305,7 +7307,7 @@ body.menu-bottom #collapse-menu {
 }
 
 .btn-outline-disabled {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .btn-outline-disabled:before {
@@ -7478,7 +7480,7 @@ body.menu-bottom #collapse-menu {
 
 .dropdown-primary .dropdown-menu a:hover,
 .dropdown-split-primary .dropdown-menu a:hover {
-	background-color: #448aff;
+	background-color:black;
 	color: #fff;
 }
 
@@ -7622,7 +7624,7 @@ body.menu-bottom #collapse-menu {
 
 .input-group-primary .input-group-append .input-group-text,
 .input-group-primary .input-group-prepend .input-group-text {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .input-group-primary .form-control {
@@ -7891,13 +7893,13 @@ body.menu-bottom #collapse-menu {
 /*===== Form Background-inputs start =====*/
 
 .form-bg-primary {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 	color: #fff;
 }
 
 .form-bg-primary:focus {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 	color: #fff;
 }
@@ -8151,7 +8153,7 @@ body.menu-bottom #collapse-menu {
 
 .input-group-append .input-group-text,
 .input-group-prepend .input-group-text {
-	background-color: #448aff;
+	background-color:black;
 	border-color: rgba(0, 0, 0, 0.15);
 	color: #fff;
 }
@@ -8238,7 +8240,7 @@ body.menu-bottom #collapse-menu {
 .radio .helper::after {
 	-webkit-transform: scale(0);
 	transform: scale(0);
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 }
 
@@ -8279,7 +8281,7 @@ body.menu-bottom #collapse-menu {
 }
 
 .radio.radiofill .helper::after {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .radio.radio-outline input:checked~.helper::after {
@@ -8304,7 +8306,7 @@ body.menu-bottom #collapse-menu {
 }
 
 .radio.radio-matrial input:checked~.helper::before {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .radio.radio-disable {
@@ -8321,7 +8323,7 @@ body.menu-bottom #collapse-menu {
 }
 
 .radio.radio-primary .helper::after {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 }
 
@@ -8344,7 +8346,7 @@ body.menu-bottom #collapse-menu {
 }
 
 .radio.radio-matrial.radio-primary input~.helper::before {
-	background-color: #448aff;
+	background-color:black;
 	border-color: #448aff;
 }
 
@@ -9038,7 +9040,7 @@ body.menu-bottom #collapse-menu {
 }
 
 .checkbox-primary input[type="checkbox"]:checked+label::before {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .checkbox-warning input[type="checkbox"]:checked+label::before {
@@ -10096,7 +10098,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 
 .statustic-progress-card h6:after {
 	content: "";
-	background-color: #448aff;
+	background-color:black;
 	position: absolute;
 	left: -20px;
 	top: 0;
@@ -10114,7 +10116,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 .order-visitor-card:hover {
-	background-color: #448aff;
+	background-color:black;
 	color: #fff;
 }
 
@@ -10150,7 +10152,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 	bottom: -15px;
 	left: calc(100% - 27px);
 	color: #fff;
-	background-color: #448aff;
+	background-color:black;
 	border-radius: 5px;
 	padding: 0 3px;
 }
@@ -10629,7 +10631,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 .background-primary {
-	background-color: #448aff;
+	background-color:black;
 	color: #fff;
 }
 
@@ -10791,7 +10793,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 .info-breadcrumb,
 .warning-breadcrumb,
 .success-breadcrumb {
-	background-color: #448aff;
+	background-color:black;
 	color: #fff;
 }
 
@@ -13576,6 +13578,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 .warning-colorr ul li:nth-child(9) {
+
 	background-color: #f4d249;
 }
 
@@ -13821,7 +13824,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 .progress-bar-primary {
-	background-color: #448aff;
+	background-color:black;
 }
 
 .progress-bar-success {

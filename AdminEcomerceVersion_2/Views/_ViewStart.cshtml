@@ -1,3 +1,14 @@
-﻿@{
+﻿@*@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}*@
+
+@{
+    if (Convert.ToString(@Session["Role"])=="admin")
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_BusinessOwnerLayout.cshtml";
+    }
 }
