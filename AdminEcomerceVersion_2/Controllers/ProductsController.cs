@@ -1,11 +1,13 @@
 ﻿using AdminEcomerceVersion_2.Models;
 using ecomserv.Ecom;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace AdminEcomerceVersion_2.Controllers
 {
@@ -55,31 +57,43 @@ namespace AdminEcomerceVersion_2.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public JsonResult AddProductJson(EcomProductData e, HttpPostedFileBase file)
+
+        public class RootObject
         {
-            HttpFileCollection files = System.Web.HttpContext.Current.Request.Files;
+            public List<EcomProductData> data { get; set; }
+        }
+
+        [HttpPost]
+        public JsonResult AddProductJson(EcomProductData e, HttpPostedFileBase files)
+        {
+            HttpFileCollection files1 = System.Web.HttpContext.Current.Request.Files;
+            string jsonString = System.Web.HttpContext.Current.Request.Params["asset"];
+            
 
             string imgname = string.Empty;
             string ImageName = string.Empty;
+            //dynamic myDetails = JsonConvert.DeserializeObject<object>(jsonString);
+          // var km= JsonConvert.SerializeObject(jsonString, Newtonsoft.Json.Formatting.Indented);
+            JavaScriptSerializer j = new JavaScriptSerializer();
+            EcomProductData a = JsonConvert.DeserializeObject<EcomProductData>(jsonString);
             
-
             //Following code will check that image is there 
             //If it will Upload or else it will use Default Image
 
             if (System.Web.HttpContext.Current.Request.Files.AllKeys.Any())
             {
-                var logo = System.Web.HttpContext.Current.Request.Files["file"];
-                if (logo.ContentLength > 0)
-                {
-                    var profileName = Path.GetFileName(logo.FileName);
-                    var ext = Path.GetExtension(logo.FileName);
+                var logo = System.Web.HttpContext.Current.Request.Files;
+                for(int i = 0; i < logo.Count; i++) {
+                    if (logo[i].ContentLength > 0)
+                    {
+                        var profileName = Path.GetFileName(logo[i].FileName);
+                        var ext = Path.GetExtension(logo[i].FileName);
 
-                    ImageName = profileName;
-                    var comPath = Server.MapPath("/Images/") + ImageName;
+                        ImageName = profileName;
+                        var comPath = Server.MapPath("/Images/") + ImageName;
 
-                    logo.SaveAs(comPath);
-
+                        logo[i].SaveAs(comPath);
+                    }
                 }
 
             }
